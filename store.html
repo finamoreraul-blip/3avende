@@ -5,179 +5,151 @@
 <title>Tienda - 3A VENDE</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0F0F0F;--card:#1A1A1A;--card2:#222;--line:#262626;--ink:#FFF;--muted:#888;--muted2:#555}
+:root{--bg:#F0F2F5;--card:#FFFFFF;--line:#DDE3EA;--ink:#050505;--muted:#65676B;--blue:#1877F2;--blue-soft:#E7F3FF;--blue2:#0861F2}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
-.top{height:60px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(15,15,15,.92);backdrop-filter:blur(10px);z-index:20}
-.logo{font-weight:700;font-size:16px;letter-spacing:-.02em}
-.btn{padding:10px 16px;border-radius:999px;border:none;font-weight:700;font-size:13px;cursor:pointer}
-.btn-white{background:#fff;color:#111}.btn-dark{background:var(--card);border:1px solid var(--line);color:#fff}
-.cover{width:100%;height:220px;object-fit:cover;background:#111;display:block}
-.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-.header{position:relative}
-.profile{width:84px;height:84px;border-radius:50%;border:4px solid var(--bg);object-fit:cover;background:var(--card);margin-top:-42px;display:block}
-.info{margin-top:12px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
-.info-main{flex:1;min-width:260px}
-.info h1{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
-.info p{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5;max-width:520px}
-.meta{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
-.meta span{border:1px solid var(--line);background:var(--card);padding:8px 12px;border-radius:999px;font-size:12px;color:var(--muted);font-weight:500}
-.meta span b{color:var(--ink);font-weight:600}
-.info-actions{display:flex;gap:8px;margin-top:16px}
-.btn-big{padding:12px 18px;border-radius:999px;border:none;font-weight:700;font-size:13px;cursor:pointer}
-.btn-wsp{background:#25D366;color:#111}.btn-ig{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+body{background:var(--bg);color:var(--ink)}
+.top{height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.logo{font-weight:700;font-size:20px;color:var(--blue);letter-spacing:-.02em}
+.btn{padding:8px 14px;border-radius:8px;border:none;font-weight:600;font-size:13px;cursor:pointer}
+.btn-white{background:var(--blue-soft);color:var(--blue)}.btn-dark{background:#E4E6EB;color:var(--ink)}
 
-.bar{max-width:1100px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:space-between;align-items:center}
-.grid{padding:14px 20px 30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;max-width:1100px;margin:0 auto}
-.prod{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;transition:.2s;display:flex;flex-direction:column}
-.prod:hover{border-color:#333;transform:translateY(-2px)}
-.prod img{width:100%;height:260px;object-fit:cover;background:#111}
-.prod-body{padding:14px;display:flex;flex-direction:column;gap:5px;flex:1}
-.precio{font-size:18px;font-weight:700}.nombre{font-size:14px;font-weight:600;line-height:1.3;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.desc{font-size:12px;color:var(--muted);line-height:1.4;min-height:34px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.stock{font-size:10px;color:var(--muted2);margin-top:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+/* FACEBOOK HEADER */
+.fb-header{background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.cover{width:100%;max-width:1250px;margin:0 auto;display:block;height:350px;object-fit:cover;background:linear-gradient(180deg,#DCE8FF,#F0F2F5)}
+.fb-wrap{max-width:1250px;margin:0 auto;padding:0 16px}
+.fb-profile-row{display:flex;align-items:flex-end;gap:16px;padding:0 0 16px;position:relative}
+.fb-avatar{width:168px;height:168px;border-radius:50%;border:4px solid var(--card);object-fit:cover;background:var(--card);margin-top:-32px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.fb-name{flex:1;min-width:0;padding-bottom:16px}
+.fb-name h1{font-size:32px;font-weight:700;line-height:1.1}
+.fb-name p{font-size:15px;color:var(--muted);margin-top:6px;line-height:1.3}
+.fb-actions{display:flex;gap:8px;padding-bottom:20px}
+.btn-fb{padding:10px 16px;border-radius:8px;border:none;font-weight:600;font-size:15px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:var(--blue2)}
+.btn-secondary{background:#E4E6EB;color:var(--ink)}
 
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.tabs{border-top:1px solid var(--line);display:flex;gap:4px;padding:4px 0 0;overflow-x:auto}
+.tab{padding:12px 16px;font-size:15px;font-weight:600;color:var(--muted);border-radius:8px 8px 0 0;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);background:transparent}
+
+/* FACEBOOK LAYOUT */
+.layout{max-width:1250px;margin:16px auto;padding:0 16px;display:grid;grid-template-columns:360px 1fr;gap:16px;align-items:start}
+.left{position:sticky;top:72px;display:grid;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+.card p{font-size:15px;color:var(--ink);line-height:1.4}
+.info-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #F0F2F5;font-size:15px}
+.info-row:last-child{border:none}
+.info-row b{font-size:13px;color:var(--muted);min-width:70px}
+
+/* FEED PRODUCTOS TIPO FB POST */
+.feed{display:grid;gap:16px}
+.post{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.post-head{padding:12px 16px;display:flex;gap:10px;align-items:center}
+.post-head img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.post-head b{font-size:15px;display:block}.post-head span{font-size:12px;color:var(--muted)}
+.post-img{width:100%;height:auto;max-height:600px;object-fit:cover;background:#F0F2F5;display:block;cursor:pointer}
+.post-body{padding:12px 16px}
+.post-price{font-size:20px;font-weight:700}.post-name{font-size:17px;font-weight:600;margin-top:4px;line-height:1.3}.post-desc{font-size:15px;color:var(--ink);margin-top:6px;line-height:1.4}
+.post-actions{border-top:1px solid var(--line);display:flex}
+.post-actions button{flex:1;padding:10px;border:none;background:transparent;font-weight:600;font-size:15px;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.post-actions button:hover{background:#F2F2F2}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(255,255,255,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
 .modal.active{display:flex}
-.m-box{background:var(--card);border:1px solid var(--line);border-radius:22px;max-width:440px;width:100%;overflow:hidden}
-.m-box img{width:100%;height:340px;object-fit:cover}
-.m-body{padding:18px}
-.btn-close{width:100%;padding:14px;border-radius:999px;border:none;background:#fff;color:#111;font-weight:700;font-size:14px;margin-top:14px;cursor:pointer}
-
-@media(max-width:700px){.cover{height:160px}.profile{width:72px;height:72px;margin-top:-36px}.grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:12px}.prod img{height:160px}.bar{padding:16px 12px 0}.wrap{padding:0 16px}}
+.m-box{background:var(--card);border-radius:8px;max-width:700px;width:100%;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.2);display:grid;grid-template-columns:1fr 340px}
+.m-box img{width:100%;height:100%;object-fit:cover;max-height:80vh}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.left{position:static}.fb-avatar{width:120px;height:120px}.fb-name h1{font-size:24px}.cover{height:220px}.m-box{grid-template-columns:1fr}.m-box img{max-height:400px}}
 </style>
 </head>
 <body>
 
 <div class="top">
-<div class="logo">3A VENDE</div>
-<div style="display:flex;gap:8px">
-<button class="btn btn-dark" onclick="location.href='index.html'">← Inicio</button>
-<button class="btn btn-white" onclick="location.href='panel.html'">Mi Panel</button>
-</div>
+<div class="logo">3avende</div>
+<div style="display:flex;gap:8px"><button class="btn btn-dark" onclick="location.href='index.html'">Inicio</button><button class="btn btn-white" onclick="location.href='panel.html'">Mi panel</button></div>
 </div>
 
-<div class="header">
-<img class="cover" id="cover" src="">
-<div class="wrap">
-<img class="profile" id="profile" src="">
-<div class="info">
-<div class="info-main">
+<div class="fb-header">
+<img class="cover" id="cover">
+<div class="fb-wrap">
+<div class="fb-profile-row">
+<img class="fb-avatar" id="profile">
+<div class="fb-name">
 <h1 id="sName">Cargando...</h1>
 <p id="sDesc"></p>
-<div class="meta">
-<span id="sDir"></span>
-<span id="sCity"></span>
-<span id="sHor"></span>
+<p id="sFriends" style="font-size:13px;color:var(--muted);margin-top:6px">📍 Tres Arroyos • <span id="sProdCount">0 productos</span></p>
 </div>
-<div class="info-actions">
-<button class="btn-big btn-wsp" id="btnWsp" onclick="openWsp()">WhatsApp</button>
-<button class="btn-big btn-ig" id="btnIg" onclick="openIg()">Instagram</button>
+<div class="fb-actions">
+<button class="btn-fb btn-primary" id="btnWsp" onclick="openWsp()">💬 Mensaje</button>
+<button class="btn-fb btn-secondary" id="btnIg" onclick="openIg()">📷 Instagram</button>
 </div>
 </div>
-</div>
+<div class="tabs"><div class="tab active">Publicaciones</div><div class="tab">Información</div><div class="tab">Fotos</div></div>
 </div>
 </div>
 
-<div class="bar">
-<b id="prodCount" style="font-size:13px">0 productos</b>
-<span style="font-size:11px;color:var(--muted2)">Tres Arroyos</span>
+<div class="layout">
+<div class="left">
+<div class="card">
+<h3>Información</h3>
+<div id="infoList"></div>
+</div>
+<div class="card">
+<h3>Fotos</h3>
+<div id="photoGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:8px;overflow:hidden;margin-top:8px"></div>
+</div>
 </div>
 
-<div class="grid" id="grid"></div>
+<div class="feed" id="feed"></div>
+</div>
 
 <div class="modal" id="modal">
 <div class="m-box">
 <img id="mImg">
-<div class="m-body">
-<div class="precio" id="mPrice"></div>
-<div class="nombre" id="mName" style="margin-top:6px;font-size:16px"></div>
-<div class="desc" id="mDesc" style="margin-top:8px"></div>
-<div class="stock" id="mStock"></div>
-<button class="btn-close" onclick="closeM()">Cerrar</button>
-<button class="btn-big btn-wsp" style="width:100%;margin-top:10px" onclick="openWsp()">Consultar por WhatsApp</button>
-</div>
+<div style="padding:20px"><div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase" id="mStore"></div><div style="font-size:24px;font-weight:700;margin-top:8px" id="mPrice"></div><div style="font-size:18px;font-weight:600;margin-top:8px" id="mName"></div><div style="font-size:15px;margin-top:8px;line-height:1.4" id="mDesc"></div><div style="font-size:13px;color:var(--muted);margin-top:10px" id="mStock"></div><button class="btn-fb btn-primary" style="width:100%;margin-top:16px;justify-content:center" onclick="openWsp()">Consultar por WhatsApp</button><button class="btn-fb btn-secondary" style="width:100%;margin-top:8px;justify-content:center" onclick="closeM()">Cerrar</button></div>
 </div>
 </div>
 
 <script>
 const storeId=new URLSearchParams(location.search).get('store');
 let currentStore=null;
-
-function getStore(){
-let stores=JSON.parse(localStorage.getItem('marketStores')||'{}');
-return stores[storeId]||null;
-}
-function getProducts(){
-let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
-return all.filter(p=>p.storeId===storeId);
-}
+function getStore(){let s=JSON.parse(localStorage.getItem('marketStores')||'{}');return s[storeId]||null;}
+function getProds(){let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');return all.filter(p=>p.storeId===storeId);}
 function load(){
-let s=getStore();
-if(!s){
-document.getElementById('sName').textContent=storeId||'Tienda no encontrada';
-document.getElementById('sDesc').textContent='Este local aún no cargó sus datos.';
-return;
-}
+let s=getStore();if(!s){document.getElementById('sName').textContent='Tienda no encontrada';return;}
 currentStore=s;
-document.title=s.name+' - 3A VENDE';
 document.getElementById('sName').textContent=s.name;
 document.getElementById('sDesc').textContent=s.desc||'Emprendimiento de Tres Arroyos';
-document.getElementById('sDir').textContent='📍 '+(s.dir||'');
-document.getElementById('sDir').style.display=s.dir?'inline-flex':'none';
-document.getElementById('sCity').textContent=s.city||'Tres Arroyos';
-document.getElementById('sHor').textContent='🕐 '+(s.hor||'');
-document.getElementById('sHor').style.display=s.hor?'inline-flex':'none';
-document.getElementById('profile').src=s.profile||'https://via.placeholder.com/200/1A1A1A/666?text=3A';
-document.getElementById('cover').src=s.cover||'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1100&h=400&fit=crop';
-document.getElementById('btnWsp').style.display=s.wsp?'block':'none';
-document.getElementById('btnIg').style.display=s.ig?'block':'none';
-
-let prods=getProducts();
-document.getElementById('prodCount').textContent=prods.length+' productos';
-
-let grid=document.getElementById('grid');
-if(prods.length===0){
-grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)"><b style="color:var(--ink)">Sin productos</b><br>Este local aún no publicó.</div>';
-return;
-}
-grid.innerHTML=prods.map(p=>`
-<div class="prod" onclick='openM(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-<img src="${p.img||''}" loading="lazy">
-<div class="prod-body">
-<div class="precio">$${p.price.toLocaleString('es-AR')}</div>
-<div class="nombre">${p.name}</div>
-<div class="desc">${p.desc||''}</div>
-<div class="stock">Stock ${p.stock||1}</div>
+document.getElementById('profile').src=s.profile||'https://via.placeholder.com/400/E7F3FF/1877F2?text=3A';
+document.getElementById('cover').src=s.cover||'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1250&h=350&fit=crop';
+document.getElementById('infoList').innerHTML=`
+<div class="info-row"><b>Dirección</b><span>${s.dir||'-'}</span></div>
+<div class="info-row"><b>Ciudad</b><span>${s.city||'Tres Arroyos'}</span></div>
+<div class="info-row"><b>Horario</b><span>${s.hor||'-'}</span></div>
+<div class="info-row"><b>WhatsApp</b><span>${s.wsp||'-'}</span></div>
+<div class="info-row"><b>Instagram</b><span>${s.ig||'-'}</span></div>
+`;
+let prods=getProds();
+document.getElementById('sProdCount').textContent=prods.length+' productos';
+document.getElementById('photoGrid').innerHTML=prods.slice(0,9).map(p=>`<img src="${p.img}" style="width:100%;height:80px;object-fit:cover;cursor:pointer" onclick='openM(${JSON.stringify(p).replace(/'/g,"&#39;")})'>`).join('')||'<div style="grid-column:1/-1;padding:20px;text-align:center;color:var(--muted);font-size:13px">Sin fotos</div>';
+document.getElementById('feed').innerHTML=prods.map(p=>`
+<div class="post">
+<div class="post-head"><img src="${s.profile||''}"><div><b>${s.name}</b><span>${s.city||'Tres Arroyos'} • $${p.price.toLocaleString('es-AR')}</span></div></div>
+<img class="post-img" src="${p.img}" onclick='openM(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+<div class="post-body"><div class="post-name">${p.name}</div><div class="post-desc">${p.desc||''}</div></div>
+<div class="post-actions"><button onclick='openM(${JSON.stringify(p).replace(/'/g,"&#39;")})'>👍 Me interesa</button><button onclick="openWsp()">💬 Consultar</button><button onclick="share()">↗ Compartir</button></div>
 </div>
-</div>
-`).join('');
+`).join('')||'<div class="card" style="text-align:center;padding:40px"><h3>Sin publicaciones</h3><p style="color:var(--muted)">Este local aún no publicó productos</p></div>';
 }
-
 function openM(p){
-document.getElementById('mImg').src=p.img||'';
-document.getElementById('mPrice').textContent='$'+p.price.toLocaleString('es-AR');
-document.getElementById('mName').textContent=p.name;
-document.getElementById('mDesc').textContent=p.desc||'';
-document.getElementById('mStock').textContent='Stock '+ (p.stock||1);
-document.getElementById('modal').classList.add('active');
+document.getElementById('mImg').src=p.img;document.getElementById('mPrice').textContent='$'+p.price.toLocaleString('es-AR');document.getElementById('mName').textContent=p.name;document.getElementById('mDesc').textContent=p.desc||'';document.getElementById('mStock').textContent='Stock '+ (p.stock||1);document.getElementById('mStore').textContent=currentStore.name;document.getElementById('modal').classList.add('active');
 }
 function closeM(){document.getElementById('modal').classList.remove('active');}
-function openWsp(){
-if(!currentStore?.wsp) return;
-let num=currentStore.wsp.replace(/[^0-9]/g,'');
-let msg=encodeURIComponent(`Hola ${currentStore.name}! Te escribo desde 3A VENDE`);
-window.open(`https://wa.me/54${num}?text=${msg}`,'_blank');
-}
-function openIg(){
-if(!currentStore?.ig) return;
-let ig=currentStore.ig.replace('@','');
-window.open(`https://instagram.com/${ig}`,'_blank');
-}
+function openWsp(){if(!currentStore?.wsp) return;let num=currentStore.wsp.replace(/[^0-9]/g,'');window.open(`https://wa.me/54${num}?text=${encodeURIComponent('Hola '+currentStore.name+'! Vi tu tienda en 3A VENDE')}`,'_blank');}
+function openIg(){if(!currentStore?.ig) return;window.open('https://instagram.com/'+currentStore.ig.replace('@',''),'_blank');}
+function share(){if(navigator.share)navigator.share({title:currentStore.name,url:location.href});else{ navigator.clipboard.writeText(location.href);alert('Link copiado!');}}
 document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal') closeM();});
-
-if(!storeId){document.getElementById('sName').textContent='Falta ID de tienda';}
-else load();
+if(storeId) load();
 </script>
 </body>
 </html>
