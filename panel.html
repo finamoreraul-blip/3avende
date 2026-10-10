@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel - 3A VENDE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0F0F0F;--card:#1A1A1A;--line:#262626;--ink:#EDEDED;--muted:#888;--green:#22c55e}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:var(--bg);color:var(--ink)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10}
+.logo{font-weight:700}
+.wrap{max-width:900px;margin:0 auto;padding:24px;display:grid;grid-template-columns:320px 1fr;gap:20px}
+.box{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:16px}
+input,textarea,select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:#0F0F0F;color:#fff;font-size:13px;margin-top:6px}
+label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:14px;display:block}
+.btn{width:100%;padding:12px;border-radius:999px;border:none;font-weight:700;font-size:13px;cursor:pointer;margin-top:16px}
+.btn-save{background:#fff;color:#111}.btn-add{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.preview{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0F0F0F}
+.preview img{width:100%;height:180px;object-fit:cover}
+.prod-list{display:grid;gap:8px;margin-top:12px}
+.prod-item{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:12px;background:#0F0F0F}
+.comision-box{background:#0F0F0F;border:1px dashed var(--line);border-radius:12px;padding:12px;margin-top:12px;font-size:12px;color:var(--muted)}
+@media(max-width:800px){.wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top"><div class="logo">3A VENDE • PANEL</div><div style="display:flex;gap:8px"><button onclick="location.href='index.html'" style="background:transparent;border:1px solid var(--line);color:var(--muted);padding:7px 12px;border-radius:999px;font-size:12px;cursor:pointer">Ver Catálogo</button><button onclick="location.href='store.html?store='+document.getElementById('sId').value" style="background:#fff;border:none;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer">Ver Mi Tienda</button></div></div>
+
+<div class="wrap">
+<!-- IZQ: PERFIL EMPRENDIMIENTO -->
+<div class="box">
+<h3 style="font-size:14px;font-weight:700">Mi Emprendimiento</h3>
+<p style="font-size:12px;color:var(--muted);margin-top:4px">Foto de perfil, portada y datos. Esto arma tu tienda.</p>
+
+<label>ID de tu tienda (sin espacios)</label>
+<input id="sId" placeholder="ej: zapateria-centro" value="mi-emprendimiento">
+
+<label>Nombre del emprendimiento</label>
+<input id="sName" placeholder="Zapatería Centro">
+
+<label>Descripción corta</label>
+<textarea id="sDesc" rows="3" placeholder="Qué venden, desde cuándo..."></textarea>
+
+<label>Foto de perfil (link o subí)</label>
+<input id="sProfile" placeholder="https://...jpg">
+<input type="file" id="fProfile" accept="image/*" style="margin-top:8px">
+
+<label>Foto de portada</label>
+<input id="sCover" placeholder="https://...jpg">
+<input type="file" id="fCover" accept="image/*" style="margin-top:8px">
+
+<label>Dirección exacta</label>
+<input id="sDir" placeholder="Av. Moreno 456">
+
+<label>Ciudad</label>
+<input id="sCity" value="Tres Arroyos">
+
+<label>Horario</label>
+<input id="sHor" placeholder="Lun a Sáb 9 a 20hs">
+
+<label>WhatsApp</label>
+<input id="sWsp" placeholder="2983 123456">
+
+<label>Instagram</label>
+<input id="sIg" placeholder="@mi.emprendimiento">
+
+<button class="btn btn-save" onclick="saveStore()">Guardar mi tienda</button>
+
+<div class="comision-box">
+<b style="color:#fff">Modelo 3A Vende: 15%</b><br>
+Vos publicás a $1000 → Cliente paga $1000 → 3A retiene hasta entrega → Vos recibís $850.<br>
+No cobramos por publicar, solo por venta concretada.
+</div>
+
+<div style="margin-top:16px">
+<div style="font-size:12px;font-weight:600">Vista previa de tu tienda</div>
+<div class="preview" style="margin-top:8px">
+<img id="pCover" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=200&fit=crop">
+<div style="padding:12px;display:flex;gap:10px;align-items:center">
+<img id="pProfile" src="https://via.placeholder.com/100/1A1A1A/666?text=3A" style="width:48px;height:48px;border-radius:50%;object-fit:cover;background:#222">
+<div><div id="pName" style="font-size:13px;font-weight:700">Mi Emprendimiento</div><div id="pCity" style="font-size:11px;color:var(--muted)">Tres Arroyos</div></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- DER: PRODUCTOS -->
+<div class="box">
+<h3 style="font-size:14px;font-weight:700">Mis Productos</h3>
+<p style="font-size:12px;color:var(--muted);margin-top:4px">Foto arriba, precio y descripción abajo. Formato tranqui oscuro.</p>
+
+<label>Foto del producto (link o subí)</label>
+<input id="pImg" placeholder="https://...jpg">
+<input type="file" id="fProd" accept="image/*" style="margin-top:8px">
+
+<label>Nombre del producto</label>
+<input id="pNameProd" placeholder="Zapatillas Blancas Talle 38 al 44">
+
+<label>Precio (ARS)</label>
+<input id="pPrice" type="number" placeholder="54900">
+<div id="comisionCalc" style="font-size:11px;color:var(--muted);margin-top:6px">Vos recibís: $0 (85%) • 3A: $0 (15%)</div>
+
+<label>Stock</label>
+<input id="pStock" type="number" value="1">
+
+<label>Categoría</label>
+<select id="pCat"><option value="clothing">Ropa</option><option value="food">Alimentos</option><option value="home">Hogar</option><option value="artesanias">Artesanías</option><option value="panaderia">Panadería</option><option value="verduleria">Verdulería</option></select>
+
+<label>Descripción</label>
+<textarea id="pDesc" rows="3" placeholder="Material, talle, envío..."></textarea>
+
+<button class="btn btn-save" onclick="addProduct()">Publicar producto en 3A Vende</button>
+<button class="btn btn-add" onclick="previewProduct()">Vista previa</button>
+
+<div id="previewProd" class="preview" style="margin-top:16px;display:none"></div>
+
+<h4 style="font-size:13px;font-weight:700;margin-top:24px">Productos publicados</h4>
+<div class="prod-list" id="prodList"></div>
+</div>
+</div>
+
+<script>
+let stores = JSON.parse(localStorage.getItem('marketStores')||'{}');
+function saveStore(){
+let id = document.getElementById('sId').value.trim().toLowerCase().replace(/\s+/g,'-');
+if(!id) return alert('Pone ID');
+let data = {
+name: document.getElementById('sName').value||id,
+desc: document.getElementById('sDesc').value,
+profile: document.getElementById('sProfile').value,
+cover: document.getElementById('sCover').value,
+dir: document.getElementById('sDir').value,
+city: document.getElementById('sCity').value,
+hor: document.getElementById('sHor').value,
+wsp: document.getElementById('sWsp').value,
+ig: document.getElementById('sIg').value,
+};
+stores[id]=data;
+localStorage.setItem('marketStores',JSON.stringify(stores));
+alert('Tienda guardada: '+id+'\nTu link: store.html?store='+id);
+updatePreviewStore();
+loadProducts();
+}
+
+function updatePreviewStore(){
+let id=document.getElementById('sId').value;
+let name=document.getElementById('sName').value||id;
+let city=document.getElementById('sCity').value;
+let prof=document.getElementById('sProfile').value;
+let cover=document.getElementById('sCover').value;
+if(prof) document.getElementById('pProfile').src=prof;
+if(cover) document.getElementById('pCover').src=cover;
+document.getElementById('pName').textContent=name;
+document.getElementById('pCity').textContent=city;
+}
+['sId','sName','sCity','sProfile','sCover'].forEach(id=>{document.getElementById(id).addEventListener('input',updatePreviewStore);});
+
+document.getElementById('fProfile').addEventListener('change',e=>{
+let r=new FileReader(); r.onload=()=>{document.getElementById('sProfile').value=r.result;document.getElementById('pProfile').src=r.result;}; r.readAsDataURL(e.target.files[0]);
+});
+document.getElementById('fCover').addEventListener('change',e=>{
+let r=new FileReader(); r.onload=()=>{document.getElementById('sCover').value=r.result;document.getElementById('pCover').src=r.result;}; r.readAsDataURL(e.target.files[0]);
+});
+document.getElementById('fProd').addEventListener('change',e=>{
+let r=new FileReader(); r.onload=()=>{document.getElementById('pImg').value=r.result; previewProduct();}; r.readAsDataURL(e.target.files[0]);
+});
+document.getElementById('pPrice').addEventListener('input',()=>{
+let price=parseFloat(document.getElementById('pPrice').value)||0;
+let vos=price*0.85, com=price*0.15;
+document.getElementById('comisionCalc').textContent=`Vos recibís: $${vos.toLocaleString('es-AR')} (85%) • 3A: $${com.toLocaleString('es-AR')} (15%)`;
+});
+
+function previewProduct(){
+let img=document.getElementById('pImg').value;
+let name=document.getElementById('pNameProd').value||'Nombre producto';
+let price=parseFloat(document.getElementById('pPrice').value)||0;
+let desc=document.getElementById('pDesc').value||'';
+let box=document.getElementById('previewProd');
+box.style.display='block';
+box.innerHTML=`<img src="${img||'https://via.placeholder.com/400/222/666?text=3A'}"><div style="padding:12px"><div style="font-size:10px;color:#888">${document.getElementById('sName').value||'TIENDA'} → ver local</div><div style="font-size:15px;font-weight:700;margin-top:4px">$${price.toLocaleString('es-AR')}</div><div style="font-size:13px;font-weight:600;margin-top:4px">${name}</div><div style="font-size:11px;color:#888;margin-top:4px">${desc}</div><div style="font-size:10px;color:#666;margin-top:6px">Vos recibís $${(price*0.85).toLocaleString('es-AR')} • 3A $ ${(price*0.15).toLocaleString('es-AR')}</div></div>`;
+}
+
+function addProduct(){
+let idStore=document.getElementById('sId').value.trim().toLowerCase().replace(/\s+/g,'-');
+if(!idStore) return alert('Guardá tu tienda primero');
+let storeName=document.getElementById('sName').value||idStore;
+let list=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
+let prod={
+id: Date.now(),
+store: storeName,
+storeId: idStore,
+city: document.getElementById('sCity').value||'Tres Arroyos',
+dir: document.getElementById('sDir').value,
+hor: document.getElementById('sHor').value,
+ig: document.getElementById('sIg').value,
+name: document.getElementById('pNameProd').value,
+price: parseFloat(document.getElementById('pPrice').value)||0,
+stock: parseInt(document.getElementById('pStock').value)||1,
+category: document.getElementById('pCat').value,
+desc: document.getElementById('pDesc').value,
+img: document.getElementById('pImg').value,
+};
+if(!prod.name||!prod.price) return alert('Falta nombre y precio');
+list.unshift(prod);
+localStorage.setItem('marketProductsAR',JSON.stringify(list));
+alert('Producto publicado en 3A Vende\nVos recibís 85% = $'+(prod.price*0.85).toLocaleString('es-AR'));
+loadProducts();
+document.getElementById('pNameProd').value='';document.getElementById('pPrice').value='';document.getElementById('pDesc').value='';document.getElementById('pImg').value='';
+document.getElementById('previewProd').style.display='none';
+}
+
+function loadProducts(){
+let id=document.getElementById('sId').value.trim().toLowerCase();
+let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
+let mine=all.filter(p=>p.storeId===id);
+document.getElementById('prodList').innerHTML=mine.map(p=>`
+<div class="prod-item"><img src="${p.img||p.imgs?.[0]||''}" style="width:40px;height:40px;border-radius:8px;object-fit:cover;background:#222"><div style="flex:1"><div style="font-size:12px;font-weight:600">${p.name}</div><div style="font-size:11px;color:var(--muted)">$${p.price.toLocaleString('es-AR')} • Vos $${(p.price*0.85).toLocaleString('es-AR')} • Stock ${p.stock}</div></div><button onclick="delProd(${p.id})" style="background:transparent;border:1px solid #333;color:#888;padding:6px 10px;border-radius:999px;font-size:11px;cursor:pointer">Borrar</button></div>
+`).join('')||'<div style="font-size:12px;color:var(--muted);text-align:center;padding:20px">Sin productos aún</div>';
+}
+function delProd(id){
+let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
+all=all.filter(p=>p.id!==id);
+localStorage.setItem('marketProductsAR',JSON.stringify(all));
+loadProducts();
+}
+document.getElementById('sId').addEventListener('input',loadProducts);
+if(localStorage.getItem('marketStores')){
+let first=Object.keys(JSON.parse(localStorage.getItem('marketStores')))[0];
+if(first){document.getElementById('sId').value=first; let s=JSON.parse(localStorage.getItem('marketStores'))[first]; document.getElementById('sName').value=s.name||''; document.getElementById('sDesc').value=s.desc||''; document.getElementById('sProfile').value=s.profile||''; document.getElementById('sCover').value=s.cover||''; document.getElementById('sDir').value=s.dir||''; document.getElementById('sCity').value=s.city||'Tres Arroyos'; document.getElementById('sHor').value=s.hor||''; document.getElementById('sWsp').value=s.wsp||''; document.getElementById('sIg').value=s.ig||''; updatePreviewStore();}
+}
+loadProducts();
+</script>
+</body>
+</html>
