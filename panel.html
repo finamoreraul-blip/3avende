@@ -1,149 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel - 3A VENDE</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Emprendedor - 3A VENDE</title>
 <style>
-:root{
---bg:#F6F7FB; --card:#FFFFFF; --card2:#EEF2FF; --line:#E6E9F2; --ink:#101223; --muted:#7A8199; --blue:#5B7FFF; --blue2:#EDF1FF; --blue-soft:#DCE4FF
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg);color:var(--ink)}
-.top{height:60px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20}
-.logo{font-weight:700;font-size:16px;letter-spacing:-.02em}.logo b{color:var(--blue)}
-.btn{padding:10px 16px;border-radius:999px;border:none;font-weight:700;font-size:13px;cursor:pointer}
-.btn-white{background:var(--ink);color:#fff}.btn-ghost{background:var(--card2);border:1px solid var(--line);color:var(--ink)}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#F0F2F5;color:#050505}
+.top{height:56px;background:#fff;border-bottom:1px solid #DDE3EA;display:flex;justify-content:space-between;align-items:center;padding:0 16px;position:sticky;top:0;z-index:50;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.top b{font-size:16px;color:#1877F2;letter-spacing:-.02em}
+.btn{padding:8px 14px;border-radius:8px;border:none;font-weight:700;font-size:12px;cursor:pointer}
+.btn.blue{background:#1877F2;color:#fff}.btn.gray{background:#E4E6EB;color:#050505}.btn.black{background:#050505;color:#fff}
+.btn.big{width:100%;padding:14px;border-radius:10px;font-size:14px;margin-top:14px}
+.wrap{max-width:1200px;margin:0 auto;padding:16px;display:grid;grid-template-columns:380px 1fr;gap:16px}
+.card{background:#fff;border:1px solid #DDE3EA;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.04);margin-bottom:16px}
+label{font-size:10px;font-weight:800;color:#65676B;margin-top:14px;display:block;text-transform:uppercase;letter-spacing:.06em}
+input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #DDE3EA;margin-top:4px;font-size:14px;outline:none;background:#fff}
+input:focus,textarea:focus{border-color:#1877F2}
+.preview{margin-top:16px;border:1px solid #DDE3EA;border-radius:12px;overflow:hidden;background:#F0F2F5}
+.preview-cover{width:100%;height:140px;object-fit:cover;background:#E7F3FF;display:block}
+.preview-body{padding:12px;display:flex;gap:10px;align-items:center;background:#fff}
+.preview-profile{width:52px;height:52px;border-radius:50%;object-fit:cover;background:#fff;border:3px solid #fff;margin-top:-30px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 
-/* LOGIN */
-#login{max-width:400px;margin:60px auto;padding:20px}
-.login-box{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 10px 40px rgba(91,127,255,.12)}
-.login-box h1{font-size:22px;line-height:1.1}.login-box p{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5}
-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:18px;display:block}
-input,textarea,select{width:100%;padding:14px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:14px;margin-top:6px;outline:none}
-input:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue2)}
-.btn-save{width:100%;padding:16px;border-radius:999px;border:none;background:var(--blue);color:#fff;font-weight:700;font-size:15px;margin-top:20px;cursor:pointer}
-.btn-save:active{transform:scale(.98)}
-.link{font-size:12px;color:var(--blue);cursor:pointer;margin-top:12px;display:inline-block;font-weight:600}
+.grid{padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:12px}
+.prod{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #DDE3EA;position:relative;transition:.15s}
+.prod:hover{border-color:#1877F2}
+.prod img{width:100%;height:160px;object-fit:cover;background:#E7F3FF}
+.prod-body{padding:10px}
+.prod .store{font-size:10px;font-weight:800;color:#1877F2;text-transform:uppercase}
+.prod .price{font-size:15px;font-weight:800;margin-top:2px}
+.prod .name{font-size:12px;font-weight:600;line-height:1.25;min-height:30px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:2px}
+.prod .actions{display:flex;gap:6px;margin-top:8px}
+.prod .actions button{flex:1;padding:6px;border-radius:6px;border:1px solid #DDE3EA;background:#fff;font-size:10px;font-weight:700;cursor:pointer}
+.prod .actions button.del{background:#FFF0F0;border-color:#FFCDD2;color:#E63946}
 
-/* PANEL INTERNO */
-#panel{max-width:1100px;margin:0 auto;padding:20px;display:none;grid-template-columns:360px 1fr;gap:20px}
-#panel.active{display:grid}
-.box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
-.box h3{font-size:15px}.box p{font-size:12px;color:var(--muted);margin-top:4px}
-.preview{margin-top:16px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--bg)}
-.preview-cover{width:100%;height:120px;object-fit:cover;background:var(--blue-soft)}
-.preview-body{padding:12px;display:flex;gap:10px;align-items:center}
-.preview-profile{width:48px;height:48px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid #fff;margin-top:-28px}
-.file{font-size:12px;color:var(--muted);margin-top:8px}
-.prod-list{margin-top:16px;display:grid;gap:10px}
-.prod-item{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
-.prod-item img{width:52px;height:52px;border-radius:10px;object-fit:cover;background:#fff}
-@media(max-width:900px){#panel{grid-template-columns:1fr}#login{margin:30px auto}}
+.explica{background:#E7F3FF;border:1px solid #C9DAFF;border-radius:10px;padding:12px;font-size:11px;color:#1877F2;line-height:1.4;margin-top:12px}
+.explica b{color:#0D47A1}
+
+#login{max-width:420px;margin:50px auto;padding:16px}
+.login-box{background:#fff;border:1px solid #DDE3EA;border-radius:18px;padding:26px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.login-box h2{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.login-box p{font-size:12px;color:#65676B;margin-top:6px;line-height:1.4}
+.link{font-size:12px;color:#1877F2;font-weight:700;cursor:pointer;margin-top:12px;display:inline-block}
+
+@media(max-width:900px){.wrap{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
+<div class="top"><b>3A VENDE • PANEL EMPRENDEDOR</b><div style="display:flex;gap:8px;align-items:center"><button class="btn gray" onclick="location.href='index.html'">Index</button><button class="btn blue" id="btnVerTienda" style="display:none" onclick="goStore()">Ver mi tienda FB</button><button class="btn black" id="btnLogout" style="display:none" onclick="logout()">Salir</button></div></div>
 
-<div class="top">
-<div class="logo">3A <b>VENDE</b> <span style="font-weight:500;color:var(--muted);font-size:12px;margin-left:6px">PANEL</span></div>
-<div style="display:flex;gap:8px">
-<button class="btn btn-ghost" onclick="location.href='index.html'">Ver catálogo</button>
-<button class="btn btn-white" id="btnVerTienda" style="display:none" onclick="goStore()">Ver mi tienda</button>
-<button class="btn btn-ghost" id="btnLogout" style="display:none" onclick="logout()">Salir</button>
-</div>
-</div>
-
-<!-- LOGIN CON WHATSAPP -->
 <div id="login">
 <div class="login-box">
-<h1>Entrá a tu local</h1>
-<p>Logueate con tu WhatsApp y contraseña. Cada local es privado.</p>
+<h2>Entrá a tu local</h2>
+<p>WhatsApp + contraseña. Tu tienda tipo Facebook + productos que aparecen al instante en el inicio. Demo: <b>2983401234 / 123456</b></p>
 
 <div id="loginForm">
-<label>WhatsApp (tu usuario)</label>
-<input id="lWsp" placeholder="2983 123456">
-<label>Contraseña</label>
-<input id="lPass" type="password" placeholder="••••••••">
-<button class="btn-save" onclick="doLogin()">Entrar a mi panel</button>
-<span class="link" onclick="showRegister()">¿No tenés cuenta? Crear local nuevo →</span>
-<div id="loginError" style="margin-top:12px;font-size:12px;color:#FF4D4D;display:none"></div>
+<label>WhatsApp</label><input id="lWsp" placeholder="2983 401234">
+<label>Contraseña</label><input id="lPass" type="password" placeholder="••••••">
+<button class="btn blue big" onclick="doLogin()">Entrar a mi panel</button>
+<span class="link" onclick="showReg()">¿No tenés tienda? Crear local nuevo →</span>
+<div id="errLog" style="color:#E63946;font-size:12px;display:none;margin-top:10px;background:#FFF0F0;padding:8px;border-radius:8px"></div>
 </div>
 
-<div id="registerForm" style="display:none">
-<label>WhatsApp (será tu usuario)</label>
-<input id="rWsp" placeholder="2983 123456">
-<label>Contraseña nueva</label>
-<input id="rPass" type="password" placeholder="Mínimo 6 caracteres">
-<label>ID de tienda</label>
-<input id="rId" placeholder="ej: zapateria-centro">
-<label>Nombre del local</label>
-<input id="rName" placeholder="Zapatería Centro">
-<button class="btn-save" onclick="doRegister()">Crear mi local</button>
-<span class="link" onclick="showLogin()">← Ya tengo cuenta</span>
-<div id="regError" style="margin-top:12px;font-size:12px;color:#FF4D4D;display:none"></div>
+<div id="regForm" style="display:none">
+<label>WhatsApp (tu usuario)</label><input id="rWsp" placeholder="2983 401234">
+<label>Contraseña</label><input id="rPass" type="password" placeholder="Mínimo 4">
+<label>ID tienda (sin espacios, ej: mi-local)</label><input id="rId" placeholder="zapateria-centro">
+<label>Nombre del local</label><input id="rName" placeholder="Zapatería Centro">
+<button class="btn blue big" onclick="doReg()">Crear mi tienda ahora</button>
+<span class="link" onclick="showLog()">← Ya tengo cuenta, entrar</span>
+<div id="errReg" style="color:#E63946;font-size:12px;display:none;margin-top:10px;background:#FFF0F0;padding:8px;border-radius:8px"></div>
 </div>
 
+<div class="explica">
+<b>¿Cómo funciona el 15%?</b><br>
+No pagás alquiler mensual. Subís gratis. Cuando un cliente te escribe por WhatsApp desde 3A VENDE y te compra, nos dejás el 15% de esa venta. Vos arreglás el cobro directo. <b>Si no vendés, no pagás nada.</b><br><br>
+<b>Vista previa igual al index:</b> Lo que ves abajo en "Mis productos publicados" es exactamente igual a como se ve en el inicio. Lo que subís aparece al instante.
 </div>
 </div>
+</div>
 
-<!-- PANEL REAL -->
-<div id="panel">
-<div class="box">
-<h3>Mi local</h3>
-<p style="background:var(--blue2);border-radius:10px;padding:8px 10px;color:var(--blue);margin-top:10px">👋 Logueado como <b id="loggedWsp"></b></p>
+<div id="panel" class="wrap" style="display:none">
+<div>
+<div class="card">
+<h3 style="font-size:16px;font-weight:800">Mi local - Datos Facebook</h3>
+<div style="background:#E7F3FF;padding:8px 10px;border-radius:8px;margin-top:10px;font-size:12px;border:1px solid #C9DAFF">👋 Conectado: <b id="logged"></b> • <span id="storeIdLabel" style="color:#1877F2;font-weight:700"></span></div>
 
-<label>ID tienda</label><input id="sId" disabled style="background:var(--bg)">
-<label>Nombre</label><input id="sName">
-<label>Descripción</label><textarea id="sDesc" rows="2"></textarea>
+<label>Nombre del local</label><input id="sName" placeholder="Ej: Zapatería Centro">
+<label>Descripción corta (tipo Facebook)</label><textarea id="sDesc" rows="3" placeholder="Ej: Calzado desde 1985, cuero genuino y urbano..."></textarea>
 
-<label>Foto perfil</label><input id="sProfile" placeholder="https://..."><input type="file" id="fProfile" accept="image/*" class="file">
-<label>Foto portada</label><input id="sCover" placeholder="https://..."><input type="file" id="fCover" accept="image/*" class="file">
+<label>Foto perfil (circular, 200x200) - URL o archivo</label><input id="sProfile" placeholder="https://... o subí archivo">
+<input type="file" id="fProfile" accept="image/*" style="margin-top:6px">
 
-<label>Dirección</label><input id="sDir">
+<label>Foto portada (1200x400) - URL o archivo</label><input id="sCover" placeholder="https://... o subí archivo">
+<input type="file" id="fCover" accept="image/*" style="margin-top:6px">
+
+<label>Dirección exacta</label><input id="sDir" placeholder="Av. Moreno 456">
 <label>Ciudad</label><input id="sCity" value="Tres Arroyos">
-<label>Horario</label><input id="sHor">
-<label>Instagram</label><input id="sIg">
+<label>Horario atención</label><input id="sHor" placeholder="Lun a Sáb 9 a 20hs">
+<label>WhatsApp con formato</label><input id="sWsp" placeholder="2983 401234">
+<label>Instagram @</label><input id="sIg" placeholder="@mi.local">
 
-<button class="btn-save" onclick="saveStore()">Guardar cambios</button>
+<button class="btn blue big" onclick="saveStore()">Guardar local → Se actualiza en Index y Store</button>
+<button class="btn black big" style="margin-top:8px" onclick="goStore()">Ver mi tienda tipo Facebook →</button>
 
 <div class="preview">
-<img class="preview-cover" id="pCover" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=200&fit=crop">
-<div class="preview-body"><img class="preview-profile" id="pProfile" src="https://via.placeholder.com/100/EEF2FF/5B7FFF?text=3A"><div><div id="pName" style="font-size:13px;font-weight:700">Mi local</div><div id="pCity" style="font-size:11px;color:var(--muted)">Tres Arroyos</div></div></div>
+<img class="preview-cover" id="pCover">
+<div class="preview-body">
+<img class="preview-profile" id="pProfile">
+<div><b id="pName" style="font-size:14px;display:block">Mi local</b><span id="pCity" style="font-size:11px;color:#65676B">Tres Arroyos</span><br><span id="pDir" style="font-size:11px;color:#65676B">Dirección</span></div>
+</div>
 </div>
 </div>
 
-<div class="box">
-<h3>Mis productos</h3><p>Foto grande, precio claro.</p>
-<label>Foto</label><input id="pImg"><input type="file" id="fProd" accept="image/*" class="file">
-<label>Nombre</label><input id="pNameProd">
-<label>Precio</label><input id="pPrice" type="number">
-<label>Stock</label><input id="pStock" type="number" value="1">
-<label>Categoría</label><select id="pCat"><option value="clothing">Ropa</option><option value="food">Comida</option><option value="home">Hogar</option><option value="panaderia">Panadería</option><option value="verduleria">Verdulería</option><option value="artesanias">Artesanías</option></select>
-<label>Descripción</label><textarea id="pDesc" rows="3"></textarea>
-<button class="btn-save" onclick="addProd()">Publicar producto</button>
-<div style="display:flex;justify-content:space-between;margin-top:18px"><b style="font-size:13px">Publicados</b><span id="prodCount" style="font-size:11px;color:var(--muted)">0</span></div>
-<div class="prod-list" id="prodList"></div>
+<div class="card">
+<h3 style="font-size:14px;font-weight:800">Estado de mi tienda</h3>
+<div style="font-size:12px;color:#65676B;line-height:1.6;margin-top:8px" id="statusBox"></div>
+</div>
+</div>
+
+<div>
+<div class="card">
+<h3 style="font-size:16px;font-weight:800">Subir producto - Aparece al instante</h3>
+<p style="font-size:11px;color:#65676B;margin-top:4px">Misma vista previa que el index. Subís y se ve al instante en inicio y en tu store Facebook.</p>
+
+<label>Foto producto (URL o archivo) - Se ve igual que en index</label><input id="pImg" placeholder="https://...">
+<input type="file" id="fProd" accept="image/*" style="margin-top:6px">
+
+<label>Nombre producto (ej: Zapatillas Blancas 38-44)</label><input id="pNameProd" placeholder="Ej: Zapatillas Urbanas Blancas">
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div><label>Precio $</label><input id="pPrice" type="number" placeholder="58900"></div>
+<div><label>Stock</label><input id="pStock" type="number" value="10"></div>
+</div>
+
+<label>Categoría (filtros del index)</label>
+<select id="pCat">
+<option value="clothing">Ropa</option>
+<option value="panaderia">Panadería</option>
+<option value="verduleria">Verdulería</option>
+<option value="carniceria">Carnicería</option>
+<option value="bar">Bar</option>
+<option value="parrilla">Parrilla</option>
+<option value="pizzeria">Pizzería</option>
+<option value="kiosco">Kiosco</option>
+<option value="heladeria">Heladería</option>
+<option value="polleria">Pollería</option>
+<option value="home">Hogar</option>
+<option value="artesanias">Artesanías</option>
+</select>
+
+<label>Descripción corta (se ve en el modal)</label><textarea id="pDesc" rows="3" placeholder="Ej: Cuero ecológico, suela antideslizante. Envío gratis Tres Arroyos."></textarea>
+
+<button class="btn blue big" onclick="addProd()">📤 Publicar ahora → Aparece en index al instante</button>
+
+<div class="explica">
+<b>Tip:</b> La foto tiene que ser cuadrada, fondo claro. Nombre corto y precio redondo. La descripción es la que ve el cliente en la vista previa con carrusel.
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;border-top:1px solid #F0F2F5;padding-top:16px">
+<b style="font-size:14px">Mis productos publicados</b><span id="prodCount" style="font-size:11px;color:#fff;background:#1877F2;padding:4px 8px;border-radius:999px">0</span>
+</div>
+<div style="font-size:11px;color:#65676B;margin-top:4px">Esta es la vista previa EXACTA igual al index. Lo que ves acá es lo que ve el cliente.</div>
+
+<div class="grid" id="prodList"></div>
+</div>
 </div>
 </div>
 
 <script>
-let currentUser=null;
-function normalizeWsp(w){return w.replace(/[^0-9]/g,'');}
-function showRegister(){document.getElementById('loginForm').style.display='none';document.getElementById('registerForm').style.display='block';}
-function showLogin(){document.getElementById('registerForm').style.display='none';document.getElementById('loginForm').style.display='block';}
+let cur=null;
+const norm=w=>w.replace(/[^0-9]/g,'');
+function showReg(){document.getElementById('loginForm').style.display='none';document.getElementById('regForm').style.display='block';}
+function showLog(){document.getElementById('regForm').style.display='none';document.getElementById('loginForm').style.display='block';}
 
-function doRegister(){
-let wsp=normalizeWsp(document.getElementById('rWsp').value);
+function doReg(){
+let wsp=norm(document.getElementById('rWsp').value);
 let pass=document.getElementById('rPass').value;
-let id=document.getElementById('rId').value.trim().toLowerCase().replace(/\s+/g,'-');
-let name=document.getElementById('rName').value;
-let err=document.getElementById('regError');
+let id=document.getElementById('rId').value.trim().toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+let name=document.getElementById('rName').value.trim();
+let err=document.getElementById('errReg');
 err.style.display='none';
-if(wsp.length<8||pass.length<6||!id||!name){err.textContent='Completá WhatsApp, contraseña (6+), ID y nombre';err.style.display='block';return;}
+if(wsp.length<8||pass.length<4||!id||!name){err.textContent='Completá WhatsApp, contraseña, ID y nombre';err.style.display='block';return;}
 let users=JSON.parse(localStorage.getItem('marketUsers')||'{}');
-if(users[wsp]){err.textContent='Ese WhatsApp ya tiene cuenta';err.style.display='block';return;}
 let stores=JSON.parse(localStorage.getItem('marketStores')||'{}');
-if(stores[id]){err.textContent='Ese ID de tienda ya existe';err.style.display='block';return;}
+if(users[wsp]){err.textContent='Ese WhatsApp ya está registrado';err.style.display='block';return;}
+if(stores[id]){err.textContent='Ese ID de tienda ya existe, probá otro';err.style.display='block';return;}
 users[wsp]={wsp,pass,storeId:id};
 stores[id]={name,desc:'',profile:'',cover:'',dir:'',city:'Tres Arroyos',hor:'',wsp:document.getElementById('rWsp').value,ig:'',ownerWsp:wsp};
 localStorage.setItem('marketUsers',JSON.stringify(users));
@@ -151,76 +193,169 @@ localStorage.setItem('marketStores',JSON.stringify(stores));
 localStorage.setItem('marketSession',wsp);
 location.reload();
 }
+
 function doLogin(){
-let wsp=normalizeWsp(document.getElementById('lWsp').value);
+let wsp=norm(document.getElementById('lWsp').value);
 let pass=document.getElementById('lPass').value;
 let users=JSON.parse(localStorage.getItem('marketUsers')||'{}');
-let err=document.getElementById('loginError');
+let err=document.getElementById('errLog');
 err.style.display='none';
-if(!users[wsp]||users[wsp].pass!==pass){err.textContent='WhatsApp o contraseña incorrecta';err.style.display='block';return;}
+if(!users[wsp]||users[wsp].pass!==pass){err.textContent='WhatsApp o contraseña incorrectos';err.style.display='block';return;}
 localStorage.setItem('marketSession',wsp);
 location.reload();
 }
-function checkSession(){
+
+function check(){
 let sess=localStorage.getItem('marketSession');
 if(!sess) return;
 let users=JSON.parse(localStorage.getItem('marketUsers')||'{}');
-if(!users[sess]){localStorage.removeItem('marketSession');return;}
-currentUser=users[sess];
+if(!users[sess]) return;
+cur=users[sess];
 document.getElementById('login').style.display='none';
-document.getElementById('panel').classList.add('active');
 document.getElementById('panel').style.display='grid';
-document.getElementById('btnVerTienda').style.display='block';
 document.getElementById('btnLogout').style.display='block';
-document.getElementById('loggedWsp').textContent=currentUser.wsp;
+document.getElementById('btnVerTienda').style.display='block';
+document.getElementById('logged').textContent=cur.wsp;
+document.getElementById('storeIdLabel').textContent=cur.storeId;
 loadStore();
 }
+
 function logout(){localStorage.removeItem('marketSession');location.reload();}
-function goStore(){if(currentUser) location.href='store.html?store='+currentUser.storeId;}
-function fileToInput(file,inputId){let r=new FileReader();r.onload=()=>{document.getElementById(inputId).value=r.result;updatePreview();};r.readAsDataURL(file);}
-function updatePreview(){
-let n=document.getElementById('sName').value||'Mi local';let c=document.getElementById('sCity').value||'Tres Arroyos';
-document.getElementById('pName').textContent=n;document.getElementById('pCity').textContent=c;
-let pr=document.getElementById('sProfile').value;let co=document.getElementById('sCover').value;
-if(pr) document.getElementById('pProfile').src=pr;if(co) document.getElementById('pCover').src=co;
+function goStore(){location.href='store.html?store='+cur.storeId;}
+
+function fileTo(id,file){
+let r=new FileReader();
+r.onload=()=>{document.getElementById(id).value=r.result;updatePreview();};
+r.readAsDataURL(file);
 }
-['sName','sCity','sProfile','sCover'].forEach(id=>document.getElementById(id).addEventListener('input',updatePreview));
-document.getElementById('fProfile').addEventListener('change',e=>fileToInput(e.target.files[0],'sProfile'));
-document.getElementById('fCover').addEventListener('change',e=>fileToInput(e.target.files[0],'sCover'));
-document.getElementById('fProd').addEventListener('change',e=>fileToInput(e.target.files[0],'pImg'));
+
+function updatePreview(){
+document.getElementById('pName').textContent=document.getElementById('sName').value||'Mi local';
+document.getElementById('pCity').textContent=document.getElementById('sCity').value||'Tres Arroyos';
+document.getElementById('pDir').textContent=document.getElementById('sDir').value||'Dirección';
+if(document.getElementById('sProfile').value) document.getElementById('pProfile').src=document.getElementById('sProfile').value;
+if(document.getElementById('sCover').value) document.getElementById('pCover').src=document.getElementById('sCover').value;
+let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]').filter(p=>p.storeId===cur.storeId);
+document.getElementById('statusBox').innerHTML=`<b>${document.getElementById('sName').value||'Mi local'}</b><br>📦 ${all.length} productos publicados<br>📍 ${document.getElementById('sDir').value||'Sin dirección'}<br>🕐 ${document.getElementById('sHor').value||'Sin horario'}<br>👁️ Visible en index y en store Facebook<br><br><span style="color:#2E7D32;font-weight:700">✓ Sincronizado: index + store</span>`;
+}
+
+['sName','sCity','sDir','sHor','sProfile','sCover'].forEach(id=>{
+document.getElementById(id).addEventListener('input',updatePreview);
+});
+
+document.getElementById('fProfile').addEventListener('change',e=>{if(e.target.files[0]) fileTo('sProfile',e.target.files[0]);});
+document.getElementById('fCover').addEventListener('change',e=>{if(e.target.files[0]) fileTo('sCover',e.target.files[0]);});
+document.getElementById('fProd').addEventListener('change',e=>{if(e.target.files[0]) fileTo('pImg',e.target.files[0]);});
 
 function loadStore(){
-if(!currentUser) return;
 let stores=JSON.parse(localStorage.getItem('marketStores')||'{}');
-let s=stores[currentUser.storeId];
+let s=stores[cur.storeId];
 if(!s) return;
-document.getElementById('sId').value=currentUser.storeId;
-document.getElementById('sName').value=s.name||'';document.getElementById('sDesc').value=s.desc||'';document.getElementById('sProfile').value=s.profile||'';document.getElementById('sCover').value=s.cover||'';document.getElementById('sDir').value=s.dir||'';document.getElementById('sCity').value=s.city||'Tres Arroyos';document.getElementById('sHor').value=s.hor||'';document.getElementById('sIg').value=s.ig||'';
-updatePreview();loadList();
+document.getElementById('sName').value=s.name||'';
+document.getElementById('sDesc').value=s.desc||'';
+document.getElementById('sProfile').value=s.profile||'';
+document.getElementById('sCover').value=s.cover||'';
+document.getElementById('sDir').value=s.dir||'';
+document.getElementById('sCity').value=s.city||'Tres Arroyos';
+document.getElementById('sHor').value=s.hor||'';
+document.getElementById('sWsp').value=s.wsp||'';
+document.getElementById('sIg').value=s.ig||'';
+updatePreview();
+loadList();
 }
+
 function saveStore(){
 let stores=JSON.parse(localStorage.getItem('marketStores')||'{}');
-let id=currentUser.storeId;
-stores[id]={...stores[id],name:document.getElementById('sName').value,desc:document.getElementById('sDesc').value,profile:document.getElementById('sProfile').value,cover:document.getElementById('sCover').value,dir:document.getElementById('sDir').value,city:document.getElementById('sCity').value,hor:document.getElementById('sHor').value,ig:document.getElementById('sIg').value};
-localStorage.setItem('marketStores',JSON.stringify(stores));alert('Guardado');
+let id=cur.storeId;
+stores[id]={
+...stores[id],
+name:document.getElementById('sName').value,
+desc:document.getElementById('sDesc').value,
+profile:document.getElementById('sProfile').value,
+cover:document.getElementById('sCover').value,
+dir:document.getElementById('sDir').value,
+city:document.getElementById('sCity').value,
+hor:document.getElementById('sHor').value,
+wsp:document.getElementById('sWsp').value,
+ig:document.getElementById('sIg').value
+};
+localStorage.setItem('marketStores',JSON.stringify(stores));
+updatePreview();
+alert('✅ Guardado. Tu tienda ya se actualizó en el index y en tu store Facebook');
 }
+
 function addProd(){
 let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
 let stores=JSON.parse(localStorage.getItem('marketStores')||'{}');
-let s=stores[currentUser.storeId];
-let prod={id:Date.now(),store:s.name,storeId:currentUser.storeId,city:document.getElementById('sCity').value,dir:document.getElementById('sDir').value,name:document.getElementById('pNameProd').value,price:parseFloat(document.getElementById('pPrice').value)||0,stock:parseInt(document.getElementById('pStock').value)||1,category:document.getElementById('pCat').value,desc:document.getElementById('pDesc').value,img:document.getElementById('pImg').value};
-if(!prod.name||!prod.price) return alert('Falta nombre y precio');
-all.unshift(prod);localStorage.setItem('marketProductsAR',JSON.stringify(all));
-document.getElementById('pNameProd').value='';document.getElementById('pPrice').value='';document.getElementById('pDesc').value='';document.getElementById('pImg').value='';
+let s=stores[cur.storeId];
+if(!s){alert('Primero guardá tu local');return;}
+let prod={
+id:Date.now(),
+store:s.name,
+storeId:cur.storeId,
+city:document.getElementById('sCity').value||'Tres Arroyos',
+dir:document.getElementById('sDir').value||'',
+name:document.getElementById('pNameProd').value.trim(),
+price:parseFloat(document.getElementById('pPrice').value)||0,
+stock:parseInt(document.getElementById('pStock').value)||1,
+category:document.getElementById('pCat').value,
+desc:document.getElementById('pDesc').value.trim(),
+img:document.getElementById('pImg').value
+};
+if(!prod.name||!prod.price||!prod.img){alert('Faltan: nombre, precio y foto');return;}
+all.unshift(prod);
+localStorage.setItem('marketProductsAR',JSON.stringify(all));
+document.getElementById('pNameProd').value='';
+document.getElementById('pPrice').value='';
+document.getElementById('pDesc').value='';
+document.getElementById('pImg').value='';
 loadList();
+updatePreview();
+alert('✅ ¡Publicado! Ya aparece en el index (solo productos) y en tu store Facebook. Misma vista previa.');
 }
+
 function loadList(){
-let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');let mine=all.filter(p=>p.storeId===currentUser.storeId);
+let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
+let mine=all.filter(p=>p.storeId===cur.storeId);
 document.getElementById('prodCount').textContent=mine.length+' productos';
-document.getElementById('prodList').innerHTML=mine.map(p=>`<div class="prod-item"><img src="${p.img}"><div style="flex:1"><b style="font-size:13px">${p.name}</b><div style="font-size:11px;color:var(--muted)">$${p.price.toLocaleString('es-AR')}</div></div><button onclick="delProd(${p.id})" style="border:1px solid var(--line);background:#fff;padding:6px 12px;border-radius:999px;font-size:11px">Borrar</button></div>`).join('')||'<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Sin productos</div>';
+document.getElementById('prodList').innerHTML=mine.map(p=>`
+<div class="prod">
+<img src="${p.img}">
+<div class="prod-body">
+<div class="store">${p.store}</div>
+<div class="price">$${p.price.toLocaleString('es-AR')}</div>
+<div class="name">${p.name}</div>
+<div class="actions">
+<button onclick="editProd(${p.id})">Editar</button>
+<button class="del" onclick="delProd(${p.id})">Borrar</button>
+</div>
+</div>
+</div>
+`).join('')||'<div style="grid-column:1/-1;text-align:center;padding:30px;color:#65676B;font-size:13px">Todavía no publicaste nada.<br>Subí tu primer producto arriba.</div>';
 }
-function delProd(id){let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');localStorage.setItem('marketProductsAR',JSON.stringify(all.filter(p=>p.id!==id)));loadList();}
-checkSession();
+
+function delProd(id){
+if(!confirm('¿Borrar este producto? Se borra de index y de tu store')) return;
+let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
+localStorage.setItem('marketProductsAR',JSON.stringify(all.filter(p=>p.id!==id)));
+loadList();
+updatePreview();
+}
+
+function editProd(id){
+let all=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
+let p=all.find(x=>x.id===id);
+if(!p) return;
+document.getElementById('pNameProd').value=p.name;
+document.getElementById('pPrice').value=p.price;
+document.getElementById('pCat').value=p.category;
+document.getElementById('pDesc').value=p.desc;
+document.getElementById('pImg').value=p.img;
+window.scrollTo(0,0);
+alert('Editando. Cambiá lo que quieras y tocá Publicar. Después borrá el viejo.');
+}
+
+check();
 </script>
 </body>
-                                                                                                                      </html>
+</html>
