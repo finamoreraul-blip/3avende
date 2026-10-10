@@ -2,271 +2,226 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Promos 24hs - Tres Arroyos</title>
+<title>3A VENDE - Marketplace Tres Arroyos - CATÁLOGO PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0a0a0a;color:#fff}
-header{background:#1a1a1a;padding:15px;text-align:center;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
-h1{font-size:22px;color:#25D366}
-.top-btn{padding:8px 14px;border:none;border-radius:20px;background:#2a2a2a;color:#fff;cursor:pointer;font-size:13px}
-.top-btn.active{background:#25D366;color:#000;font-weight:bold}
-
-/* VISTAS */
+:root{--bg:#0E0E0E;--card:#1A1A1A;--card2:#222;--line:#2A2A2A;--ink:#F5F5F0;--muted:#8A8A86;--accent:#CCFF00;--blue:#3483FA;--green:#00C950;--red:#FF3B3B}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+body{background:var(--bg);color:var(--ink);padding-bottom:90px}
+a{text-decoration:none;color:inherit}
+.top-logo-bar{background:#111;padding:14px 20px;position:sticky;top:0;z-index:102;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.logo{font-size:30px;font-weight:900;color:var(--accent);letter-spacing:.04em}.logo b{color:#fff}.logo span{font-size:10px;color:var(--muted);margin-left:10px;letter-spacing:.2em}
 .view{display:none}.view.active{display:block}
-#choose{max-width:900px;margin:40px auto;padding:20px;text-align:center}
-.choose-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
-.choose-card{background:#1a1a1a;border:1px solid #333;border-radius:16px;padding:32px;cursor:pointer;text-align:left}
-.choose-card h2{font-size:28px;margin:10px 0}
-.choose-card p{color:#aaa;font-size:14px}
-.choose-card.accent{background:#25D366;color:#000}.choose-card.accent p{color:#003311}.choose-card.accent h2{color:#000}
-.badge{display:inline-block;background:#2a2a2a;border-radius:999px;padding:4px 10px;font-size:10px;letter-spacing:.1em;color:#aaa}.accent .badge{background:#000;color:#25D366}
+.badge{padding:6px 12px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.08em;display:inline-block}
+.badge-gold{background:var(--accent);color:#000}.badge-dark{background:#222;color:var(--muted);border:1px solid var(--line)}
+.btn-publish{background:var(--accent);color:#000;padding:11px 18px;border-radius:999px;font-weight:800;border:none;cursor:pointer;font-size:12px}
 
-/* TU ESTILO ORIGINAL */
-.filtros{display:flex;gap:8px;padding:12px;overflow-x:auto;background:#151515;align-items:center}
-.filter-btn{padding:8px 14px;border:none;border-radius:20px;background:#2a2a2a;color:#fff;cursor:pointer;white-space:nowrap;font-size:14px}
-.filter-btn.active{background:#25D366;color:white}
-#btn-carrito-filtros{margin-left:auto;background:#ff9800;color:#fff;padding:8px 14px;border:none;border-radius:20px;font-weight:bold;cursor:pointer;font-size:14px}
-.container{padding:12px;max-width:1200px;margin:auto}
-.bar,.local-card{background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #333;margin-bottom:12px}
-.bar-img{width:100%;height:120px;object-fit:cover;border-radius:8px;cursor:pointer}
-.bar-body,.local-info{padding:10px}
-.bar h3,.local-info h3{font-size:17px;margin-bottom:5px;color:#25D366;cursor:pointer}
-.bar h3:hover{text-decoration:underline}
-.horario-local{font-size:12px;color:#aaa;margin-bottom:8px}
-.estado-badge{background:#28a745;padding:3px 8px;border-radius:12px;font-size:10px;color:#fff}
-.btn-ver-promos{background:#25D366!important;color:#000!important;border:none!important;padding:12px 24px!important;font-size:15px!important;font-weight:bold!important;cursor:pointer!important;border-radius:8px!important;width:100%!important;max-width:280px!important;display:block!important;margin:12px auto 0 auto!important;text-align:center!important;}
-.grid-promos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}
-.promo-item{border:1px solid #333;border-radius:8px;overflow:hidden;background:#2a2a2a;display:flex;flex-direction:column}
-.promo-item img{width:100%;height:110px;object-fit:cover;display:block;background:#1a1a1a;cursor:pointer}
-.promo-nombre{font-size:13px;font-weight:600;padding:6px 4px;color:#fff;text-align:center;min-height:32px;display:flex;align-items:center;justify-content:center;line-height:1.2}
-.promo-desc{font-size:11px;color:#aaa;padding:0 6px 4px;text-align:center}
-.promo-price{font-size:14px;font-weight:bold;color:#25D366;text-align:center;padding:2px}
-.btn-group{display:flex;gap:4px;margin-top:auto}
-.btn-pedir{flex:1;background:#25D366;color:#000;border:none;padding:8px;font-size:12px;font-weight:bold;cursor:pointer;border-radius:0 0 0 8px}
-.btn-carrito{flex:1;background:#ff9800;color:#fff;border:none;padding:8px;font-size:12px;font-weight:bold;cursor:pointer;border-radius:0 0 8px 0}
+/* ENTRADA - CLIENTE SIN LOGIN */
+#choose{max-width:1100px;margin:0 auto;padding:40px 20px}
+.hero{font-size:56px;line-height:.85;font-weight:900;letter-spacing:-.03em}.hero span{color:var(--accent)}
+.choose-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.choose-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;text-align:left;cursor:pointer;transition:.2s}
+.choose-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.choose-card.client{background:#fff;color:#111;border-color:#E0E0E0}.choose-card.client p{color:#555}
+.choose-card h2{font-size:28px;margin-top:12px;line-height:.9}.choose-card p{color:var(--muted);font-size:13px;margin-top:8px;line-height:1.5}
 
-/* PANEL VENDEDOR NUEVO */
-.vendor-panel{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:360px 1fr;gap:12px}
-.vendor-side{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:16px;position:sticky;top:80px;height:fit-content}
-.field{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #333;background:#2a2a2a;color:#fff}
-.preview-box{margin-top:12px;border:1px dashed #444;border-radius:12px;padding:8px}
-.btn-save{width:100%;background:#25D366;border:none;color:#000;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:10px}
-.lightbox{display:none;position:fixed;z-index:9999;padding-top:50px;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.9)}.lightbox img{margin:auto;display:block;max-width:90%;max-height:85vh}.lightbox .close{position:absolute;top:20px;right:40px;color:#fff;font-size:40px;cursor:pointer}
-.cart-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#000;width:60px;height:60px;border-radius:50%;font-size:26px;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:99999;display:flex;align-items:center;justify-content:center}
-.cart-count{position:absolute;top:-5px;right:-5px;background:#E63946;border-radius:50%;width:24px;height:24px;font-size:12px;font-weight:bold;display:flex;align-items:center;justify-content:center;border:2px solid #0a0a0a;color:#fff}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1000;align-items:center;justify-content:center}.modal-content{background:#1a1a1a;border-radius:15px;max-width:500px;width:90%;max-height:85vh;overflow-y:auto;border:1px solid #333}.modal-header{display:flex;gap:12px;padding:15px;border-bottom:1px solid #333;position:relative}.modal-header img{width:70px;height:70px;border-radius:10px;object-fit:cover}.modal-close{position:absolute;top:12px;right:16px;font-size:28px;cursor:pointer;color:#aaa}
-@media(max-width:800px){.choose-grid,.vendor-panel{grid-template-columns:1fr}.vendor-side{position:static}}
+/* MARKET HEADER */
+.country-selector{background:#111;padding:10px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:8px}
+.country-btn{background:#222;border:1px solid var(--line);color:var(--muted);padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:700;font-size:12px}
+.country-btn.active{background:var(--accent);color:#000;border-color:var(--accent)}
+.topbar{background:var(--accent);color:#000;text-align:center;padding:8px;font-size:11px;font-weight:800;letter-spacing:.08em}
+header{padding:12px 20px;background:#111;border-bottom:1px solid var(--line);position:sticky;top:48px;z-index:100}
+.navbar{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.search-bar{flex:1;max-width:600px;position:relative}.search-bar input{width:100%;padding:12px 18px;background:#0E0E0E;border:1px solid var(--line);border-radius:999px;color:#fff;font-size:14px}
+.search-bar input:focus{border-color:var(--accent);outline:none}
+.header-actions{display:flex;gap:8px;align-items:center}
+.icon-btn{background:#222;border:1px solid var(--line);color:#fff;padding:8px 14px;border-radius:999px;cursor:pointer;font-size:13px;position:relative}
+.cart-count{position:absolute;top:-6px;right:-6px;background:var(--red);color:#fff;border-radius:50%;width:18px;height:18px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.categories-bar{background:#0E0E0E;padding:12px 20px;border-bottom:1px solid var(--line)}
+.cat-scroll{max-width:1400px;margin:auto;display:flex;gap:8px;overflow-x:auto}
+.cat-btn{padding:8px 16px;background:var(--card);border:1px solid var(--line);border-radius:999px;cursor:pointer;font-weight:700;font-size:11px;white-space:nowrap;color:var(--muted)}
+.cat-btn.active{background:var(--accent);color:#000;border-color:var(--accent)}.cat-btn.ar.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* CATALOGO PRO - FORMATO */
+section{padding:24px 20px;max-width:1400px;margin:auto}
+.section-title{font-size:24px;font-weight:900;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.prod-card{background:var(--card);border-radius:20px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:.25s}
+.prod-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.prod-card img{width:100%;height:260px;object-fit:cover;background:#111;cursor:pointer}
+.prod-info{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.store-link{font-size:10px;font-weight:800;color:var(--accent);letter-spacing:.08em;cursor:pointer}.store-link:hover{text-decoration:underline}
+.price{font-size:20px;font-weight:900;color:var(--accent)}.price.usd{color:#fff}
+.name{font-size:14px;font-weight:700;line-height:1.2;min-height:34px}
+.desc{font-size:12px;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:32px}
+.meta{font-size:10px;color:#555}
+.btn-group{display:flex;gap:6px;flex-direction:column;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+.btn-small{padding:11px;font-size:12px;border-radius:999px;width:100%;border:none;font-weight:800;cursor:pointer}
+.btn-small.comprar{background:var(--accent);color:#000}.btn-small.agregar{background:#222;color:#fff;border:1px solid var(--line)}.btn-small.added{background:var(--accent);color:#000}
+
+/* MODALES */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:300;display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.modal-overlay.active{display:flex}
+.modal-content{background:var(--card);border-radius:24px;max-width:1000px;width:100%;display:grid;grid-template-columns:440px 1fr;overflow:hidden;border:1px solid var(--line);position:relative}
+.modal-close{position:absolute;top:12px;right:16px;font-size:28px;cursor:pointer;color:var(--muted);z-index:5}
+.modal-img{width:100%;height:440px;object-fit:cover;background:#111}
+.modal-info{padding:24px;display:flex;flex-direction:column;gap:10px}
+.modal-price{font-size:30px;font-weight:900;color:var(--accent)}
+.seller-box{background:#111;padding:12px;border-radius:12px;border:1px solid var(--line)}
+.modal-content-checkout{background:var(--card);border-radius:24px;max-width:600px;width:100%;padding:20px;border:1px solid var(--line);position:relative}
+.checkout-form{display:flex;flex-direction:column;gap:10px}.checkout-form input{padding:12px;background:#111;border:1px solid var(--line);border-radius:10px;color:#fff}
+.form-row{display:flex;gap:10px}
+.shipping-result{background:#111;padding:12px;border-radius:10px;display:none;border:1px solid var(--line)}
+.btn-pay{background:var(--accent);color:#000;padding:14px;border:none;border-radius:999px;font-weight:900;width:100%;cursor:pointer}
+
+/* CARRITO */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:199;display:none}.cart-overlay.active{display:block}
+.cart-sidebar{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:var(--card);z-index:200;transition:.3s;padding:20px;overflow-y:auto;border-left:1px solid var(--line)}
+.cart-sidebar.active{right:0}
+.cart-item{display:flex;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.cart-float{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#000;padding:12px 18px;border-radius:999px;font-weight:800;display:none;align-items:center;gap:8px;cursor:pointer;z-index:150;box-shadow:0 6px 20px rgba(204,255,0,.3)}
+footer{background:#111;padding:30px 20px;text-align:center;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+@media(max-width:768px){.hero{font-size:34px}.choose-grid{grid-template-columns:1fr}.prod-grid{grid-template-columns:repeat(2,1fr);gap:10px}.prod-card img{height:180px}.modal-content{grid-template-columns:1fr}.modal-img{height:300px}.cart-sidebar{width:100%;right:-100%}}
 </style>
 </head>
 <body>
+<div class="top-logo-bar"><div class="logo">3A <b>VENDE</b><span>TRES ARROYOS - CATÁLOGO PRO</span></div><div style="display:flex;gap:8px"><button class="badge badge-dark" style="border:none;cursor:pointer" onclick="go('choose')">INICIO</button><button class="btn-publish" onclick="window.location.href='panel.html'">SOY VENDEDOR</button></div></div>
 
-<header>
-<h1>Promos 24hs Tres Arroyos</h1>
-<div style="display:flex;gap:8px">
-<button class="top-btn" id="btn-go-client" onclick="go('catalog')">Catálogo</button>
-<button class="top-btn" id="btn-go-vendor" onclick="go('vendorLogin')">Soy Vendedor</button>
-</div>
-</header>
-
-<!-- ENTRADA NUEVA - CLIENTE NO SE LOGUEA -->
+<!-- ENTRADA - CLIENTE SIN LOGIN -->
 <div id="choose" class="view active">
-<span class="badge" style="background:#25D366;color:#000">NUEVO SISTEMA</span>
-<h2 style="font-size:42px;margin-top:12px;line-height:.9">¿Cómo entrás hoy?</h2>
-<p style="color:#aaa;margin-top:8px">Cliente entra directo. Vendedor carga su local.</p>
+<span class="badge badge-gold">3A VENDE - FORMATO CATÁLOGO OSCURO PRO</span>
+<div class="hero" style="margin-top:16px">Artículo arriba.<br>Precio y descripción<br><span>abajo bien acomodado.</span></div>
+<p style="color:var(--muted);max-width:600px;margin:14px 0;font-size:14px;line-height:1.5">Cliente entra directo sin loguearse. Toca el nombre del local y ve dirección, horario, Instagram y todo el catálogo. Vendedor sube foto real con vista previa.</p>
 <div class="choose-grid">
-<div class="choose-card" onclick="go('catalog')">
-<span class="badge">SOY CLIENTE</span>
-<h2>Quiero comprar 🛒</h2>
-<p>Entrás directo al catálogo. Ves promos, filtrás por categoría, tocás el nombre del local y ves su dirección, horario y todo su catálogo. Sin login.</p>
-<div style="margin-top:16px;font-weight:bold;color:#25D366">Entrar al catálogo →</div>
+<div class="choose-card client" onclick="go('market')">
+<span class="badge" style="background:#111;color:var(--accent)">CLIENTE - SIN LOGIN</span>
+<h2>Quiero comprar en 3A 🛒</h2>
+<p>Entrás directo al catálogo de Tres Arroyos. Sin registro, sin mail. Ves foto grande arriba, precio en lima, descripción corta abajo, stock y ciudad. Tocás el local y ves su página.</p>
+<div style="margin-top:14px;font-weight:800">Entrar directo →</div>
 </div>
-<div class="choose-card accent" onclick="go('vendorLogin')">
-<span class="badge">SOY VENDEDOR</span>
+<div class="choose-card" onclick="window.location.href='panel.html'">
+<span class="badge badge-gold">VENDEDOR - PANEL PRO 3A</span>
 <h2>Tengo un local 🏪</h2>
-<p>Te logueas con tel + pass. Cargás foto real del producto, precio, descripción con vista previa. Se guarda en tu local.</p>
-<div style="margin-top:16px;font-weight:bold">Entrar a mi panel →</div>
+<p>Panel nuevo formato catálogo: subís foto real del celu o link, precio, stock, descripción larga y categoría. Vista previa en vivo exactamente como lo ve el cliente.</p>
+<div style="margin-top:14px;font-weight:800;color:var(--accent)">Ir a mi panel PRO →</div>
 </div>
 </div>
 </div>
 
-<!-- CATÁLOGO - TU CODIGO ORIGINAL SIN CAMBIOS (SOLO ENVUELTO EN VIEW) -->
-<div id="catalog" class="view">
-<div class="filtros">
-  <button class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todas</button>
-  <button class="filter-btn" onclick="filtrarCategoria('bar', this)">Bares</button>
-  <button class="filter-btn" onclick="filtrarCategoria('parrilla', this)">Parrillas</button>
-  <button class="filter-btn" onclick="filtrarCategoria('pizzeria', this)">Pizzerías</button>
-  <button class="filter-btn" onclick="filtrarCategoria('kiosco', this)">Kioscos</button>
-  <button class="filter-btn" onclick="filtrarCategoria('heladeria', this)">Heladerías</button>
-  <button class="filter-btn" onclick="filtrarCategoria('polleria', this)">Pollerías</button>
-  <button class="filter-btn" onclick="filtrarCategoria('rotiseria', this)">Rotiserías</button>
-  <button class="filter-btn" onclick="filtrarCategoria('carniceria', this)">Carnicerías</button>
-  <button class="filter-btn" onclick="filtrarCategoria('panaderia', this)">Panaderías</button>
-  <button class="filter-btn" onclick="filtrarCategoria('verduleria', this)">Verdulerías</button>
-  <button class="filter-btn" onclick="filtrarCategoria('cafeteria', this)">Cafeterías</button>
-  <button id="btn-carrito-filtros" onclick="abrirCarritoModal()">🛒 Carrito <span id="contador-carrito">(0)</span></button>
-</div>
-<div class="container" id="container-locales">
-<!-- ACÁ VAN TODOS TUS LOCALES - TE DEJO 2 DE EJEMPLO, EL RESTO ES IGUAL A TU ORIGINAL -->
-<div class="bar" data-categoria="carniceria" data-nombre="Carnicería Don José">
-<img class="bar-img" src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400&h=300&fit=crop">
-<div class="bar-body">
-<h3 onclick="openStorePage('Carnicería Don José')">Carnicería Don José → ver local</h3>
-<p class="horario-local"><span class="estado-badge">ABIERTO</span> 📍 Av. Belgrano 123 • 🕐 8 a 21hs</p>
-<div class="grid-promos">
-<div class="promo-item"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=200&h=110&fit=crop"><div class="promo-nombre">Asado 3kg Premium</div><div class="promo-desc">Tira, vacío, matambre</div><div class="promo-price">$16.500</div><div class="btn-group"><button class="btn-pedir">Pedir</button><button class="btn-carrito">+ Carrito</button></div></div>
-<div class="promo-item"><img src="https://images.unsplash.com/photo-1587593810167-23187d95d65c?w=200&h=110&fit=crop"><div class="promo-nombre">Milanesas x8</div><div class="promo-desc">Ternera especial</div><div class="promo-price">$8.900</div><div class="btn-group"><button class="btn-pedir">Pedir</button><button class="btn-carrito">+ Carrito</button></div></div>
-</div>
-<button class="btn-ver-promos" onclick="openStorePage('Carnicería Don José')">Ver Todas las Promos + Dirección</button>
-</div>
+<!-- MARKET -->
+<div id="market" class="view">
+<div class="country-selector"><button class="country-btn active" id="btnInt" onclick="showStore('international')">🌍 TODOS</button><button class="country-btn" id="btnAr" onclick="showStore('argentina')">🇦🇷 SOLO 3A</button></div>
+<div class="topbar">3A VENDE | CLIENTE SIN LOGIN | PAGO SEGURO RETENCIÓN | VENDEDOR CON PANEL PRO</div>
+<header><div class="navbar"><div class="search-bar"><input type="text" id="productSearch" placeholder="Buscar en 3A Vende..."><input type="text" id="searchAR" placeholder="Buscar en Tres Arroyos..." style="display:none"></div><div class="header-actions"><button class="btn-publish" onclick="window.location.href='panel.html'">+ VENDER - PANEL</button><div class="icon-btn" id="cartBtn">🛒<span class="cart-count">0</span></div></div></div></header>
+<div class="categories-bar" id="catBarInt"><div class="cat-scroll" id="catFilter"><div class="cat-btn active" data-cat="all">TODOS</div><div class="cat-btn" data-cat="artesanias">ARTESANIAS</div><div class="cat-btn" data-cat="clothing">ROPA</div><div class="cat-btn" data-cat="home">HOGAR</div><div class="cat-btn" data-cat="food">ALIMENTOS</div><div class="cat-btn" data-cat="electronics">TECNOLOGIA</div></div></div>
+<div class="categories-bar" id="catBarAr" style="display:none"><div class="cat-scroll" id="catFilterAR"><div class="cat-btn ar active" data-cat-ar="all">TODOS 3A</div><div class="cat-btn ar" data-cat-ar="clothing">ROPA</div><div class="cat-btn ar" data-cat-ar="home">HOGAR</div><div class="cat-btn ar" data-cat-ar="food">ALIMENTOS</div></div></div>
+<section id="international"><div class="section-title"><span>OFERTAS 3A VENDE - CATÁLOGO PRO</span><span class="badge badge-dark" id="countInt">0 productos</span></div><div class="prod-grid" id="productGrid"></div></section>
+<section id="argentina" style="display:none"><div class="section-title"><span>SOLO TRES ARROYOS - LOCAL CLICKEABLE</span><span class="badge badge-blue" id="countAR">0 productos</span></div><div class="prod-grid" id="productGridAR"></div></section>
+<footer>© 2026 3A VENDE - Marketplace Tres Arroyos - Cliente sin login - Vendedor con vista previa - Todo conectado a panel.html y store.html</footer>
 </div>
 
-<div class="bar" data-categoria="panaderia" data-nombre="Panadería La Espiga">
-<img class="bar-img" src="https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=400&h=300&fit=crop">
-<div class="bar-body">
-<h3 onclick="openStorePage('Panadería La Espiga')">Panadería La Espiga → ver local</h3>
-<p class="horario-local"><span class="estado-badge">ABIERTO</span> 📍 Rivadavia 456 • 🕐 6 a 20hs</p>
-<div class="grid-promos">
-<div class="promo-item"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db8e?w=200&h=110&fit=crop"><div class="promo-nombre">Medialunas x12</div><div class="promo-desc">Recién horneadas</div><div class="promo-price">$3.600</div><div class="btn-group"><button class="btn-pedir">Pedir</button><button class="btn-carrito">+ Carrito</button></div></div>
-</div>
-<button class="btn-ver-promos" onclick="openStorePage('Panadería La Espiga')">Ver Todas las Promos + Dirección</button>
-</div>
-</div>
+<!-- MODAL PRODUCTO -->
+<div class="modal-overlay" id="productModal"><div class="modal-content"><span class="modal-close" onclick="closeProductModal()">×</span><img class="modal-img" id="modalImg"><div class="modal-info"><div class="badge badge-gold" style="width:fit-content" id="modalCat">CATALOGO PRO</div><div class="store-link" id="modalStoreLink" onclick="openStorePageFromModal()">TIENDA → ver local</div><h2 id="modalTitle"></h2><div class="modal-price" id="modalPrice"></div><p id="modalDesc" style="color:var(--muted);font-size:13px;line-height:1.5"></p><div class="seller-box"><p style="font-size:13px"><b>Vendido por:</b> <span id="modalStore"></span></p><p style="font-size:11px;color:var(--muted);margin-top:4px">📍 <span id="modalCity"></span> • Stock <span id="modalStock"></span> • <span id="modalCat2"></span></p><p style="font-size:11px;color:var(--muted);margin-top:4px" id="modalDir"></p></div><button class="btn-small comprar" id="modalComprarBtn">COMPRAR - CLIENTE SIN LOGIN</button><button class="btn-small agregar" id="modalAddBtn" style="margin-top:8px">AGREGAR AL CARRITO</button></div></div></div>
 
-<!-- COPIÁ ACÁ EL RESTO DE TUS 15 LOCALES TAL CUAL LOS TENÍAS -->
+<!-- MODAL CHECKOUT -->
+<div class="modal-overlay" id="checkoutModal"><div class="modal-content-checkout"><span class="modal-close" onclick="closeCheckoutModal()">×</span><h2 style="font-size:20px">Finalizar Compra - 3A Vende</h2><p style="color:var(--muted);font-size:12px;margin:6px 0 16px">Cliente sin login - Completa datos para envío</p><div id="checkoutList"></div><form class="checkout-form" id="checkoutForm"><input id="buyerName" placeholder="Nombre y Apellido *" required><input id="buyerDni" placeholder="DNI *" required><input id="buyerEmail" type="email" placeholder="Email *" required><input id="buyerPhone" placeholder="Telefono *" required><input id="buyerAddress" placeholder="Dirección *" required><div class="form-row"><input id="buyerCity" placeholder="Ciudad *" required><input id="buyerZip" placeholder="Código Postal *" required></div><button type="button" class="btn-small agregar" onclick="cotizarEnvio()">COTIZAR ENVIO</button><div class="shipping-result" id="shippingResult"></div><button type="submit" class="btn-pay" id="payBtn">PAGAR</button></form></div></div>
 
-</div>
-</div>
-
-<!-- LOGIN VENDEDOR -->
-<div id="vendorLogin" class="view" style="max-width:420px;margin:40px auto;padding:20px">
-<h2 style="font-size:36px">Panel vendedor</h2>
-<p style="color:#aaa;font-size:14px;margin-top:6px">Si es tu primera vez, poné tel + pass + nombre de tu local y se crea.</p>
-<input id="v_tel" class="field" placeholder="Tel 2983...">
-<input id="v_pass" type="password" class="field" placeholder="Contraseña">
-<input id="v_name" class="field" placeholder="Nombre del local (primera vez)">
-<button class="btn-save" onclick="vendorAuth()">Entrar / Crear mi local</button>
-<div id="v_msg" style="color:#ff6b6b;font-size:13px;margin-top:8px"></div>
-<button class="top-btn" style="margin-top:12px;width:100%" onclick="go('choose')">← Volver</button>
-</div>
-
-<!-- PANEL VENDEDOR NUEVO CON VISTA PREVIA -->
-<div id="vendor" class="view">
-<div style="max-width:1100px;margin:0 auto;padding:12px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<h2 id="v_storeName" style="font-size:26px;color:#25D366"></h2>
-<button class="top-btn" onclick="go('catalog')">Ver catálogo</button>
-</div>
-
-<div class="vendor-panel">
-<div class="vendor-side">
-<div style="font-size:10px;letter-spacing:.12em;color:#888">PERFIL PÚBLICO (se ve al tocar tu nombre)</div>
-<input id="v_dir" class="field" placeholder="Dirección ej: Av. Moreno 456">
-<input id="v_hor" class="field" placeholder="Horario ej: Lun a Sab 9-20hs">
-<input id="v_ig" class="field" placeholder="Instagram @...">
-<input id="v_cat_local" class="field" placeholder="Categoría del local ej: carniceria">
-
-<div style="margin-top:16px;font-size:10px;letter-spacing:.12em;color:#888">CARGAR PRODUCTO CON VISTA PREVIA</div>
-<input id="p_name" class="field" placeholder="Artículo * ej: Asado 3kg Premium" oninput="updatePreview()">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-<input id="p_price" class="field" placeholder="Precio * 16500" oninput="updatePreview()">
-<input id="p_stock" class="field" placeholder="Stock" oninput="updatePreview()">
-</div>
-<textarea id="p_desc" class="field" placeholder="Descripción * ej: Tira, vacío, matambre premium, 3kg" style="height:70px" oninput="updatePreview()"></textarea>
-<input id="p_img_link" class="field" placeholder="Link foto o emoji" oninput="updatePreview()">
-<input type="file" id="p_file" accept="image/*" class="field">
-<label style="font-size:13px;display:flex;gap:6px;margin-top:8px"><input type="checkbox" id="p_isPromo" onchange="updatePreview()"> 🔥 Es promo destacada</label>
-
-<div style="font-size:11px;color:#888;margin-top:12px">VISTA PREVIA - Así lo ve el cliente:</div>
-<div id="previewBox" class="preview-box"></div>
-
-<button class="btn-save" onclick="addProd()">Publicar producto en mi local</button>
-<button class="top-btn" style="width:100%;margin-top:8px" onclick="logoutV()">Salir</button>
-</div>
-
-<div>
-<div style="background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px">
-<div style="display:flex;justify-content:space-between"><h3>Mis productos publicados</h3><span id="v_count" class="badge">0</span></div>
-<div id="v_list" style="margin-top:12px"></div>
-</div>
-<div style="margin-top:12px;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px">
-<h3 style="font-size:14px;color:#aaa">Así se ve tu local en el catálogo</h3>
-<div id="v_public_preview" style="margin-top:10px"></div>
-</div>
-</div>
-
-</div>
-</div>
-</div>
+<!-- CARRITO -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h3>Tu Carrito - 3A</h3><button style="background:var(--red);color:#fff;border:none;padding:6px 12px;border-radius:999px;font-size:11px;font-weight:800;cursor:pointer" id="clearCartBtn">VACIAR</button></div><div id="cartItems"></div><div style="font-size:20px;font-weight:900;margin:20px 0;text-align:center" id="cartTotal">Total: $0</div><button class="btn-pay" id="checkoutCartBtn">FINALIZAR COMPRA - SIN LOGIN</button></div>
+<div class="cart-float" id="cartFloat"><span>🛒</span><span id="cartFloatText">0</span> Ver Carrito</div>
 
 <script>
-let DB={stores:{},products:[]}; let CUR=localStorage.getItem('3a_cur'); let previewImg="";
-function go(id){
- document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- window.scrollTo(0,0);
- if(id==='catalog') filtrarCategoria('todos', document.querySelector('.filter-btn'));
-}
-document.getElementById('p_file').addEventListener('change',e=>{
- let f=e.target.files[0]; if(!f)return;
- let r=new FileReader(); r.onload=ev=>{previewImg=ev.target.result; updatePreview();}; r.readAsDataURL(f);
-});
-function loadDB(){
- let l=JSON.parse(localStorage.getItem('promos24_db')||'null');
- if(l) DB=l;
- else{
-  DB.stores={
-   '2983123456':{tel:'2983123456',pass:'1234',name:'Carnicería Don José',dir:'Av. Belgrano 123',hor:'8 a 21hs',ig:'@donjose',cat:'carniceria'}
-  };
-  DB.products=[];
- }
- if(CUR&&DB.stores[CUR]) renderVendor();
- updatePreview();
-}
-function saveDB(){localStorage.setItem('promos24_db',JSON.stringify(DB)); if(CUR)localStorage.setItem('3a_cur',CUR);}
-function vendorAuth(){
- let t=document.getElementById('v_tel').value.trim(), p=document.getElementById('v_pass').value.trim(), n=document.getElementById('v_name').value.trim();
- if(!t||!p){document.getElementById('v_msg').innerText='Falta tel y pass';return;}
- if(!DB.stores[t]){ if(!n){document.getElementById('v_msg').innerText='Poné nombre del local';return;} DB.stores[t]={tel:t,pass:p,name:n,dir:'Tres Arroyos',hor:'Consultar',ig:'',cat:'kiosco'}; }
- else if(DB.stores[t].pass!=p){document.getElementById('v_msg').innerText='Pass incorrecta';return;}
- CUR=t; saveDB(); document.getElementById('v_storeName').innerText=DB.stores[t].name; go('vendor'); renderVendor();
-}
-function logoutV(){CUR=null; localStorage.removeItem('3a_cur'); go('choose');}
-function updatePreview(){
- let name=document.getElementById('p_name')?.value||'Nombre artículo', price=parseInt(document.getElementById('p_price')?.value)||0, stock=document.getElementById('p_stock')?.value||'1', desc=document.getElementById('p_desc')?.value||'Descripción...', link=document.getElementById('p_img_link')?.value||'📦', isP=document.getElementById('p_isPromo')?.checked;
- let img=previewImg||link;
- let imgHtml=img.startsWith('data:')||img.startsWith('http')?`<img src="${img}" style="width:100%;height:120px;object-fit:cover">`:`<div style="font-size:50px;text-align:center;padding:20px">${img}</div>`;
- document.getElementById('previewBox').innerHTML=`<div class="promo-item"><div>${imgHtml}</div><div class="promo-nombre">${name}</div><div class="promo-desc">${desc}</div><div class="promo-price">$${price.toLocaleString()} ${isP?'<span style="background:#25D366;color:#000;border-radius:8px;padding:2px 6px;font-size:10px">PROMO</span>':''}</div></div>`;
-}
-function renderVendor(){
- let s=DB.stores[CUR]; if(!s)return;
- document.getElementById('v_storeName').innerText=s.name;
- document.getElementById('v_dir').value=s.dir||''; document.getElementById('v_hor').value=s.hor||''; document.getElementById('v_ig').value=s.ig||''; document.getElementById('v_cat_local').value=s.cat||'';
- let list=DB.products.filter(p=>p.tel==CUR);
- document.getElementById('v_count').innerText=list.length;
- document.getElementById('v_list').innerHTML=list.map(p=>`<div style="display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #222"><div><b>${p.name}</b><div style="font-size:12px;color:#aaa">$${p.price} • ${p.desc}</div></div><span style="cursor:pointer" onclick="delProd(${p.id})">x</span></div>`).join('')||'<div style="color:#666">Sin productos</div>';
- // preview publico
- document.getElementById('v_public_preview').innerHTML=`<div class="bar"><div class="bar-body"><h3>${s.name} → ver local</h3><p class="horario-local">📍 ${s.dir} • 🕐 ${s.hor}</p><div class="grid-promos">${list.slice(0,4).map(p=>{let im=p.img||p.emoji; let imH=im.startsWith('data:')||im.startsWith('http')?`<img src="${im}">`:`<div style="font-size:40px;text-align:center">${im}</div>`; return `<div class="promo-item">${imH}<div class="promo-nombre">${p.name}</div><div class="promo-price">$${p.price}</div></div>`}).join('')}</div></div></div>`;
-}
-function addProd(){
- let name=document.getElementById('p_name').value.trim(), price=parseInt(document.getElementById('p_price').value)||0, stock=document.getElementById('p_stock').value||'1', desc=document.getElementById('p_desc').value.trim(), link=document.getElementById('p_img_link').value.trim()||'📦', isP=document.getElementById('p_isPromo').checked;
- if(!name||!price||!desc)return alert('Artículo, precio y descripción obligatorios');
- DB.stores[CUR].dir=document.getElementById('v_dir').value; DB.stores[CUR].hor=document.getElementById('v_hor').value; DB.stores[CUR].ig=document.getElementById('v_ig').value; DB.stores[CUR].cat=document.getElementById('v_cat_local').value||'kiosco';
- DB.products.unshift({id:Date.now(),tel:CUR,storeName:DB.stores[CUR].name,name,price,stock,desc,emoji:link,img:previewImg,promo:isP,cat:DB.stores[CUR].cat});
- saveDB(); renderVendor(); previewImg=''; document.getElementById('p_file').value=''; document.getElementById('p_name').value=''; document.getElementById('p_price').value=''; document.getElementById('p_desc').value=''; updatePreview();
- alert('Publicado en tu local');
-}
-function delProd(id){DB.products=DB.products.filter(p=>p.id!=id); saveDB(); renderVendor();}
-function filtrarCategoria(cat, btn){
- document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); if(btn)btn.classList.add('active');
- document.querySelectorAll('.bar').forEach(bar=>{
-  if(cat==='todos'||bar.dataset.categoria===cat) bar.style.display='block'; else bar.style.display='none';
+let currentStore='international', activeCategory='all', activeCatAR='all', currentIsAR=false, currentProduct=null;
+let cart=JSON.parse(localStorage.getItem('3aCart'))||[]; let cartAR=JSON.parse(localStorage.getItem('3aCartAR'))||[];
+
+function go(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); if(id==='market') renderAll();}
+function showStore(store){currentStore=store; document.getElementById('international').style.display=store==='international'?'block':'none'; document.getElementById('argentina').style.display=store==='argentina'?'block':'none'; document.getElementById('catBarInt').style.display=store==='international'?'block':'none'; document.getElementById('catBarAr').style.display=store==='argentina'?'block':'none'; document.getElementById('productSearch').style.display=store==='international'?'block':'none'; document.getElementById('searchAR').style.display=store==='argentina'?'block':'none'; document.getElementById('btnInt').classList.toggle('active',store==='international'); document.getElementById('btnAr').classList.toggle('active',store==='argentina'); renderAll();}
+function getImg(p){return p.imgs? p.imgs[0] : p.img||'https://via.placeholder.com/400/1A1A1A/666?text=3A';}
+
+function renderAll(){
+ let AR=JSON.parse(localStorage.getItem('marketProductsAR'))||JSON.parse(localStorage.getItem('3a_products'))||[];
+ let INT=JSON.parse(localStorage.getItem('marketProductsINT'))||[];
+ let all=[...AR,...INT];
+ let search=(document.getElementById('productSearch').value+document.getElementById('searchAR').value).toLowerCase();
+ document.getElementById('countInt').textContent=all.length+' productos'; document.getElementById('countAR').textContent=AR.length+' productos';
+
+ let grid=document.getElementById('productGrid');
+ let filtered=all.filter(p=> (activeCategory==='all'||p.category===activeCategory) && p.name.toLowerCase().includes(search));
+ grid.innerHTML=filtered.length===0?'<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:30px">Sin productos. Publicá desde panel.html</p>':'';
+ filtered.forEach(p=>{
+  let im=getImg(p); let imH=im.startsWith('data:')||im.startsWith('http')?`<img src="${im}" onclick='openProductModal(${JSON.stringify(p).replace(/'/g,"&apos;")}, false)'>`:`<div style="font-size:50px;padding:30px;text-align:center">${im}</div>`;
+  grid.innerHTML+=`<div class="prod-card"><div>${imH}</div><div class="prod-info"><div class="store-link" onclick="openStorePage('${p.storeId||p.store}')">${(p.store||'TIENDA')} → ver local</div><div class="price ${currentIsAR?'':'usd'}">${p.price>=1000?`$${p.price.toLocaleString('es-AR')}`:`$${p.price}`}</div><div class="name">${p.name}</div><div class="desc">${p.desc||p.description||''}</div><div class="meta">📍 ${p.city||'Tres Arroyos'} • Stock ${p.stock||1} • ${p.category||''}</div><div class="btn-group"><button class="btn-small comprar" onclick='openCheckout(${JSON.stringify(p).replace(/'/g,"&apos;")}, false)'>COMPRAR - SIN LOGIN</button><button class="btn-small agregar" onclick='addToCart(${p.id}, false)'>AGREGAR</button></div></div></div>`;
  });
+
+ let gridAR=document.getElementById('productGridAR');
+ let filteredAR=AR.filter(p=> (activeCatAR==='all'||p.category===activeCatAR) && p.name.toLowerCase().includes(search));
+ gridAR.innerHTML=filteredAR.length===0?'<p style="grid-column:1/-1;text-align:center;color:var(--muted)">Sin productos en Tres Arroyos</p>':'';
+ filteredAR.forEach(p=>{
+  let im=getImg(p); let imH=im.startsWith('data:')||im.startsWith('http')?`<img src="${im}" onclick='openProductModal(${JSON.stringify(p).replace(/'/g,"&apos;")}, true)'>`:`<div style="font-size:50px;padding:20px;text-align:center">${im}</div>`;
+  gridAR.innerHTML+=`<div class="prod-card"><div>${imH}</div><div class="prod-info"><div class="store-link" onclick="openStorePage('${p.storeId}')">${p.store} → ver local</div><div class="price">$${p.price.toLocaleString('es-AR')}</div><div class="name">${p.name}</div><div class="desc">${p.desc||''}</div><div class="meta">📍 ${p.city} • Stock ${p.stock||1}</div><div class="btn-group"><button class="btn-small comprar" onclick='openCheckout(${JSON.stringify(p).replace(/'/g,"&apos;")}, true)'>COMPRAR</button><button class="btn-small agregar" onclick='addToCart(${p.id}, true)'>AGREGAR</button></div></div></div>`;
+ });
+ updateCartUI();
 }
-function openStorePage(nombre){
- alert('Acá abriría la página del local: '+nombre+' con dirección, horario, IG y todo su catálogo. (Ya está la función lista para conectar con tu Sheet)');
+
+function openProductModal(p, isAR){
+ currentProduct=p; currentIsAR=isAR;
+ document.getElementById('modalImg').src=getImg(p);
+ document.getElementById('modalTitle').textContent=p.name;
+ document.getElementById('modalPrice').textContent=isAR?`$${p.price.toLocaleString('es-AR')}`:`$${p.price}`;
+ document.getElementById('modalDesc').textContent=p.desc||'';
+ document.getElementById('modalStore').textContent=p.store;
+ document.getElementById('modalStoreLink').textContent=p.store+' → ver local';
+ document.getElementById('modalCity').textContent=p.city||'Tres Arroyos';
+ document.getElementById('modalStock').textContent=p.stock||1;
+ document.getElementById('modalCat').textContent=(p.category||'home').toUpperCase();
+ document.getElementById('modalCat2').textContent=p.category||'';
+ document.getElementById('modalDir').textContent=p.dir||'Dirección: Consultar por WhatsApp';
+ document.getElementById('modalComprarBtn').onclick=()=>openCheckout(p,isAR);
+ document.getElementById('modalAddBtn').onclick=()=>addToCart(p.id,isAR);
+ document.getElementById('productModal').classList.add('active');
 }
-loadDB();
+function closeProductModal(){document.getElementById('productModal').classList.remove('active');}
+function openStorePage(id){window.location.href='store.html?store='+id;}
+function openStorePageFromModal(){if(currentProduct) openStorePage(currentProduct.storeId||currentProduct.store);}
+
+function openCheckout(p,isAR){
+ currentProduct=p; currentIsAR=isAR;
+ document.getElementById('checkoutList').innerHTML=`<div style="display:flex;gap:12px;margin-bottom:16px;background:#111;padding:10px;border-radius:12px;border:1px solid var(--line)"><img src="${getImg(p)}" style="width:70px;height:70px;border-radius:10px;object-fit:cover"><div><div style="font-weight:700;font-size:14px">${p.name}</div><div class="price" style="font-size:16px;margin-top:4px">${isAR?`$${p.price.toLocaleString('es-AR')}`:`$${p.price}`}</div></div></div>`;
+ document.getElementById('payBtn').textContent=isAR?'PAGAR CON MERCADOPAGO - SIN LOGIN':'PAGAR CON PAYPAL';
+ document.getElementById('checkoutModal').classList.add('active'); closeProductModal();
+}
+function closeCheckoutModal(){document.getElementById('checkoutModal').classList.remove('active');}
+function cotizarEnvio(){let cp=document.getElementById('buyerZip').value; if(!cp)return alert('Pone CP'); document.getElementById('shippingResult').style.display='block'; document.getElementById('shippingResult').innerHTML=`<b style="font-size:12px">ELIGE ENVÍO 3A:</b><br><br><label style="font-size:13px"><input type="radio" name="envio" value="4500"> Andreani $4.500 48hs</label><br><label style="font-size:13px"><input type="radio" name="envio" value="3200"> Correo $3.200</label>`;}
+document.getElementById('checkoutForm').onsubmit=(e)=>{e.preventDefault(); alert('Pedido 3A Vende creado! Cliente sin login. Te llega mail.'); closeCheckoutModal();};
+
+function addToCart(id,isAR){
+ let all=[...JSON.parse(localStorage.getItem('marketProductsAR')||'[]'), ...JSON.parse(localStorage.getItem('marketProductsINT')||'[]')];
+ let p=all.find(x=>x.id===id)||currentProduct; if(!p)return;
+ if(isAR||currentStore==='argentina'){cartAR.push(p); localStorage.setItem('3aCartAR',JSON.stringify(cartAR));} else {cart.push(p); localStorage.setItem('3aCart',JSON.stringify(cart));}
+ updateCartUI();
+}
+function updateCartUI(){
+ let total=(currentStore==='argentina'?cartAR:cart).length;
+ document.querySelector('.cart-count').textContent=total; document.getElementById('cartFloat').style.display=total>0?'flex':'none'; document.getElementById('cartFloatText').textContent=total;
+ let items=currentStore==='argentina'?cartAR:cart;
+ document.getElementById('cartItems').innerHTML=items.length===0?'<p style="text-align:center;color:var(--muted)">Carrito vacío - Cliente sin login</p>':items.map((it,i)=>`<div class="cart-item"><img src="${getImg(it)}" style="width:50px;height:50px;border-radius:8px;object-fit:cover"><div style="flex:1"><div style="font-size:13px;font-weight:700">${it.name}</div><div style="font-size:11px;color:var(--muted)">$${it.price.toLocaleString('es-AR')}</div></div><button onclick="removeItem(${i})" style="background:none;border:none;color:var(--red);cursor:pointer">×</button></div>`).join('');
+ let sum=items.reduce((a,b)=>a+b.price,0); document.getElementById('cartTotal').textContent=`Total: $${sum.toLocaleString('es-AR')}`;
+}
+function removeItem(i){ if(currentStore==='argentina'){cartAR.splice(i,1); localStorage.setItem('3aCartAR',JSON.stringify(cartAR));} else {cart.splice(i,1); localStorage.setItem('3aCart',JSON.stringify(cart));} updateCartUI();}
+
+// INIT
+document.getElementById('productSearch').onkeyup=renderAll; document.getElementById('searchAR').onkeyup=renderAll;
+document.getElementById('cartBtn').onclick=()=>{document.getElementById('cartSidebar').classList.add('active');document.getElementById('cartOverlay').classList.add('active');};
+document.getElementById('cartOverlay').onclick=()=>{document.getElementById('cartSidebar').classList.remove('active');document.getElementById('cartOverlay').classList.remove('active');};
+document.getElementById('clearCartBtn').onclick=()=>{cart=[];cartAR=[];localStorage.setItem('3aCart','[]');localStorage.setItem('3aCartAR','[]');updateCartUI();};
+document.getElementById('checkoutCartBtn').onclick=()=>{let items=currentStore==='argentina'?cartAR:cart; if(items.length===0)return alert('Carrito vacío'); document.getElementById('checkoutList').innerHTML=items.map(p=>`<div style="display:flex;gap:10px;margin-bottom:8px"><img src="${getImg(p)}" style="width:50px;height:50px;border-radius:8px"><div>${p.name} - $${p.price.toLocaleString('es-AR')}</div></div>`).join(''); document.getElementById('checkoutModal').classList.add('active'); document.getElementById('cartSidebar').classList.remove('active'); document.getElementById('cartOverlay').classList.remove('active');};
+document.getElementById('productModal').onclick=(e)=>{if(e.target.id==='productModal') closeProductModal();};
+document.getElementById('checkoutModal').onclick=(e)=>{if(e.target.id==='checkoutModal') closeCheckoutModal();};
+document.querySelectorAll('#catFilter .cat-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('#catFilter .cat-btn').forEach(x=>x.classList.remove('active')); b.classList.add('active'); activeCategory=b.dataset.cat; renderAll();});
+document.querySelectorAll('#catFilterAR .cat-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('#catFilterAR .cat-btn').forEach(x=>x.classList.remove('active')); b.classList.add('active'); activeCatAR=b.dataset.catAr; renderAll();});
+if(!localStorage.getItem('marketProductsAR')){localStorage.setItem('marketProductsAR', JSON.stringify([{id:1,store:'Zapatería Centro 3A',storeId:'zapateria-centro',city:'Tres Arroyos',name:'Zapatillas Urbanas Blancas - Talle 38 al 44 - Cuero Original',price:54900,stock:5,category:'clothing',dir:'Av. Moreno 456 - 9 a 20hs',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop',desc:'Cuero original, suela antideslizante, envío gratis en Tres Arroyos. Stock limitado. WhatsApp 2983...'}])); localStorage.setItem('marketProductsINT', JSON.stringify([{id:100,store:'Global Store',storeId:'global',city:'USA',name:'Smart Watch PRO - Envío Internacional',price:59.99,stock:10,category:'electronics',img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop',desc:'Reloj inteligente con envío internacional'}]));}
+renderAll();
 </script>
 </body>
-    </html>
+</html>
