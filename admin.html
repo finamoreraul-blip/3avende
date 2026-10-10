@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADMIN - 3A VENDE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#F0F2F5;color:#050505}
+.top{height:56px;background:#050505;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.top b{font-size:16px;letter-spacing:-.02em}.top b span{color:#1877F2}
+.btn{padding:8px 14px;border-radius:8px;border:none;font-weight:700;font-size:12px;cursor:pointer}
+.btn.w{background:#fff;color:#050505}.btn.blue{background:#1877F2;color:#fff}.btn.red{background:#E63946;color:#fff}.btn.green{background:#25D366;color:#fff}
+.wrap{max-width:1300px;margin:0 auto;padding:16px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.stat{background:#fff;border:1px solid #DDE3EA;border-radius:14px;padding:16px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.04);position:relative;overflow:hidden}
+.stat b{font-size:28px;display:block;letter-spacing:-.03em}
+.stat span{font-size:11px;color:#65676B;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.stat.green{border-color:#A5D6A7;background:linear-gradient(135deg,#fff,#E8F5E9)}
+.stat.green b{color:#2E7D32}
+.stat.blue{border-color:#C9DAFF;background:linear-gradient(135deg,#fff,#E7F3FF)}
+.stat.blue b{color:#1877F2}
+
+.card{background:#fff;border:1px solid #DDE3EA;border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.card h3{font-size:16px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.badge{font-size:10px;font-weight:800;padding:4px 8px;border-radius:999px}
+.badge.blue{background:#E7F3FF;color:#1877F2;border:1px solid #C9DAFF}
+.badge.green{background:#E8F5E9;color:#2E7D32;border:1px solid #A5D6A7}
+.badge.red{background:#FFEBEE;color:#E63946;border:1px solid #FFCDD2}
+
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+th,td{padding:10px 8px;border-bottom:1px solid #F0F2F5;text-align:left;vertical-align:top}
+th{font-size:10px;color:#65676B;text-transform:uppercase;letter-spacing:.06em;font-weight:800;background:#F9FAFB;position:sticky;top:0}
+tr:hover{background:#F9FAFB}
+.overflow{overflow-x:auto}
+
+.conectados-live{background:#E8F5E9;border:1px solid #A5D6A7;border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.dot-live{width:12px;height:12px;background:#25D366;border-radius:50%;animation:pulse 1.5s infinite;box-shadow:0 0 0 6px rgba(37,211,102,.2)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.explica{font-size:12px;color:#2E7D32;line-height:1.4}.explica b{color:#1B5E20}
+
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:10px}}
+</style>
+</head>
+<body>
+<div class="top"><b>ADMIN <span>3A VENDE</span> • CONECTADO</b><div style="display:flex;gap:8px"><button class="btn w" onclick="location.href='index.html'">Index</button><button class="btn blue" onclick="location.href='panel.html'">Panel</button><button class="btn green" onclick="exportData()">Exportar</button><button class="btn red" onclick="clearAll()">Borrar todo</button></div></div>
+
+<div class="wrap">
+
+<div class="conectados-live">
+<div class="dot-live"></div>
+<div class="explica"><b><span id="countBig">24</span> conectados ahora</b><br>Arranca en 24 y sube solo. Si entran 2 y ves 26, sabés que entraron 2. Este número lo ven los locales arriba en el index para motivarse. Se guarda en localStorage <span style="background:#fff;padding:2px 6px;border-radius:4px;border:1px solid #A5D6A7">visitCount3A</span></div>
+<div style="margin-left:auto;display:flex;gap:8px"><button class="btn green" onclick="addVisit()">+1 visita manual</button><button class="btn blue" onclick="resetCount()">Reset a 24</button></div>
+</div>
+
+<div class="stats">
+<div class="stat green"><b id="sVisit">24</b><span>Conectados (contador)</span></div>
+<div class="stat blue"><b id="sLocales">0</b><span>Locales activos</span></div>
+<div class="stat"><b id="sProd">0</b><span>Productos totales</span></div>
+<div class="stat"><b id="sUsers">0</b><span>Usuarios emprendedores</span></div>
+<div class="stat"><b id="sComision" style="color:#2E7D32">$0</b><span>15% estimado (si venden todo)</span></div>
+</div>
+
+<div class="card">
+<h3>Locales registrados <span class="badge blue" id="badgeLocales">0 locales</span></h3>
+<div class="overflow"><table><thead><tr><th>ID tienda</th><th>Nombre</th><th>WhatsApp dueño</th><th>Dirección</th><th>Horario</th><th>Productos</th><th>Instagram</th><th>Acciones</th></tr></thead><tbody id="tLocales"></tbody></table></div>
+</div>
+
+<div class="card">
+<h3>Productos - Cálculo 15% tuyo <span class="badge green">Cobrás 15% por venta</span></h3>
+<div class="overflow"><table><thead><tr><th>Tienda</th><th>Producto</th><th>Precio venta</th><th>Tu 15%</th><th>Le queda al local</th><th>Categoría</th><th>Stock</th><th>Acciones</th></tr></thead><tbody id="tProd"></tbody></table></div>
+<div style="margin-top:12px;background:#E7F3FF;border:1px solid #C9DAFF;border-radius:10px;padding:10px;font-size:11px;color:#1877F2"><b>Explicación para emprendedores:</b> Si un producto sale $10.000, vos te quedás con $1.500 (15%) y al local le quedan $8.500. Ellos cobran directo por WhatsApp, después te transfieren tu parte. Acá ves el detalle.</div>
+</div>
+
+<div class="card">
+<h3>Usuarios emprendedores (login WhatsApp + pass) <span class="badge blue" id="badgeUsers">0</span></h3>
+<div class="overflow"><table><thead><tr><th>WhatsApp (usuario)</th><th>StoreID vinculado</th><th>Contraseña</th><th>Tienda nombre</th><th>Estado</th></tr></thead><tbody id="tUsers"></tbody></table></div>
+</div>
+
+<div class="card">
+<h3>Log de actividad + Detalle completo</h3>
+<div style="font-size:12px;color:#65676B;line-height:1.6" id="logBox"></div>
+</div>
+
+</div>
+
+<script>
+function getStores(){return JSON.parse(localStorage.getItem('marketStores')||'{}');}
+function getAll(){return JSON.parse(localStorage.getItem('marketProductsAR')||'[]');}
+function getUsers(){return JSON.parse(localStorage.getItem('marketUsers')||'{}');}
+
+function load(){
+let stores=getStores();
+let all=getAll();
+let users=getUsers();
+let visit=parseInt(localStorage.getItem('visitCount3A')||'24');
+
+document.getElementById('sVisit').textContent=visit;
+document.getElementById('countBig').textContent=visit;
+document.getElementById('sLocales').textContent=Object.keys(stores).length;
+document.getElementById('sProd').textContent=all.length;
+document.getElementById('sUsers').textContent=Object.keys(users).length;
+document.getElementById('badgeLocales').textContent=Object.keys(stores).length+' locales';
+document.getElementById('badgeUsers').textContent=Object.keys(users).length+' usuarios';
+
+let totalComision=all.reduce((acc,p)=>acc+(p.price*0.15),0);
+document.getElementById('sComision').textContent='$'+totalComision.toLocaleString('es-AR');
+
+document.getElementById('tLocales').innerHTML=Object.keys(stores).map(id=>{
+let s=stores[id];
+let count=all.filter(p=>p.storeId===id).length;
+let ventasEst= all.filter(p=>p.storeId===id).reduce((acc,p)=>acc+(p.price*0.15),0);
+return `<tr>
+<td><b>${id}</b></td>
+<td><b>${s.name}</b><br><span style="font-size:10px;color:#65676B">${s.desc||''}</span></td>
+<td>${s.wsp||''}<br><span style="font-size:10px">Owner: ${s.ownerWsp||''}</span></td>
+<td>${s.dir||''}<br><span style="font-size:10px;color:#65676B">${s.city||''}</span></td>
+<td>${s.hor||''}</td>
+<td><span class="badge blue">${count} prods</span><br><span class="badge green" style="margin-top:4px;display:inline-block">$${ventasEst.toLocaleString('es-AR')} tu 15%</span></td>
+<td>${s.ig||''}</td>
+<td>
+<button onclick="location.href='store.html?store=${id}'" style="padding:5px 8px;border-radius:6px;border:none;background:#E7F3FF;color:#1877F2;font-size:11px;font-weight:700">Ver FB</button><br>
+<button onclick="delStore('${id}')" style="margin-top:4px;padding:5px 8px;border-radius:6px;border:1px solid #FFCDD2;background:#fff;color:#E63946;font-size:11px">Borrar</button>
+</td>
+</tr>`;
+}).join('')||'<tr><td colspan="8" style="text-align:center;padding:20px;color:#65676B">Sin locales</td></tr>';
+
+document.getElementById('tProd').innerHTML=all.map(p=>{
+let com=p.price*0.15;
+let queda=p.price*0.85;
+return `<tr>
+<td><b>${p.store}</b><br><span style="font-size:10px">${p.storeId}</span></td>
+<td>${p.name}<br><span style="font-size:10px;color:#65676B">${p.desc||''}</span></td>
+<td><b>$${p.price.toLocaleString('es-AR')}</b></td>
+<td><b style="color:#2E7D32">$${com.toLocaleString('es-AR')}</b><br><span style="font-size:10px">15%</span></td>
+<td style="color:#65676B">$${queda.toLocaleString('es-AR')}</td>
+<td>${p.category}</td>
+<td>${p.stock||1}</td>
+<td><button onclick="delProd(${p.id})" style="padding:4px 8px;border-radius:6px;border:1px solid #DDE3EA;background:#fff;font-size:11px">Borrar</button></td>
+</tr>`;
+}).join('')||'<tr><td colspan="8" style="text-align:center;padding:20px;color:#65676B">Sin productos</td></tr>';
+
+document.getElementById('tUsers').innerHTML=Object.keys(users).map(wsp=>{
+let u=users[wsp];
+let s=stores[u.storeId];
+return `<tr>
+<td><b>${u.wsp}</b></td>
+<td>${u.storeId}</td>
+<td><span style="background:#F0F2F5;padding:2px 6px;border-radius:4px">${u.pass}</span></td>
+<td>${s? s.name : '<span style="color:#E63946">Tienda borrada</span>'}</td>
+<td><span class="badge green">Activo</span></td>
+</tr>`;
+}).join('')||'<tr><td colspan="5" style="text-align:center;padding:20px;color:#65676B">Sin usuarios</td></tr>';
+
+document.getElementById('logBox').innerHTML=`
+<b>Última actualización:</b> ${new Date().toLocaleString('es-AR')}<br>
+<b>Contador conectados:</b> ${visit} (arrancó en 24, sube con cada visita nueva + cada 28s aleatorio)<br>
+<b>Total valor catálogo:</b> $${all.reduce((a,p)=>a+p.price,0).toLocaleString('es-AR')}<br>
+<b>Tu ganancia si venden todo:</b> $${totalComision.toLocaleString('es-AR')} (15%)<br>
+<b>Storage usado:</b> ${(JSON.stringify(localStorage).length/1024).toFixed(1)} KB<br>
+<b>Explicación registro:</b> En el index y en el panel dice: "Cobramos 15% de las ventas. Sin alquiler mensual. Pagás solo si vendés."<br><br>
+<span style="background:#FFF9C4;padding:4px 8px;border-radius:6px;border:1px solid #FFEB3B">Si entran 2 personas y el contador pasa de 24 a 26, vos sabés que entraron 2. Queda guardado en localStorage visitCount3A y se ve en verde en el index y acá.</span>
+`;
+}
+
+function delStore(id){
+if(!confirm('¿Borrar tienda '+id+' y todos sus productos?')) return;
+let stores=getStores();delete stores[id];
+localStorage.setItem('marketStores',JSON.stringify(stores));
+let all=getAll().filter(p=>p.storeId!==id);
+localStorage.setItem('marketProductsAR',JSON.stringify(all));
+load();
+}
+
+function delProd(id){
+if(!confirm('¿Borrar producto?')) return;
+let all=getAll().filter(p=>p.id!==id);
+localStorage.setItem('marketProductsAR',JSON.stringify(all));
+load();
+}
+
+function clearAll(){
+if(!confirm('¿BORRAR TODO? Locales, productos y usuarios. Deja contador en 24')) return;
+localStorage.removeItem('marketProductsAR');
+localStorage.removeItem('marketStores');
+localStorage.removeItem('marketUsers');
+localStorage.setItem('visitCount3A','24');
+load();
+}
+
+function addVisit(){
+let c=parseInt(localStorage.getItem('visitCount3A')||'24')+1;
+localStorage.setItem('visitCount3A',c.toString());
+load();
+}
+
+function resetCount(){
+localStorage.setItem('visitCount3A','24');
+load();
+}
+
+function exportData(){
+let data={
+stores:getStores(),
+products:getAll(),
+users:getUsers(),
+visitCount:localStorage.getItem('visitCount3A')
+};
+let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+let url=URL.createObjectURL(blob);
+let a=document.createElement('a');
+a.href=url;a.download='3a-vende-backup-'+Date.now()+'.json';a.click();
+}
+
+// auto refresh cada 5s para ver conectados
+setInterval(load,5000);
+load();
+</script>
+</body>
+</html>
