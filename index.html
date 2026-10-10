@@ -2,141 +2,246 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3A VENDE — Tres Arroyos</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>3A VENDE - Tres Arroyos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
---bg:#0E0E0E;--bg2:#141414;--card:#1C1C1C;--card2:#232323;--line:#262626;--line2:#2E2E2E;
---ink:#F2F2F2;--muted:#9A9A9A;--muted2:#666;--white:#FFFFFF;
-}
+:root{--bg:#0F0F0F;--card:#1A1A1A;--card2:#222;--line:#262626;--ink:#FFF;--muted:#888;--muted2:#555}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.top{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px 28px;background:rgba(14,14,14,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.logo{font-weight:800;font-size:18px;letter-spacing:-.03em}
-.logo span{font-weight:400;color:var(--muted);margin-left:8px;font-size:13px}
-.btn{padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:.2s}
-.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}.btn-ghost:hover{border-color:var(--line2);color:var(--ink)}
-.btn-white{background:var(--white);color:#111}.btn-white:hover{background:#EDEDED}
+.top{height:60px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(15,15,15,.95);backdrop-filter:blur(10px);z-index:20}
+.logo{font-size:18px;font-weight:700;letter-spacing:-.02em}.logo span{font-weight:500;color:var(--muted);font-size:13px;margin-left:8px}
 .view{display:none}.view.active{display:block}
 
-/* ENTRADA PRODUCIDA */
-#choose{max-width:1200px;margin:0 auto;padding:80px 28px 40px}
-.kicker{font-size:11px;letter-spacing:.14em;color:var(--muted);font-weight:600;text-transform:uppercase}
-.h1{font-size:56px;line-height:.9;letter-spacing:-.05em;font-weight:800;margin-top:16px;max-width:720px}
-.h1 em{font-style:normal;color:var(--muted);font-weight:400}
-.sub{margin-top:18px;color:var(--muted);font-size:15px;line-height:1.6;max-width:480px}
-.cards{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{border-radius:24px;padding:28px;border:1px solid var(--line);background:var(--card);cursor:pointer;transition:.25s;display:flex;flex-direction:column}
-.card:hover{border-color:var(--line2);transform:translateY(-4px);background:var(--card2)}
-.card.white{background:var(--white);color:#111;border-color:var(--white)}.card.white:hover{background:#F5F5F5}
-.card.label{font-size:10px;letter-spacing:.12em;font-weight:700;opacity:.5;text-transform:uppercase}
-.card h3{font-size:20px;font-weight:700;margin-top:14px;letter-spacing:-.02em}
-.card p{font-size:13px;line-height:1.6;margin-top:10px;color:var(--muted)}.card.white p{color:#666}
-.card.cta{margin-top:auto;padding-top:24px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
-.divider{height:1px;background:var(--line);margin:60px 0}
-.trust{display:flex;gap:32px;flex-wrap:wrap;font-size:12px;color:var(--muted2)}
-.trust b{color:var(--muted);font-weight:600}
+/* INICIO */
+#inicio{max-width:420px;margin:0 auto;padding:48px 20px}
+.h1{font-size:30px;font-weight:700;line-height:1.05;letter-spacing:-.03em}
+.h1 span{color:var(--muted);font-weight:500}
+.sub{color:var(--muted);font-size:14px;line-height:1.5;margin-top:12px}
+.btn-big{width:100%;padding:20px 18px;border-radius:18px;border:none;font-size:17px;font-weight:700;cursor:pointer;margin-top:14px;display:flex;justify-content:space-between;align-items:center;transition:.2s}
+.btn-big:active{transform:scale(.98)}
+.btn-cliente{background:#fff;color:#111}.btn-vendedor{background:var(--card);color:#fff;border:1px solid var(--line)}
+.stats{margin-top:28px;display:flex;gap:16px;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.stat b{font-size:18px;display:block}.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 
-/* MARKET PRODUCIDO */
-.bar{position:sticky;top:57px;z-index:40;background:var(--bg2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:12px 28px;flex-wrap:wrap}
-.search{flex:1;max-width:480px;position:relative}
-.search input{width:100%;padding:12px 18px 12px 40px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;outline:none;transition:.2s}
-.search input:focus{border-color:var(--line2);background:var(--card2)}
-.search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted2);font-size:14px}
-.filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
-.f-btn{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:.2s}
-.f-btn:hover{color:var(--ink);border-color:var(--line2)}.f-btn.active{background:var(--white);color:#111;border-color:var(--white)}
+/* CATALOGO PRO SIMPLE */
+#catalogo{max-width:1200px;margin:0 auto}
+.bar{position:sticky;top:60px;z-index:15;background:var(--bg);border-bottom:1px solid var(--line);padding:14px 20px}
+.search{position:relative;max-width:520px}
+.search input{width:100%;padding:15px 20px 15px 44px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:#fff;font-size:15px;outline:none}
+.search input:focus{border-color:#3A3A3A;background:var(--card2)}
+.search i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted2)}
+.top-actions{display:flex;gap:8px;margin-top:12px}
+.btn-small{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.btn-small.active{background:#fff;color:#111;border-color:#fff}
 
-section{max-width:1400px;margin:0 auto;padding:28px}
-.count{font-size:12px;color:var(--muted);margin-bottom:16px}
-.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.prod{border-radius:20px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:.25s;display:flex;flex-direction:column}
-.prod:hover{border-color:var(--line2);transform:translateY(-3px)}
-.prod img{width:100%;height:260px;object-fit:cover;background:#111;cursor:pointer;transition:.3s}
-.prod:hover img{transform:scale(1.02)}
-.prod-body{padding:14px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
-.store{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;cursor:pointer}
-.store:hover{color:var(--ink)}
-.price{font-size:16px;font-weight:700;letter-spacing:-.01em}
-.name{font-size:13px;font-weight:600;line-height:1.35;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.desc{font-size:12px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
-.meta{margin-top:6px;font-size:11px;color:var(--muted2);display:flex;gap:8px}
+.filtros{padding:12px 20px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line);position:sticky;top:128px;background:var(--bg);z-index:14}
+.f-btn{padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;transition:.2s}
+.f-btn.active{background:#fff;color:#111;border-color:#fff}
 
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);z-index:100;display:none;align-items:center;justify-content:center;padding:24px}
-.modal.active{display:flex}
-.modal-box{background:var(--card);border-radius:24px;max-width:920px;width:100%;display:grid;grid-template-columns:480px 1fr;overflow:hidden;border:1px solid var(--line);animation:up.3s ease}
-@keyframes up{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-img{width:100%;height:520px;object-fit:cover;background:#111}
-.modal-info{padding:24px;display:flex;flex-direction:column;gap:14px}
-@media(max-width:900px){.h1{font-size:38px}.cards{grid-template-columns:1fr}.prod-grid{grid-template-columns:repeat(2,1fr);gap:12px}.prod img{height:180px}.modal-box{grid-template-columns:1fr}.modal-img{height:340px}.top{padding:14px 20px}#choose{padding:40px 20px}section{padding:20px}.bar{padding:12px 20px;top:53px}}
+.info-bar{padding:14px 20px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.grid{padding:0 20px 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;transition:.2s;display:flex;flex-direction:column}
+.prod:hover{border-color:#333;transform:translateY(-2px)}
+.prod img{width:100%;height:240px;object-fit:cover;background:#111}
+.prod-body{padding:14px;display:flex;flex-direction:column;gap:5px;flex:1}
+.local{font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.local:hover{color:var(--ink);text-decoration:underline}
+.precio{font-size:18px;font-weight:700}.nombre{font-size:14px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
+.desc{font-size:12px;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px}
+
+.load-more{padding:30px 20px;text-align:center}
+.btn-load{padding:14px 24px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;font-weight:600;cursor:pointer}
+.btn-load:hover{background:var(--card2)}
+
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+.empty b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
+
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:0 12px 12px}.prod img{height:160px}.precio{font-size:16px}.nombre{font-size:13px}.bar{padding:12px}.filtros{top:122px}}
 </style>
 </head>
 <body>
 
 <div class="top">
-<div class="logo">3A VENDE <span>Tres Arroyos — Marketplace local</span></div>
-<div style="display:flex;gap:8px">
-<button class="btn btn-ghost" onclick="go('choose')">Inicio</button>
-<button class="btn btn-white" onclick="location.href='panel.html'">Soy vendedor</button>
+<div class="logo">3A VENDE <span>Tres Arroyos</span></div>
+<div style="font-size:11px;color:var(--muted)" id="totalLocales">0 locales</div>
+</div>
+
+<div id="inicio" class="view active">
+<div class="h1">Todo<br>Tres Arroyos<br><span>en un lugar.</span></div>
+<p class="sub">Elegí qué querés hacer. Simple, sin registro.</p>
+
+<button class="btn-big btn-cliente" onclick="go('catalogo')">
+<span>🛒 SOY CLIENTE<br><small style="font-size:12px;font-weight:500;opacity:.6">Quiero comprar</small></span>
+<span>→</span>
+</button>
+
+<button class="btn-big btn-vendedor" onclick="location.href='panel.html'">
+<span>🏪 SOY VENDEDOR<br><small style="font-size:12px;font-weight:500;opacity:.6">Tengo un local</small></span>
+<span>→</span>
+</button>
+
+<div class="stats">
+<div class="stat"><b id="statLocales">0</b><span>Locales</span></div>
+<div class="stat"><b id="statProd">0</b><span>Productos</span></div>
+<div class="stat"><b>Sin login</b><span>Para comprar</span></div>
 </div>
 </div>
 
-<div id="choose" class="view active">
-<div class="kicker">Plataforma local • Sin comisión por publicar</div>
-<div class="h1">Todo Tres Arroyos<br><em>en un solo lugar.</em></div>
-<p class="sub">Productos reales de locales reales. Foto arriba, precio y descripción abajo. Entrás sin registrarte. Tocás el local y ves dirección, horario y WhatsApp.</p>
-
-<div class="cards">
-<div class="card white" onclick="go('market')">
-<div class="label">Cliente • Sin login</div>
-<h3>Quiero comprar</h3>
-<p>Catálogo directo con formato limpio. Foto grande arriba, precio y descripción bien acomodado abajo. Sin registro.</p>
-<div class="cta">Entrar al catálogo <span>→</span></div>
-</div>
-<div class="card" onclick="location.href='panel.html'">
-<div class="label">Emprendimiento</div>
-<h3>Tengo un local</h3>
-<p>Creá tu tienda con foto de perfil, portada y dirección. Subí productos con foto real. Vista previa simple.</p>
-<div class="cta">Ir a mi panel <span>→</span></div>
-</div>
-</div>
-
-<div class="divider"></div>
-<div class="trust"><span><b>17</b> emprendimientos</span><span><b>Sin login</b> para comprar</span><span><b>15%</b> comisión solo por venta</span><span><b>Foto real</b> de cada producto</span></div>
-</div>
-
-<div id="market" class="view">
+<div id="catalogo" class="view">
 <div class="bar">
-<div class="search"><span>⌕</span><input id="search" placeholder="Buscar en Tres Arroyos..."></div>
-<div class="filters"><button class="f-btn active" data-cat="all">Todos</button><button class="f-btn" data-cat="clothing">Ropa</button><button class="f-btn" data-cat="food">Alimentos</button><button class="f-btn" data-cat="home">Hogar</button><button class="f-btn" data-cat="artesanias">Artesanías</button><button class="f-btn" data-cat="panaderia">Panadería</button></div>
+<div class="search"><i>⌕</i><input id="search" placeholder="Buscar producto o local..."></div>
+<div class="top-actions">
+<button class="btn-small active" onclick="go('inicio')">← Inicio</button>
+<button class="btn-small" onclick="location.href='panel.html'">Soy vendedor</button>
+<button class="btn-small" id="btnClear" style="margin-left:auto;display:none" onclick="clearSearch()">✕ Limpiar</button>
 </div>
-<section>
-<div class="count" id="count">0 productos</div>
-<div class="prod-grid" id="grid"></div>
-</section>
 </div>
 
-<div class="modal" id="modal"><div class="modal-box"><img class="modal-img" id="mImg"><div class="modal-info"><div class="store" id="mStore"></div><div id="mTitle" style="font-size:20px;font-weight:700;line-height:1.2"></div><div class="price" id="mPrice" style="font-size:18px"></div><div id="mDesc" style="font-size:13px;color:var(--muted);line-height:1.6"></div><div style="margin-top:auto;border-top:1px solid var(--line);padding-top:14px;font-size:11px;color:var(--muted)"><div id="mCity"></div><div id="mDir" style="margin-top:4px"></div></div></div></div></div>
+<div class="filtros" id="filtros">
+<div class="f-btn active" data-cat="all">Todos</div>
+<div class="f-btn" data-cat="clothing">Ropa</div>
+<div class="f-btn" data-cat="food">Comida</div>
+<div class="f-btn" data-cat="home">Hogar</div>
+<div class="f-btn" data-cat="panaderia">Panadería</div>
+<div class="f-btn" data-cat="verduleria">Verdulería</div>
+<div class="f-btn" data-cat="artesanias">Artesanías</div>
+</div>
+
+<div class="info-bar">
+<span id="infoText">0 productos</span>
+<span id="infoLocales" style="color:var(--muted2)"></span>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="load-more" id="loadMoreWrap" style="display:none">
+<button class="btn-load" onclick="loadMore()">Cargar más productos</button>
+</div>
+</div>
 
 <script>
-let active='all', cur=null;
-const go=id=>{document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='market')render();window.scrollTo(0,0)}
-const getImg=p=>p.imgs?p.imgs[0]:p.img||'';
-const render=()=>{
-let AR=JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
-let q=document.getElementById('search').value.toLowerCase();
-let filt=AR.filter(p=>(active==='all'||p.category===active)&&p.name.toLowerCase().includes(q));
-document.getElementById('count').textContent=filt.length+' productos en Tres Arroyos';
-document.getElementById('grid').innerHTML=filt.map(p=>`<div class="prod"><img src="${getImg(p)}" loading="lazy" onclick='openM(${JSON.stringify(p).replace(/'/g,"&apos;")})'><div class="prod-body"><div class="store" onclick="openStore('${p.storeId}')">${p.store} → ver local</div><div class="price">$${p.price.toLocaleString('es-AR')}</div><div class="name">${p.name}</div><div class="desc">${p.desc||''}</div><div class="meta"><span>📍 ${p.city||'Tres Arroyos'}</span><span>• Stock ${p.stock||1}</span></div></div></div>`).join('')||`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)"><div style="font-size:14px">Sin productos todavía</div><div style="font-size:12px;margin-top:6px">Publicá desde tu panel con foto real</div></div>`;
-};
-const openM=p=>{cur=p;document.getElementById('mImg').src=getImg(p);document.getElementById('mTitle').textContent=p.name;document.getElementById('mPrice').textContent='$'+p.price.toLocaleString('es-AR');document.getElementById('mDesc').textContent=p.desc||'';document.getElementById('mStore').textContent=p.store+' → ver local con dirección';document.getElementById('mCity').textContent='📍 '+(p.city||'Tres Arroyos');document.getElementById('mDir').textContent=p.dir||'';document.getElementById('modal').classList.add('active');}
-const openStore=id=>location.href='store.html?store='+id;
-document.getElementById('search').oninput=render;
-document.querySelector('.filters').onclick=e=>{if(e.target.classList.contains('f-btn')){document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');active=e.target.dataset.cat;render();}};
-document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.target.classList.remove('active');};
-if(!localStorage.getItem('marketProductsAR'))localStorage.setItem('marketProductsAR',JSON.stringify([{id:1,store:'Zapatería Centro',storeId:'zapateria-centro',city:'Tres Arroyos',dir:'Av. Moreno 456 — 9 a 20hs',name:'Zapatillas Urbanas Blancas — Talle 38 al 44',price:54900,category:'clothing',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop',desc:'Cuero original, suela antideslizante. Envío gratis en Tres Arroyos.'},{id:2,store:'Panadería La Espiga',storeId:'panaderia-la-espiga',city:'Tres Arroyos',dir:'Rivadavia 456 — 6 a 20hs',name:'Medialunas de manteca x12 — Recién horneadas',price:3600,category:'panaderia',img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db8e?w=600&h=400&fit=crop',desc:'12 unidades, manteca real, horneadas hoy 6AM.'}]));
+let activeCat='all', query='', visibleCount=20, filtered=[];
+
+const go=id=>{
+document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+if(id==='catalogo') render();
+}
+
+const getImg=p=>p.img||p.imgs?.[0]||'https://via.placeholder.com/400/1A1A1A/666?text=3A';
+
+function getAllProducts(){
+return JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
+}
+function getAllStores(){
+return JSON.parse(localStorage.getItem('marketStores')||'{}');
+}
+
+function updateStats(){
+let prods=getAllProducts();
+let stores=getAllStores();
+document.getElementById('totalLocales').textContent=Object.keys(stores).length+' locales';
+document.getElementById('statLocales').textContent=Object.keys(stores).length;
+document.getElementById('statProd').textContent=prods.length;
+}
+
+function applyFilters(){
+let all=getAllProducts();
+let q=query.toLowerCase();
+filtered=all.filter(p=>{
+let matchCat=activeCat==='all'||p.category===activeCat;
+let matchQuery=!q||p.name.toLowerCase().includes(q)||p.store.toLowerCase().includes(q)||(p.desc||'').toLowerCase().includes(q);
+return matchCat&&matchQuery;
+});
+visibleCount=20;
+}
+
+function render(){
+applyFilters();
+let toShow=filtered.slice(0,visibleCount);
+let localesUnicos=new Set(filtered.map(p=>p.storeId)).size;
+
+document.getElementById('infoText').textContent=filtered.length+' productos';
+document.getElementById('infoLocales').textContent=localesUnicos+' locales';
+document.getElementById('btnClear').style.display=query?'block':'none';
+
+let grid=document.getElementById('grid');
+if(filtered.length===0){
+grid.innerHTML=`<div class="empty"><b>Sin resultados</b>Probá buscando otra cosa o cambiá de categoría</div>`;
+document.getElementById('loadMoreWrap').style.display='none';
+return;
+}
+
+grid.innerHTML=toShow.map(p=>`
+<div class="prod" onclick="location.href='store.html?store=${p.storeId}'">
+<img src="${getImg(p)}" loading="lazy">
+<div class="prod-body">
+<div class="local" onclick="event.stopPropagation();location.href='store.html?store=${p.storeId}'">${p.store} → VER LOCAL</div>
+<div class="precio">$${p.price.toLocaleString('es-AR')}</div>
+<div class="nombre">${p.name}</div>
+<div class="desc">${p.desc||''}</div>
+</div>
+</div>
+`).join('');
+
+document.getElementById('loadMoreWrap').style.display=filtered.length>visibleCount?'block':'none';
+updateStats();
+}
+
+function loadMore(){
+visibleCount+=20;
+render();
+window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+
+function clearSearch(){
+document.getElementById('search').value='';
+query='';
+render();
+}
+
+document.getElementById('search').addEventListener('input',e=>{
+query=e.target.value;
+render();
+});
+
+document.getElementById('filtros').addEventListener('click',e=>{
+if(e.target.classList.contains('f-btn')){
+document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+e.target.classList.add('active');
+activeCat=e.target.dataset.cat;
+render();
+}
+});
+
+// Demo data si está vacío
+if(!localStorage.getItem('marketProductsAR')){
+let demo=[];
+for(let i=1;i<=30;i++){
+demo.push({
+id:i,
+store: i%2===0?'Zapatería Centro':'Panadería La Espiga',
+storeId: i%2===0?'zapateria-centro':'panaderia-la-espiga',
+city:'Tres Arroyos',
+dir: i%2===0?'Av. Moreno 456':'Rivadavia 456',
+name: i%2===0?`Zapatillas Modelo ${i} - Talle 38 al 44`:`Medialunas x12 - Lote ${i}`,
+price: i%2===0?50000+i*100:3000+i*50,
+stock:10,
+category: i%2===0?'clothing':'panaderia',
+img: i%2===0?'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop':'https://images.unsplash.com/photo-1558961363-fa8fdf82db8e?w=400&h=400&fit=crop',
+desc: i%2===0?'Cuero original. Envío gratis Tres Arroyos.':'Recién horneadas hoy.'
+});
+}
+localStorage.setItem('marketProductsAR',JSON.stringify(demo));
+localStorage.setItem('marketStores',JSON.stringify({
+'zapateria-centro':{name:'Zapatería Centro',desc:'Calzado de Tres Arroyos',dir:'Av. Moreno 456',city:'Tres Arroyos',hor:'Lun a Sáb 9 a 20hs',wsp:'2983 123456',ig:'@zapat.centro',profile:'https://via.placeholder.com/200',cover:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1000&h=400&fit=crop'},
+'panaderia-la-espiga':{name:'Panadería La Espiga',desc:'Panadería artesanal',dir:'Rivadavia 456',city:'Tres Arroyos',hor:'Lun a Sáb 6 a 20hs',wsp:'2983 654321',ig:'@laespiga',profile:'https://via.placeholder.com/200',cover:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1000&h=400&fit=crop'}
+}));
+}
+
+updateStats();
 render();
 </script>
 </body>
-</html>
+  </html>
