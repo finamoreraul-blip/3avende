@@ -2,199 +2,203 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="banner"><h1>3A VENDE - Tres Arroyos 💚</h1>
+<title>3A VENDE - Marketplace Tres Arroyos</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0a0a0a;color:#fff;padding-bottom:80px}
-header{background:#1a1a1a;padding:12px 15px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
-.logo{font-size:20px;font-weight:900;color:#25D366}.logo span{color:#fff}
-.conectados{display:flex;gap:6px;align-items:center;background:#1a3d2a;border:1px solid #25D366;border-radius:20px;padding:5px 10px;font-size:10px;font-weight:800;color:#25D366}
-.dot{width:7px;height:7px;background:#25D366;border-radius:50%;animation:pulse 1.5s infinite}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}100%{box-shadow:0 0 0 8px rgba(37,211,102,0)}}
-.topbar{background:#25D366;color:#000;text-align:center;padding:6px;font-size:10px;font-weight:800}
-.banner{padding:20px 15px;text-align:center;background:linear-gradient(#1a3d2a,#0a0a0a);border-bottom:1px solid #222}
-.banner h1{color:#25D366;font-size:22px}
-.explica{margin:10px;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:10px;font-size:11px;color:#aaa;text-align:center;line-height:1.4}
-.filtros{display:flex;gap:6px;padding:10px;overflow-x:auto;background:#151515;position:sticky;top:48px;z-index:90;border-bottom:1px solid #222;align-items:center}
-.filter-btn{padding:7px 12px;border:none;border-radius:20px;background:#2a2a2a;color:#fff;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}.filter-btn.active{background:#25D366;color:#000}
-.search-box{margin-left:auto;display:flex;gap:5px}.search-box input{padding:7px 10px;border-radius:20px;border:1px solid #333;background:#2a2a2a;color:#fff;font-size:11px;width:130px}
-.btn-panel{background:#25D366;color:#000;border:none;padding:7px 12px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer}
-.container{padding:10px;max-width:1200px;margin:auto}
-.bar{background:#1a1a1a;border-radius:12px;border:1px solid #333;margin-bottom:14px;overflow:hidden}
-.bar-img{width:100%;height:140px;object-fit:cover}
-.bar-body{padding:10px}.bar h3{font-size:15px;color:#25D366}
-.horario{font-size:10px;color:#aaa;margin-bottom:8px}.badge{background:#25D366;color:#000;padding:2px 6px;border-radius:10px;font-size:9px;font-weight:800}
-.grid-promos{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
-.promo-item{background:#2a2a2a;border:1px solid #333;border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
-.promo-item img{width:100%;height:100px;object-fit:cover;cursor:pointer}
-.promo-nombre{font-size:11px;padding:5px;text-align:center;min-height:28px;display:flex;align-items:center;justify-content:center}
-.btn-group{display:flex;gap:3px;margin-top:auto}.btn-pedir{flex:1;background:#25D366;color:#000;border:none;padding:7px;font-size:10px;font-weight:800;cursor:pointer}.btn-carrito{flex:1;background:#ff9800;color:#fff;border:none;padding:7px;font-size:10px;font-weight:800;cursor:pointer}
-.btn-ver{width:100%;background:#2a2a2a;border:1px solid #333;color:#fff;padding:8px;border-radius:20px;margin-top:10px;font-size:11px;font-weight:700;cursor:pointer}
-.btn-ver:hover{border-color:#25D366;color:#25D366}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:1000;display:none;align-items:center;justify-content:center;padding:10px;overflow-y:auto}.modal.active{display:flex}
-.modal-content{background:#1a1a1a;border-radius:12px;max-width:500px;width:100%;border:1px solid #333;overflow:hidden;max-height:90vh;overflow-y:auto}
-.modal-header{display:flex;gap:10px;padding:12px;border-bottom:1px solid #333;position:relative}.modal-header img{width:60px;height:60px;border-radius:8px;object-fit:cover}
-.modal-close{position:absolute;top:8px;right:12px;font-size:22px;cursor:pointer;color:#aaa}
-.modal-grid{padding:12px;display:flex;flex-direction:column;gap:8px}
-.modal-promo{background:#2a2a2a;border:1px solid #333;border-radius:8px;padding:8px;display:flex;gap:8px;align-items:center}.modal-promo img{width:50px;height:50px;border-radius:6px;object-fit:cover}
-.modal-pedido{padding:15px;display:none}.modal-pedido input,.modal-pedido textarea,.modal-pedido select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #333;background:#2a2a2a;color:#fff;font-size:12px}
-.btn-wsp{background:#25D366;color:#000;border:none;padding:12px;border-radius:8px;width:100%;font-weight:800;cursor:pointer;margin-top:10px}
-.opcion-envio{display:flex;gap:8px;margin:10px 0}.opcion-envio label{flex:1;padding:8px;border:2px solid #444;border-radius:8px;text-align:center;font-size:11px;cursor:pointer}.opcion-envio input{display:none}.opcion-envio input:checked+label{border-color:#25D366;background:#1a3d2a}
-.cart-float{position:fixed;bottom:18px;right:18px;background:#25D366;color:#000;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;z-index:999;box-shadow:0 4px 10px rgba(0,0,0,.4);cursor:pointer}
-.cart-count{position:absolute;top:-4px;right:-4px;background:#E63946;color:#fff;width:20px;height:20px;border-radius:50%;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #0a0a0a}
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:2000;align-items:center;justify-content:center}.lightbox.active{display:flex}.lightbox img{max-width:90%;max-height:85vh;border-radius:8px}
-.prod-modal{max-width:960px;display:grid;grid-template-columns:1fr 320px;width:100%;background:#1a1a1a;border-radius:12px;border:1px solid #333;overflow:hidden;position:relative}
-.carousel{position:relative;background:#000;height:400px;display:flex;align-items:center;justify-content:center}.carousel img{width:100%;height:100%;object-fit:contain;display:none;position:absolute;inset:0}.carousel img.active{display:block}
-.dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px}.dot-car{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.3)}.dot-car.active{background:#25D366}
-@media(max-width:700px){.prod-modal{grid-template-columns:1fr}.carousel{height:300px}.grid-promos{grid-template-columns:repeat(2,1fr)}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Helvetica,Arial,sans-serif}
+body{background:#f0f2f5;color:#050505}
+header{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1);position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px;padding:8px 16px}
+.logo{font-size:22px;font-weight:900;color:#25D366;cursor:pointer}.logo span{color:#050505}
+.search-fb{flex:1;max-width:600px;background:#f0f2f5;border-radius:20px;display:flex;align-items:center;padding:8px 14px;gap:8px}
+.search-fb input{border:none;background:transparent;outline:none;flex:1;font-size:14px}
+.conectados{background:#e7f3ff;color:#0064d1;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;background:#31a24c;border-radius:50%}
+.topbar{background:#25D366;color:#000;text-align:center;padding:6px;font-size:11px;font-weight:700}
+.layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:16px;padding:16px}
+.sidebar{background:#fff;border-radius:8px;padding:12px;height:fit-content;position:sticky;top:60px}
+.sidebar h3{font-size:14px;margin-bottom:10px}
+.cat-item{padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px;display:flex;gap:8px;align-items:center}
+.cat-item:hover{background:#f0f2f5}.cat-item.active{background:#e7f3ff;color:#0064d1;font-weight:700}
+.btn-vender{width:100%;background:#25D366;color:#000;border:none;padding:10px;border-radius:8px;font-weight:800;margin-top:12px;cursor:pointer}
+.explica{background:#fff;border-radius:8px;padding:12px;margin-top:12px;font-size:11px;color:#65676b;line-height:1.4}
+.explica b{color:#050505}
+.main{display:flex;flex-direction:column;gap:16px}
+.filters-fb{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.filter-pill{padding:6px 12px;border-radius:20px;background:#fff;border:1px solid #ddd;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.filter-pill.active{background:#050505;color:#fff}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.prod-card{background:#fff;border-radius:8px;overflow:hidden;cursor:pointer;border:1px solid #ddd;transition:.15s}
+.prod-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.prod-card img{width:100%;height:180px;object-fit:cover}
+.prod-info{padding:8px}
+.price{font-weight:800;font-size:15px}.name{font-size:13px;line-height:1.3;min-height:36px;margin-top:2px}
+.meta{font-size:11px;color:#65676b;margin-top:4px;display:flex;justify-content:space-between}
+.store{font-size:11px;color:#0064d1;font-weight:600;margin-top:2px}
+.modal{position:fixed;inset:0;background:rgba(255,255,255,.9);z-index:2000;display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.modal.active{display:flex}
+.modal-content{background:#fff;border-radius:8px;max-width:1000px;width:100%;display:grid;grid-template-columns:1fr 360px;box-shadow:0 8px 24px rgba(0,0,0,.2);position:relative;overflow:hidden}
+.modal-close{position:absolute;top:10px;right:12px;font-size:22px;cursor:pointer;background:#f0f2f5;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.carousel{position:relative;background:#000;height:480px;display:flex;align-items:center;justify-content:center}
+.carousel img{width:100%;height:100%;object-fit:contain;display:none;position:absolute;inset:0}.carousel img.active{display:block}
+.dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px}.dot-car{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)}.dot-car.active{background:#fff}
+.modal-info{padding:16px;border-left:1px solid #ddd}
+.catalog{background:#f0f2f5;padding:12px;grid-column:1/-1}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.btn-fb{background:#25D366;color:#000;border:none;padding:12px;border-radius:8px;width:100%;font-weight:800;cursor:pointer;margin-top:10px}
+.btn-fb2{background:#e4e6eb;border:none;padding:10px;border-radius:8px;width:100%;font-weight:700;margin-top:8px;cursor:pointer}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.modal-content{grid-template-columns:1fr}.carousel{height:320px}.product-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-<header><div class="logo">3A <span>VENDE</span></div><div class="conectados"><div class="dot"></div><span id="conect">24</span> conectados • 15%</div></header>
-<div class="topbar">PAGO POR WHATSAPP DIRECTO AL LOCAL • ENVIO O RETIRO • TRES ARROYOS • 15% HASTA ENTREGA • ADMIN OCULTO SOLO POR ARCHIVO</div>
-<div class="banner"><h1>3A VENDE - LARGO CON ACCIONES 💚</h1><p style="font-size:11px;color:#aaa;margin-top:6px">Todas las acciones de Promos 24hs: Ver promos, Pedir directo, + Carrito multi-local, envío/retiro, WhatsApp directo, carrusel auto en producto, catálogo completo abajo, conectados real.</p></div>
-<div class="explica"><b>Vendedor:</b> Entra en panel con WhatsApp y pass (cliente no entra). Subí y aparece al instante en su local. <b>Admin oculto:</b> solo vos abrís admin.html con clave 3A2026, no hay botón.</div>
+<header>
+<div class="logo" onclick="location.reload()">3A <span>VENDE</span></div>
+<div class="search-fb">🔍 <input id="searchFB" placeholder="Buscar en 3A VENDE - Tres Arroyos"></div>
+<div class="conectados"><div class="dot"></div><span id="conectCount">24</span> conectados</div>
+</header>
+<div class="topbar">MARKETPLACE TIPO FACEBOOK - TODO TIPO: ROPA, COMIDA, VERDULERIA, CARNICERIA, BARES, KIOSCOS, SERVICIOS - PAGO POR WHATSAPP - 15% HASTA ENTREGA - TRES ARROYOS</div>
 
-<div class="filtros">
-<button class="filter-btn active" onclick="filtrar('todos',this)">Todas</button>
-<button class="filter-btn" onclick="filtrar('bar',this)">Bares</button>
-<button class="filter-btn" onclick="filtrar('parrilla',this)">Parrillas</button>
-<button class="filter-btn" onclick="filtrar('pizzeria',this)">Pizzerías</button>
-<button class="filter-btn" onclick="filtrar('kiosco',this)">Kioscos</button>
-<button class="filter-btn" onclick="filtrar('heladeria',this)">Heladerías</button>
-<button class="filter-btn" onclick="filtrar('panaderia',this)">Panaderías</button>
-<button class="filter-btn" onclick="filtrar('verduleria',this)">Verdulerías</button>
-<button class="filter-btn" onclick="filtrar('carniceria',this)">Carnicerías</button>
-<button class="filter-btn" onclick="filtrar('clothing',this)">Ropa</button>
-<button class="filter-btn" onclick="filtrar('cafeteria',this)">Café</button>
-<div class="search-box"><input id="search" placeholder="Buscar..."><button class="btn-panel" onclick="location.href='panel.html'">+ VENDER</button></div>
+<div class="layout">
+<div class="sidebar">
+<h3>Marketplace</h3>
+<div class="cat-item active" onclick="setCat('todos',this)">🛒 Todo</div>
+<div class="cat-item" onclick="setCat('clothing',this)">👕 Ropa y calzado</div>
+<div class="cat-item" onclick="setCat('verduleria',this)">🥬 Verdulería</div>
+<div class="cat-item" onclick="setCat('carniceria',this)">🥩 Carnicería</div>
+<div class="cat-item" onclick="setCat('panaderia',this)">🥖 Panadería</div>
+<div class="cat-item" onclick="setCat('bar',this)">🍻 Bares</div>
+<div class="cat-item" onclick="setCat('kiosco',this)">🏪 Kioscos</div>
+<div class="cat-item" onclick="setCat('parrilla',this)">🔥 Parrillas</div>
+<div class="cat-item" onclick="setCat('pizzeria',this)">🍕 Pizzerías</div>
+<div class="cat-item" onclick="setCat('heladeria',this)">🍦 Heladerías</div>
+<div class="cat-item" onclick="setCat('cafeteria',this)">☕ Cafeterías</div>
+<div class="cat-item" onclick="setCat('services',this)">🔧 Servicios</div>
+<button class="btn-vender" onclick="location.href='panel.html'">+ Vender en 3A</button>
+<div class="explica"><b>¿Sos emprendedor?</b> Entrá en Vender con tu WhatsApp. Cobramos 15% por venta, vos cobrás directo. <b>Sin alquiler.</b> Pagás solo si vendés. Lo que subís aparece al instante como en Facebook: inicio solo productos, store tipo Facebook con portada y catálogo. <b>Admin oculto</b> solo por archivo admin.html clave 3A2026, sin botón, cliente no entra al panel.</div>
 </div>
 
-<div class="container" id="cont"></div>
+<div class="main">
+<div class="filters-fb">
+<button class="filter-pill active" onclick="setCat('todos',document.querySelector('.cat-item'))">Todos</button>
+<button class="filter-pill" onclick="setCat('clothing',this)">Ropa</button>
+<button class="filter-pill" onclick="setCat('panaderia',this)">Panadería</button>
+<button class="filter-pill" onclick="setCat('verduleria',this)">Verdulería</button>
+<button class="filter-pill" onclick="setCat('carniceria',this)">Carnicería</button>
+</div>
+<div class="product-grid" id="productGrid"></div>
+</div>
+</div>
 
-<!-- MODAL VER PROMOS LOCAL -->
-<div class="modal" id="modalLocal"><div class="modal-content"><div class="modal-header"><img id="mlImg"><div><h3 id="mlName" style="font-size:15px;color:#25D366"></h3><p id="mlDir" style="font-size:11px;color:#aaa"></p></div><span class="modal-close" onclick="closeLocal()">×</span></div><div class="modal-grid" id="mlGrid"></div><div style="padding:12px"><button class="btn-ver" onclick="verStore()">Ver tienda Facebook completa →</button></div></div></div>
-
-<!-- MODAL PEDIDO -->
-<div class="modal" id="modalPedido"><div class="modal-content"><div style="padding:14px;border-bottom:1px solid #333;display:flex;justify-content:space-between"><h3 style="color:#25D366;font-size:14px">Finalizar pedido</h3><span class="modal-close" onclick="closePedido()">×</span></div><div class="modal-pedido" style="display:block" id="mpBody"></div></div></div>
-
-<!-- MODAL CARRITO -->
-<div class="modal" id="modalCarrito"><div class="modal-content"><div style="padding:12px;display:flex;justify-content:space-between;border-bottom:1px solid #333"><h3 style="font-size:14px">🛒 Carrito <span id="cartNum">(0)</span></h3><span class="modal-close" onclick="closeCarrito()">×</span></div><div id="cartItems" style="padding:12px;max-height:260px;overflow-y:auto"></div><div style="padding:12px;border-top:1px solid #333"><div style="font-weight:800;margin-bottom:8px" id="cartTotal">Total $0</div><div class="opcion-envio"><input type="radio" id="env" name="tipo" checked><label for="env" onclick="document.getElementById('env').checked=true">🚚 Envío</label><input type="radio" id="ret" name="tipo"><label for="ret" onclick="document.getElementById('ret').checked=true">🏪 Retiro</label></div><input id="cNombre" placeholder="Tu nombre"><input id="cDir" placeholder="Dirección si es envío"><textarea id="cNota" placeholder="Nota"></textarea><button class="btn-wsp" onclick="enviarCarrito()">Enviar por WhatsApp</button><button style="width:100%;margin-top:8px;background:#dc3545;border:none;padding:8px;border-radius:8px;color:#fff;font-size:11px" onclick="vaciarCarrito()">Vaciar carrito</button></div></div></div>
-
-<!-- MODAL PRODUCTO CARRUSEL -->
-<div class="modal" id="modalProd"><div class="prod-modal"><span class="modal-close" onclick="closeProd()" style="position:absolute;top:8px;right:12px;z-index:10">×</span><div class="carousel" id="carousel"><div class="dots" id="dots"></div></div><div style="padding:14px;border-left:1px solid #333"><h2 id="pName" style="font-size:16px"></h2><div id="pPrice" style="color:#25D366;font-size:20px;font-weight:800;margin-top:6px"></div><div id="pDesc" style="font-size:11px;color:#aaa;margin-top:6px"></div><div style="margin-top:10px;background:#2a2a2a;padding:8px;border-radius:8px;display:flex;gap:8px;align-items:center"><img id="pStoreImg" style="width:32px;height:32px;border-radius:50%"><div><b id="pStoreName" style="font-size:11px"></b><div id="pStoreDir" style="font-size:10px;color:#aaa"></div></div></div><button class="btn-wsp" id="btnPedirProd">Pedir por WhatsApp</button><button style="width:100%;margin-top:8px;background:#ff9800;border:none;padding:10px;border-radius:8px;font-weight:800" id="btnCarritoProd">+ Carrito</button></div><div class="store-catalog"><h3 id="catTitle" style="font-size:11px;color:#25D366;margin-bottom:8px"></h3><div class="mini-grid" id="miniGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:6px"></div></div></div></div>
-
-<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')"><img id="lbImg"></div>
-<div class="cart-float" onclick="abrirCarrito()">🛒<div class="cart-count" id="cartCountFloat">0</div></div>
+<div class="modal" id="productModal">
+<div class="modal-content">
+<span class="modal-close" onclick="closeModal()">×</span>
+<div class="carousel" id="carousel"><div class="dots" id="dots"></div></div>
+<div class="modal-info">
+<h2 id="mName" style="font-size:18px"></h2>
+<div id="mPrice" style="font-size:20px;font-weight:800;margin-top:6px"></div>
+<div id="mDesc" style="font-size:13px;color:#65676b;margin-top:8px"></div>
+<div style="margin-top:12px;background:#f0f2f5;padding:10px;border-radius:8px;display:flex;gap:10px;align-items:center"><img id="mStoreImg" style="width:40px;height:40px;border-radius:50%"><div><b id="mStoreName" style="font-size:13px"></b><div id="mStoreDir" style="font-size:11px;color:#65676b"></div></div></div>
+<button class="btn-fb" onclick="verTienda()">Ver tienda de Facebook →</button>
+<button class="btn-fb2" onclick="closeModal()">Cerrar</button>
+</div>
+<div class="catalog"><h3 id="catTitle" style="font-size:13px;margin-bottom:8px"></h3><div class="mini-grid" id="miniGrid"></div></div>
+</div>
+</div>
 
 <script>
-let cat='todos',interval=null,curStore=null,curProd=null;
-let carrito=JSON.parse(localStorage.getItem('cart3A')||'[]');
+let cat='todos',interval=null,curStore=null;
 function getAll(){return JSON.parse(localStorage.getItem('marketProductsAR')||'[]');}
 function getStores(){return JSON.parse(localStorage.getItem('marketStores')||'{}');}
-function filtrar(c,btn){cat=c;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
-
+function setCat(c,el){
+cat=c;
+document.querySelectorAll('.cat-item,.filter-pill').forEach(b=>b.classList.remove('active'));
+if(el) el.classList.add('active');
+render();
+}
 function render(){
-let all=getAll();let stores=getStores();
-let q=document.getElementById('search').value.toLowerCase();
-let groups={};all.forEach(p=>{if(!groups[p.storeId]) groups[p.storeId]=[];groups[p.storeId].push(p);});
-let cont=document.getElementById('cont');cont.innerHTML='';
-Object.keys(groups).forEach(storeId=>{
-let s=stores[storeId];if(!s) return;
-if(cat!=='todos' && groups[storeId][0].category!==cat && s.category!==cat) {
-  // check if any product matches cat
-  if(!groups[storeId].some(p=>p.category===cat)) return;
+let all=getAll();
+let q=document.getElementById('searchFB').value.toLowerCase();
+let f=all.filter(p=> (cat==='todos'||p.category===cat) && (p.name.toLowerCase().includes(q) || p.store.toLowerCase().includes(q)) );
+document.getElementById('productGrid').innerHTML=f.map(p=>`
+<div class="prod-card" onclick='openModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+<img src="${p.img}">
+<div class="prod-info">
+<div class="price">$${p.price.toLocaleString('es-AR')}</div>
+<div class="name">${p.name}</div>
+<div class="meta"><span>Tres Arroyos</span><span>• hoy</span></div>
+<div class="store">${p.store}</div>
+</div>
+</div>`).join('')||'<p style="grid-column:1/-1;text-align:center;color:#65676b;padding:20px">No hay productos en esta categoría</p>';
 }
-if(q &&!groups[storeId].some(p=>p.name.toLowerCase().includes(q) || s.name.toLowerCase().includes(q))) return;
-let prods=groups[storeId].slice(0,4);
-cont.innerHTML+=`<div class="bar"><img class="bar-img" src="${s.cover||prods[0].img}" onclick="openLightbox('${s.cover||prods[0].img}')"><div class="bar-body"><h3>${s.name} - ${s.dir||''}</h3><p class="horario"><span class="badge">ABIERTO</span> ${s.hor||'9 a 21hs'} • ${groups[storeId].length} productos • 15% hasta entrega</p><div class="grid-promos">${prods.map(p=>`<div class="promo-item"><img src="${p.img}" onclick="openProd(${p.id})"><div class="promo-nombre">${p.name}</div><div class="btn-group"><button class="btn-pedir" onclick="abrirPedido('${s.name}','${p.name}',${p.price},'${s.wsp}')">Pedir $${p.price.toLocaleString('es-AR')}</button><button class="btn-carrito" onclick="addCarrito(${p.id})">+ Carrito</button></div></div>`).join('')}</div><button class="btn-ver" onclick="abrirLocal('${storeId}')">Ver todas las promos de ${s.name} (${groups[storeId].length})</button><button class="btn-ver" style="margin-top:6px" onclick="location.href='store.html?store=${storeId}'">Ver tienda Facebook completa →</button></div></div>`;
+function openModal(p){
+curStore=p.storeId;
+let s=getStores()[p.storeId];
+let all=getAll().filter(x=>x.storeId===p.storeId);
+document.getElementById('mName').textContent=p.name;
+document.getElementById('mPrice').textContent='$'+p.price.toLocaleString('es-AR');
+document.getElementById('mDesc').textContent=p.desc||'';
+document.getElementById('mStoreName').textContent=s?s.name:p.store;
+document.getElementById('mStoreDir').textContent=s?s.dir:'Tres Arroyos';
+document.getElementById('mStoreImg').src=s?s.profile:p.img;
+let car=document.getElementById('carousel');
+[...car.querySelectorAll('img.car')].forEach(e=>e.remove());
+all.forEach(it=>{
+let im=document.createElement('img');
+im.src=it.img;
+im.className='car'+(it.id===p.id?' active':'');
+car.insertBefore(im,document.getElementById('dots'));
 });
-updateCartCount();
+let dots=document.getElementById('dots');
+dots.innerHTML=all.map((_,i)=>`<div class="dot-car ${all.findIndex(a=>a.id===p.id)===i?'active':''}"></div>`).join('');
+let idx=all.findIndex(a=>a.id===p.id);if(idx<0) idx=0;
+clearInterval(interval);
+interval=setInterval(()=>{
+idx=(idx+1)%all.length;
+car.querySelectorAll('img.car').forEach((im,j)=>im.classList.toggle('active',j===idx));
+dots.querySelectorAll('.dot-car').forEach((d,j)=>d.classList.toggle('active',j===idx));
+},2500);
+document.getElementById('catTitle').textContent='Más de '+(s?s.name:p.store)+' • '+all.length+' productos - Carrusel cambia solo';
+document.getElementById('miniGrid').innerHTML=all.map(x=>`
+<div class="prod-card" onclick='openModal(${JSON.stringify(x).replace(/'/g,"&#39;")})'>
+<img src="${x.img}" style="height:90px">
+<div style="padding:6px"><div style="font-size:11px;font-weight:700">$${x.price.toLocaleString('es-AR')}</div><div style="font-size:10px">${x.name}</div></div>
+</div>`).join('');
+document.getElementById('productModal').classList.add('active');
+document.body.style.overflow='hidden';
 }
-
-function abrirLocal(storeId){
-curStore=storeId;let s=getStores()[storeId];let all=getAll().filter(p=>p.storeId===storeId);
-document.getElementById('mlImg').src=s.cover||all[0].img;document.getElementById('mlName').textContent=s.name;document.getElementById('mlDir').textContent=s.dir+' • WhatsApp '+s.wsp;
-document.getElementById('mlGrid').innerHTML=all.map(p=>`<div class="modal-promo"><img src="${p.img}"><div style="flex:1"><div style="font-size:12px;font-weight:700">${p.name}</div><div style="font-size:11px;color:#25D366">$${p.price.toLocaleString('es-AR')}</div><div style="font-size:10px;color:#aaa">${p.desc||''}</div></div><button class="btn-pedir" style="padding:6px 10px;border-radius:20px" onclick="abrirPedido('${s.name}','${p.name}',${p.price},'${s.wsp}')">Pedir</button><button class="btn-carrito" style="padding:6px 10px;border-radius:20px" onclick="addCarrito(${p.id})">+ Carrito</button></div>`).join('');
-document.getElementById('modalLocal').classList.add('active');
+function closeModal(){document.getElementById('productModal').classList.remove('active');document.body.style.overflow='';clearInterval(interval);}
+function verTienda(){if(curStore) location.href='store.html?store='+curStore;}
+document.getElementById('searchFB').addEventListener('input',render);
+function initCount(){
+let base=parseInt(localStorage.getItem('visitCount3A')||'24');
+if(!sessionStorage.getItem('cnt')){
+base++;localStorage.setItem('visitCount3A',base);sessionStorage.setItem('cnt','1');
 }
-function closeLocal(){document.getElementById('modalLocal').classList.remove('active');}
-function verStore(){if(curStore) location.href='store.html?store='+curStore;}
-
-function abrirPedido(local,promo,precio,wsp){
-curProd={local,promo,precio,wsp};
-document.getElementById('mpBody').innerHTML=`
-<div style="display:flex;gap:10px;margin-bottom:10px"><img src="${getAll().find(p=>p.name===promo)?.img||''}" style="width:60px;height:60px;border-radius:8px;object-fit:cover"><div><b style="font-size:13px">${promo}</b><div style="color:#25D366;font-weight:800">$${precio.toLocaleString('es-AR')}</div><div style="font-size:10px;color:#aaa">${local}</div></div></div>
-<input id="pedNombre" placeholder="Tu nombre *">
-<input id="pedDir" placeholder="Dirección *">
-<input id="pedTel" placeholder="Tu WhatsApp *">
-<div class="opcion-envio"><input type="radio" id="pedEnv" name="pedTipo" checked><label for="pedEnv" onclick="document.getElementById('pedEnv').checked=true">🚚 Envío</label><input type="radio" id="pedRet" name="pedTipo"><label for="pedRet" onclick="document.getElementById('pedRet').checked=true">🏪 Retiro</label></div>
-<textarea id="pedNota" placeholder="Nota (ej: sin mayonesa)"></textarea>
-<button class="btn-wsp" onclick="enviarPedido()">Enviar WhatsApp a ${local}</button>
-<p style="font-size:10px;color:#aaa;margin-top:8px;text-align:center">15% se retiene hasta entrega • Pago directo al local</p>
-`;
-document.getElementById('modalPedido').classList.add('active');
+document.getElementById('conectCount').textContent=base;
+setInterval(()=>{if(Math.random()>0.6){let c=parseInt(document.getElementById('conectCount').textContent)+1;document.getElementById('conectCount').textContent=c;localStorage.setItem('visitCount3A',c);}},25000);
 }
-function closePedido(){document.getElementById('modalPedido').classList.remove('active');}
-function enviarPedido(){
-let nombre=document.getElementById('pedNombre').value;let dir=document.getElementById('pedDir').value;let tel=document.getElementById('pedTel').value;
-if(!nombre||!dir) return alert('Completa nombre y dirección');
-let tipo=document.getElementById('pedEnv').checked?'Envío':'Retiro';
-let nota=document.getElementById('pedNota').value;
-let msg=`Hola ${curProd.local}!%0AQuiero pedir: ${curProd.promo} - $${curProd.precio}%0A%0A*Datos:*%0A👤 ${nombre}%0A📍 ${dir}%0A📱 ${tel}%0A${tipo}%0A📝 ${nota}%0A%0APedido desde 3A VENDE - 15% hasta entrega`;
-window.open(`https://wa.me/549${curProd.wsp}?text=${msg}`,'_blank');closePedido();
+initCount();
+if(!localStorage.getItem('marketProductsAR')){
+const stores={
+'zapateria-centro':{name:'Zapatería Centro',dir:'Moreno 456 - Tres Arroyos',city:'Tres Arroyos',hor:'9 a 20hs',wsp:'2983401234',profile:'https://images.unsplash.com/photo-1560343090-f4df9e18b80e?w=200',cover:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800'},
+'verduleria-la-huerta':{name:'Verdulería La Huerta',dir:'Rivadavia 1250',city:'Tres Arroyos',wsp:'2983400003',profile:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=200',cover:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800'},
+'carniceria-don-jose':{name:'Carnicería Don José',dir:'Belgrano 123',city:'Tres Arroyos',wsp:'2983400001',profile:'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=200',cover:'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=800'},
+'panaderia-la-espiga':{name:'Panadería La Espiga',dir:'Rivadavia 456',city:'Tres Arroyos',wsp:'2983400002',profile:'https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=200',cover:'https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=800'},
+'bar-el-encuentro':{name:'Bar El Encuentro',dir:'Libertad 258',city:'Tres Arroyos',wsp:'2983400004',profile:'https://images.unsplash.com/photo-1470337458703-46e7f6652aef?w=200',cover:'https://images.unsplash.com/photo-1470337458703-46e7f6652aef?w=800'}
+};
+const prods=[
+{id:1,store:'Zapatería Centro',storeId:'zapateria-centro',name:'Zapatillas Blancas Premium cuero',price:58900,category:'clothing',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',desc:'Cuero ecológico talle 38-44'},
+{id:2,store:'Zapatería Centro',storeId:'zapateria-centro',name:'Botas de cuero vacuno',price:72000,category:'clothing',img:'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400',desc:'Cuero vacuno marrón'},
+{id:3,store:'Verdulería La Huerta',storeId:'verduleria-la-huerta',name:'Bolsón verdura 5kg mixto',price:4200,category:'verduleria',img:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400',desc:'Papa, cebolla, zanahoria, zapallo'},
+{id:4,store:'Verdulería La Huerta',storeId:'verduleria-la-huerta',name:'Frutas 3kg estación',price:3800,category:'verduleria',img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400',desc:'Manzana banana naranja'},
+{id:5,store:'Carnicería Don José',storeId:'carniceria-don-jose',name:'Asado 3kg premium tira',price:16500,category:'carniceria',img:'https://images.unsplash.com/photo-1544025162-d76694265947?w=400',desc:'Tira vacío matambre'},
+{id:6,store:'Carnicería Don José',storeId:'carniceria-don-jose',name:'Milanesas x8 ternera',price:8900,category:'carniceria',img:'https://images.unsplash.com/photo-1587593810167-23187d95d65c?w=400',desc:'Ternera especial'},
+{id:7,store:'Panadería La Espiga',storeId:'panaderia-la-espiga',name:'Medialunas manteca x12',price:3600,category:'panaderia',img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db8e?w=400',desc:'Recién horneadas'},
+{id:8,store:'Bar El Encuentro',storeId:'bar-el-encuentro',name:'Jarra cerveza artesanal 2L',price:6500,category:'bar',img:'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400',desc:'Bien fría'}
+];
+localStorage.setItem('marketStores',JSON.stringify(stores));
+localStorage.setItem('marketProductsAR',JSON.stringify(prods));
+localStorage.setItem('marketUsers',JSON.stringify({'2983401234':{wsp:'2983401234',pass:'123456',storeId:'zapateria-centro',storeName:'Zapatería Centro',city:'Tres Arroyos'}}));
+localStorage.setItem('visitCount3A','24');
 }
-
-function addCarrito(id){
-let p=getAll().find(x=>x.id===id);let ex=carrito.find(c=>c.id===id);if(ex) ex.qty++; else carrito.push({...p,qty:1});localStorage.setItem('cart3A',JSON.stringify(carrito));updateCartCount();abrirCarrito();
-}
-function updateCartCount(){let n=carrito.reduce((a,b)=>a+b.qty,0);document.getElementById('cartCountFloat').textContent=n;document.getElementById('cartNum').textContent='('+n+')';}
-function abrirCarrito(){
-let cont=document.getElementById('cartItems');
-if(carrito.length===0) cont.innerHTML='<p style="text-align:center;color:#aaa;padding:20px">Carrito vacío</p>';
-else cont.innerHTML=carrito.map((c,i)=>`<div style="display:flex;gap:8px;margin-bottom:8px;border-bottom:1px solid #333;padding-bottom:8px"><img src="${c.img}" style="width:40px;height:40px;border-radius:6px;object-fit:cover"><div style="flex:1"><div style="font-size:11px">${c.name}</div><div style="font-size:10px;color:#25D366">$${c.price.toLocaleString('es-AR')} x ${c.qty}</div></div><button onclick="carrito.splice(${i},1);localStorage.setItem('cart3A',JSON.stringify(carrito));abrirCarrito();updateCartCount();renderCartTotal()" style="background:none;border:none;color:#E63946;font-size:18px">×</button></div>`).join('');
-renderCartTotal();
-document.getElementById('modalCarrito').classList.add('active');
-}
-function renderCartTotal(){let t=carrito.reduce((a,b)=>a+b.price*b.qty,0);document.getElementById('cartTotal').textContent='Total $'+t.toLocaleString('es-AR');}
-function closeCarrito(){document.getElementById('modalCarrito').classList.remove('active');}
-function vaciarCarrito(){carrito=[];localStorage.setItem('cart3A',JSON.stringify(carrito));closeCarrito();updateCartCount();}
-function enviarCarrito(){
-if(carrito.length===0) return alert('Vacío');
-let nombre=document.getElementById('cNombre').value;if(!nombre) return alert('Poné tu nombre');
-let dir=document.getElementById('cDir').value;let nota=document.getElementById('cNota').value;
-let tipo=document.getElementById('env').checked?'Envío':'Retiro';
-let detalle=carrito.map(c=>`- ${c.name} x${c.qty} $${(c.price*c.qty).toLocaleString('es-AR')} (${c.store})`).join('%0A');
-let total=carrito.reduce((a,b)=>a+b.price*b.qty,0);
-let wsp=getStores()[carrito[0].storeId]?.wsp||'2983401234';
-let msg=`Hola! Pedido 3A VENDE%0A%0A${detalle}%0A%0A*Total: $${total.toLocaleString('es-AR')}*%0A%0A👤 ${nombre}%0A📍 ${dir}%0A${tipo}%0A📝 ${nota}%0A%0A15% hasta entrega`;
-window.open(`https://wa.me/549${wsp}?text=${msg}`,'_blank');vaciarCarrito();
-}
-
-function openLightbox(src){document.getElementById('lbImg').src=src;document.getElementById('lightbox').classList.add('active');}
-
-function openProd(id){
-let p=getAll().find(x=>x.id===id);curProd=p;curStore=p.storeId;let s=getStores()[p.storeId];let all=getAll().filter(x=>x.storeId===p.storeId);
-document.getElementById('pName').textContent=p.name;document.getElementById('pPrice').textContent='$'+p.price.toLocaleString('es-AR');document.getElementById('pDesc').textContent=p.desc||'';document.getElementById('pStoreName').textContent=s?s.name:p.store;document.getElementById('pStoreDir').textContent=s?s.dir:'';document.getElementById('pStoreImg').src=s?s.profile:p.img;
-document.getElementById('btnPedirProd').onclick=()=>abrirPedido(s.name,p.name,p.price,s.wsp);
-document.getElementById('btnCarritoProd').onclick=()=>addCarrito(p.id);
-let car=document.getElementById('carousel');[...car.querySelectorAll('img.car')].forEach(e=>e.remove());
-all.forEach(it=>{let im=document.createElement('img');im.src=it.img;im.className='car'+(it.id===p.id?' active':'');car.insertBefore(im,document.getElementById('dots'));});
-let dots=document.getElementById('dots');dots.innerHTML=all.map((_,i)=>`<div class="dot-car ${all.findIndex(a=>a.id===p.id)===i?'active':''}"></div>`).join('');
-let idx=all.findIndex(a=>a.id===p.id);if(idx<0) idx=0;clearInterval(interval);interval=setInterval(()=>{idx=(idx+1)%all.length;car.querySelectorAll('img.car').forEach((im,j)=>im.classList.toggle('active',j===idx));dots.querySelectorAll('.dot-car').forEach((d,j)=>d.classList.toggle('active',j===idx));},2500);
-document.getElementById('catTitle').textContent='Más de '+(s?s.name:p.store)+' • '+all.length+' productos - carrusel auto';
-document.getElementById('miniGrid').innerHTML=all.map(x=>`<div style="background:#2a2a2a;border-radius:8px;overflow:hidden;border:1px solid #333;cursor:pointer" onclick="openProd(${x.id})"><img src="${x.img}" style="width:100%;height:70px;object-fit:cover"><div style="padding:4px;font-size:9px"><b style="color:#25D366">$${x.price.toLocaleString('es-AR')}</b> ${x.name}</div></div>`).join('');
-document.getElementById('modalProd').classList.add('active');document.body.style.overflow='hidden';
-}
-function closeProd(){document.getElementById('modalProd').classList.remove('active');document.body.style.overflow='';clearInterval(interval);}
-
-// INIT
-if(!localStorage.getItem('marketProductsAR')||JSON.parse(localStorage.getItem('marketProductsAR')).length<5){
-let stores={'carniceria-don-jose':{name:'Carnicería Don José',dir:'Av. Belgrano 123',city:'Tres Arroyos',hor:'8 a 21hs',wsp:'2983400001',profile:'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=200',cover:'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600'},'panaderia-la-espiga':{name:'Panadería La Espiga',dir:'Rivadavia 456',city:'Tres Arroyos',wsp:'2983400002',profile:'https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=200',cover:'https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600'},'zapateria-centro':{name:'Zapatería Centro',dir:'Moreno 456',city:'Tres Arroyos',hor:'9 a 20hs',wsp:'2983401234',profile:'https://images.unsplash.com/photo-1560343090-f4df9e18b80e?w=200',cover:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600'}};
-let prods=[{id:1,store:'Carnicería Don José',storeId:'carniceria-don-jose',name:'Asado 3kg Premium',price:16500,category:'carniceria',img:'https://images.unsplash.com/photo-1544025162-d76694265947?w=400',desc:'Tira vacío'},{id:2,store:'Carnicería Don José',storeId:'carniceria-don-jose',name:'Milanesas x8',price:8900,category:'carniceria',img:'https://images.unsplash.com/photo-1587593810167-23187d95d65c?w=400',desc:'Ternera'},{id:3,store:'Panadería La Espiga',storeId:'panaderia-la-espiga',name:'Medialunas x12',price:3600,category:'panaderia',img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db8e?w=400',desc:'Manteca'},{id:4,store:'Zapatería Centro',storeId:'zapateria-centro',name:'Zapatillas Blancas Premium',price:58900,category:'clothing',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',desc:'Cuero ecológico'}];
-localStorage.setItem('marketStores',JSON.stringify(stores));localStorage.setItem('marketProductsAR',JSON.stringify(prods));localStorage.setItem('marketUsers',JSON.stringify({'2983401234':{wsp:'2983401234',pass:'123456',storeId:'zapateria-centro',storeName:'Zapatería Centro',city:'Tres Arroyos'}}));localStorage.setItem('visitCount3A','24');
-}
-document.getElementById('search').addEventListener('keyup',render);
-function initC(){let b=parseInt(localStorage.getItem('visitCount3A')||'24');if(!sessionStorage.getItem('cnt')){b++;localStorage.setItem('visitCount3A',b);sessionStorage.setItem('cnt','1');}document.getElementById('conect').textContent=b;}initC();
 render();
 </script>
 </body>
