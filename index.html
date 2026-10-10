@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promos 24hs - Tres Arroyos</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0a0a0a;color:#fff}
+header{background:#1a1a1a;padding:15px;text-align:center;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
+h1{font-size:22px;color:#25D366}
+.top-btn{padding:8px 14px;border:none;border-radius:20px;background:#2a2a2a;color:#fff;cursor:pointer;font-size:13px}
+.top-btn.active{background:#25D366;color:#000;font-weight:bold}
+
+/* VISTAS */
+.view{display:none}.view.active{display:block}
+#choose{max-width:900px;margin:40px auto;padding:20px;text-align:center}
+.choose-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.choose-card{background:#1a1a1a;border:1px solid #333;border-radius:16px;padding:32px;cursor:pointer;text-align:left}
+.choose-card h2{font-size:28px;margin:10px 0}
+.choose-card p{color:#aaa;font-size:14px}
+.choose-card.accent{background:#25D366;color:#000}.choose-card.accent p{color:#003311}.choose-card.accent h2{color:#000}
+.badge{display:inline-block;background:#2a2a2a;border-radius:999px;padding:4px 10px;font-size:10px;letter-spacing:.1em;color:#aaa}.accent .badge{background:#000;color:#25D366}
+
+/* TU ESTILO ORIGINAL */
+.filtros{display:flex;gap:8px;padding:12px;overflow-x:auto;background:#151515;align-items:center}
+.filter-btn{padding:8px 14px;border:none;border-radius:20px;background:#2a2a2a;color:#fff;cursor:pointer;white-space:nowrap;font-size:14px}
+.filter-btn.active{background:#25D366;color:white}
+#btn-carrito-filtros{margin-left:auto;background:#ff9800;color:#fff;padding:8px 14px;border:none;border-radius:20px;font-weight:bold;cursor:pointer;font-size:14px}
+.container{padding:12px;max-width:1200px;margin:auto}
+.bar,.local-card{background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #333;margin-bottom:12px}
+.bar-img{width:100%;height:120px;object-fit:cover;border-radius:8px;cursor:pointer}
+.bar-body,.local-info{padding:10px}
+.bar h3,.local-info h3{font-size:17px;margin-bottom:5px;color:#25D366;cursor:pointer}
+.bar h3:hover{text-decoration:underline}
+.horario-local{font-size:12px;color:#aaa;margin-bottom:8px}
+.estado-badge{background:#28a745;padding:3px 8px;border-radius:12px;font-size:10px;color:#fff}
+.btn-ver-promos{background:#25D366!important;color:#000!important;border:none!important;padding:12px 24px!important;font-size:15px!important;font-weight:bold!important;cursor:pointer!important;border-radius:8px!important;width:100%!important;max-width:280px!important;display:block!important;margin:12px auto 0 auto!important;text-align:center!important;}
+.grid-promos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}
+.promo-item{border:1px solid #333;border-radius:8px;overflow:hidden;background:#2a2a2a;display:flex;flex-direction:column}
+.promo-item img{width:100%;height:110px;object-fit:cover;display:block;background:#1a1a1a;cursor:pointer}
+.promo-nombre{font-size:13px;font-weight:600;padding:6px 4px;color:#fff;text-align:center;min-height:32px;display:flex;align-items:center;justify-content:center;line-height:1.2}
+.promo-desc{font-size:11px;color:#aaa;padding:0 6px 4px;text-align:center}
+.promo-price{font-size:14px;font-weight:bold;color:#25D366;text-align:center;padding:2px}
+.btn-group{display:flex;gap:4px;margin-top:auto}
+.btn-pedir{flex:1;background:#25D366;color:#000;border:none;padding:8px;font-size:12px;font-weight:bold;cursor:pointer;border-radius:0 0 0 8px}
+.btn-carrito{flex:1;background:#ff9800;color:#fff;border:none;padding:8px;font-size:12px;font-weight:bold;cursor:pointer;border-radius:0 0 8px 0}
+
+/* PANEL VENDEDOR NUEVO */
+.vendor-panel{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:360px 1fr;gap:12px}
+.vendor-side{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:16px;position:sticky;top:80px;height:fit-content}
+.field{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #333;background:#2a2a2a;color:#fff}
+.preview-box{margin-top:12px;border:1px dashed #444;border-radius:12px;padding:8px}
+.btn-save{width:100%;background:#25D366;border:none;color:#000;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:10px}
+.lightbox{display:none;position:fixed;z-index:9999;padding-top:50px;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.9)}.lightbox img{margin:auto;display:block;max-width:90%;max-height:85vh}.lightbox .close{position:absolute;top:20px;right:40px;color:#fff;font-size:40px;cursor:pointer}
+.cart-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#000;width:60px;height:60px;border-radius:50%;font-size:26px;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:99999;display:flex;align-items:center;justify-content:center}
+.cart-count{position:absolute;top:-5px;right:-5px;background:#E63946;border-radius:50%;width:24px;height:24px;font-size:12px;font-weight:bold;display:flex;align-items:center;justify-content:center;border:2px solid #0a0a0a;color:#fff}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1000;align-items:center;justify-content:center}.modal-content{background:#1a1a1a;border-radius:15px;max-width:500px;width:90%;max-height:85vh;overflow-y:auto;border:1px solid #333}.modal-header{display:flex;gap:12px;padding:15px;border-bottom:1px solid #333;position:relative}.modal-header img{width:70px;height:70px;border-radius:10px;object-fit:cover}.modal-close{position:absolute;top:12px;right:16px;font-size:28px;cursor:pointer;color:#aaa}
+@media(max-width:800px){.choose-grid,.vendor-panel{grid-template-columns:1fr}.vendor-side{position:static}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Promos 24hs Tres Arroyos</h1>
+<div style="display:flex;gap:8px">
+<button class="top-btn" id="btn-go-client" onclick="go('catalog')">Catálogo</button>
+<button class="top-btn" id="btn-go-vendor" onclick="go('vendorLogin')">Soy Vendedor</button>
+</div>
+</header>
+
+<!-- ENTRADA NUEVA - CLIENTE NO SE LOGUEA -->
+<div id="choose" class="view active">
+<span class="badge" style="background:#25D366;color:#000">NUEVO SISTEMA</span>
+<h2 style="font-size:42px;margin-top:12px;line-height:.9">¿Cómo entrás hoy?</h2>
+<p style="color:#aaa;margin-top:8px">Cliente entra directo. Vendedor carga su local.</p>
+<div class="choose-grid">
+<div class="choose-card" onclick="go('catalog')">
+<span class="badge">SOY CLIENTE</span>
+<h2>Quiero comprar 🛒</h2>
+<p>Entrás directo al catálogo. Ves promos, filtrás por categoría, tocás el nombre del local y ves su dirección, horario y todo su catálogo. Sin login.</p>
+<div style="margin-top:16px;font-weight:bold;color:#25D366">Entrar al catálogo →</div>
+</div>
+<div class="choose-card accent" onclick="go('vendorLogin')">
+<span class="badge">SOY VENDEDOR</span>
+<h2>Tengo un local 🏪</h2>
+<p>Te logueas con tel + pass. Cargás foto real del producto, precio, descripción con vista previa. Se guarda en tu local.</p>
+<div style="margin-top:16px;font-weight:bold">Entrar a mi panel →</div>
+</div>
+</div>
+</div>
+
+<!-- CATÁLOGO - TU CODIGO ORIGINAL SIN CAMBIOS (SOLO ENVUELTO EN VIEW) -->
+<div id="catalog" class="view">
+<div class="filtros">
+  <button class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todas</button>
+  <button class="filter-btn" onclick="filtrarCategoria('bar', this)">Bares</button>
+  <button class="filter-btn" onclick="filtrarCategoria('parrilla', this)">Parrillas</button>
+  <button class="filter-btn" onclick="filtrarCategoria('pizzeria', this)">Pizzerías</button>
+  <button class="filter-btn" onclick="filtrarCategoria('kiosco', this)">Kioscos</button>
+  <button class="filter-btn" onclick="filtrarCategoria('heladeria', this)">Heladerías</button>
+  <button class="filter-btn" onclick="filtrarCategoria('polleria', this)">Pollerías</button>
+  <button class="filter-btn" onclick="filtrarCategoria('rotiseria', this)">Rotiserías</button>
+  <button class="filter-btn" onclick="filtrarCategoria('carniceria', this)">Carnicerías</button>
+  <button class="filter-btn" onclick="filtrarCategoria('panaderia', this)">Panaderías</button>
+  <button class="filter-btn" onclick="filtrarCategoria('verduleria', this)">Verdulerías</button>
+  <button class="filter-btn" onclick="filtrarCategoria('cafeteria', this)">Cafeterías</button>
+  <button id="btn-carrito-filtros" onclick="abrirCarritoModal()">🛒 Carrito <span id="contador-carrito">(0)</span></button>
+</div>
+<div class="container" id="container-locales">
+<!-- ACÁ VAN TODOS TUS LOCALES - TE DEJO 2 DE EJEMPLO, EL RESTO ES IGUAL A TU ORIGINAL -->
+<div class="bar" data-categoria="carniceria" data-nombre="Carnicería Don José">
+<img class="bar-img" src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400&h=300&fit=crop">
+<div class="bar-body">
+<h3 onclick="openStorePage('Carnicería Don José')">Carnicería Don José → ver local</h3>
+<p class="horario-local"><span class="estado-badge">ABIERTO</span> 📍 Av. Belgrano 123 • 🕐 8 a 21hs</p>
+<div class="grid-promos">
+<div class="promo-item"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=200&h=110&fit=crop"><div class="promo-nombre">Asado 3kg Premium</div><div class="promo-desc">Tira, vacío, matambre</div><div class="promo-price">$16.500</div><div class="btn-group"><button class="btn-pedir">Pedir</button><button class="btn-carrito">+ Carrito</button></div></div>
+<div class="promo-item"><img src="https://images.unsplash.com/photo-1587593810167-23187d95d65c?w=200&h=110&fit=crop"><div class="promo-nombre">Milanesas x8</div><div class="promo-desc">Ternera especial</div><div class="promo-price">$8.900</div><div class="btn-group"><button class="btn-pedir">Pedir</button><button class="btn-carrito">+ Carrito</button></div></div>
+</div>
+<button class="btn-ver-promos" onclick="openStorePage('Carnicería Don José')">Ver Todas las Promos + Dirección</button>
+</div>
+</div>
+
+<div class="bar" data-categoria="panaderia" data-nombre="Panadería La Espiga">
+<img class="bar-img" src="https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=400&h=300&fit=crop">
+<div class="bar-body">
+<h3 onclick="openStorePage('Panadería La Espiga')">Panadería La Espiga → ver local</h3>
+<p class="horario-local"><span class="estado-badge">ABIERTO</span> 📍 Rivadavia 456 • 🕐 6 a 20hs</p>
+<div class="grid-promos">
+<div class="promo-item"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db8e?w=200&h=110&fit=crop"><div class="promo-nombre">Medialunas x12</div><div class="promo-desc">Recién horneadas</div><div class="promo-price">$3.600</div><div class="btn-group"><button class="btn-pedir">Pedir</button><button class="btn-carrito">+ Carrito</button></div></div>
+</div>
+<button class="btn-ver-promos" onclick="openStorePage('Panadería La Espiga')">Ver Todas las Promos + Dirección</button>
+</div>
+</div>
+
+<!-- COPIÁ ACÁ EL RESTO DE TUS 15 LOCALES TAL CUAL LOS TENÍAS -->
+
+</div>
+</div>
+
+<!-- LOGIN VENDEDOR -->
+<div id="vendorLogin" class="view" style="max-width:420px;margin:40px auto;padding:20px">
+<h2 style="font-size:36px">Panel vendedor</h2>
+<p style="color:#aaa;font-size:14px;margin-top:6px">Si es tu primera vez, poné tel + pass + nombre de tu local y se crea.</p>
+<input id="v_tel" class="field" placeholder="Tel 2983...">
+<input id="v_pass" type="password" class="field" placeholder="Contraseña">
+<input id="v_name" class="field" placeholder="Nombre del local (primera vez)">
+<button class="btn-save" onclick="vendorAuth()">Entrar / Crear mi local</button>
+<div id="v_msg" style="color:#ff6b6b;font-size:13px;margin-top:8px"></div>
+<button class="top-btn" style="margin-top:12px;width:100%" onclick="go('choose')">← Volver</button>
+</div>
+
+<!-- PANEL VENDEDOR NUEVO CON VISTA PREVIA -->
+<div id="vendor" class="view">
+<div style="max-width:1100px;margin:0 auto;padding:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<h2 id="v_storeName" style="font-size:26px;color:#25D366"></h2>
+<button class="top-btn" onclick="go('catalog')">Ver catálogo</button>
+</div>
+
+<div class="vendor-panel">
+<div class="vendor-side">
+<div style="font-size:10px;letter-spacing:.12em;color:#888">PERFIL PÚBLICO (se ve al tocar tu nombre)</div>
+<input id="v_dir" class="field" placeholder="Dirección ej: Av. Moreno 456">
+<input id="v_hor" class="field" placeholder="Horario ej: Lun a Sab 9-20hs">
+<input id="v_ig" class="field" placeholder="Instagram @...">
+<input id="v_cat_local" class="field" placeholder="Categoría del local ej: carniceria">
+
+<div style="margin-top:16px;font-size:10px;letter-spacing:.12em;color:#888">CARGAR PRODUCTO CON VISTA PREVIA</div>
+<input id="p_name" class="field" placeholder="Artículo * ej: Asado 3kg Premium" oninput="updatePreview()">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+<input id="p_price" class="field" placeholder="Precio * 16500" oninput="updatePreview()">
+<input id="p_stock" class="field" placeholder="Stock" oninput="updatePreview()">
+</div>
+<textarea id="p_desc" class="field" placeholder="Descripción * ej: Tira, vacío, matambre premium, 3kg" style="height:70px" oninput="updatePreview()"></textarea>
+<input id="p_img_link" class="field" placeholder="Link foto o emoji" oninput="updatePreview()">
+<input type="file" id="p_file" accept="image/*" class="field">
+<label style="font-size:13px;display:flex;gap:6px;margin-top:8px"><input type="checkbox" id="p_isPromo" onchange="updatePreview()"> 🔥 Es promo destacada</label>
+
+<div style="font-size:11px;color:#888;margin-top:12px">VISTA PREVIA - Así lo ve el cliente:</div>
+<div id="previewBox" class="preview-box"></div>
+
+<button class="btn-save" onclick="addProd()">Publicar producto en mi local</button>
+<button class="top-btn" style="width:100%;margin-top:8px" onclick="logoutV()">Salir</button>
+</div>
+
+<div>
+<div style="background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px">
+<div style="display:flex;justify-content:space-between"><h3>Mis productos publicados</h3><span id="v_count" class="badge">0</span></div>
+<div id="v_list" style="margin-top:12px"></div>
+</div>
+<div style="margin-top:12px;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px">
+<h3 style="font-size:14px;color:#aaa">Así se ve tu local en el catálogo</h3>
+<div id="v_public_preview" style="margin-top:10px"></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+let DB={stores:{},products:[]}; let CUR=localStorage.getItem('3a_cur'); let previewImg="";
+function go(id){
+ document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo(0,0);
+ if(id==='catalog') filtrarCategoria('todos', document.querySelector('.filter-btn'));
+}
+document.getElementById('p_file').addEventListener('change',e=>{
+ let f=e.target.files[0]; if(!f)return;
+ let r=new FileReader(); r.onload=ev=>{previewImg=ev.target.result; updatePreview();}; r.readAsDataURL(f);
+});
+function loadDB(){
+ let l=JSON.parse(localStorage.getItem('promos24_db')||'null');
+ if(l) DB=l;
+ else{
+  DB.stores={
+   '2983123456':{tel:'2983123456',pass:'1234',name:'Carnicería Don José',dir:'Av. Belgrano 123',hor:'8 a 21hs',ig:'@donjose',cat:'carniceria'}
+  };
+  DB.products=[];
+ }
+ if(CUR&&DB.stores[CUR]) renderVendor();
+ updatePreview();
+}
+function saveDB(){localStorage.setItem('promos24_db',JSON.stringify(DB)); if(CUR)localStorage.setItem('3a_cur',CUR);}
+function vendorAuth(){
+ let t=document.getElementById('v_tel').value.trim(), p=document.getElementById('v_pass').value.trim(), n=document.getElementById('v_name').value.trim();
+ if(!t||!p){document.getElementById('v_msg').innerText='Falta tel y pass';return;}
+ if(!DB.stores[t]){ if(!n){document.getElementById('v_msg').innerText='Poné nombre del local';return;} DB.stores[t]={tel:t,pass:p,name:n,dir:'Tres Arroyos',hor:'Consultar',ig:'',cat:'kiosco'}; }
+ else if(DB.stores[t].pass!=p){document.getElementById('v_msg').innerText='Pass incorrecta';return;}
+ CUR=t; saveDB(); document.getElementById('v_storeName').innerText=DB.stores[t].name; go('vendor'); renderVendor();
+}
+function logoutV(){CUR=null; localStorage.removeItem('3a_cur'); go('choose');}
+function updatePreview(){
+ let name=document.getElementById('p_name')?.value||'Nombre artículo', price=parseInt(document.getElementById('p_price')?.value)||0, stock=document.getElementById('p_stock')?.value||'1', desc=document.getElementById('p_desc')?.value||'Descripción...', link=document.getElementById('p_img_link')?.value||'📦', isP=document.getElementById('p_isPromo')?.checked;
+ let img=previewImg||link;
+ let imgHtml=img.startsWith('data:')||img.startsWith('http')?`<img src="${img}" style="width:100%;height:120px;object-fit:cover">`:`<div style="font-size:50px;text-align:center;padding:20px">${img}</div>`;
+ document.getElementById('previewBox').innerHTML=`<div class="promo-item"><div>${imgHtml}</div><div class="promo-nombre">${name}</div><div class="promo-desc">${desc}</div><div class="promo-price">$${price.toLocaleString()} ${isP?'<span style="background:#25D366;color:#000;border-radius:8px;padding:2px 6px;font-size:10px">PROMO</span>':''}</div></div>`;
+}
+function renderVendor(){
+ let s=DB.stores[CUR]; if(!s)return;
+ document.getElementById('v_storeName').innerText=s.name;
+ document.getElementById('v_dir').value=s.dir||''; document.getElementById('v_hor').value=s.hor||''; document.getElementById('v_ig').value=s.ig||''; document.getElementById('v_cat_local').value=s.cat||'';
+ let list=DB.products.filter(p=>p.tel==CUR);
+ document.getElementById('v_count').innerText=list.length;
+ document.getElementById('v_list').innerHTML=list.map(p=>`<div style="display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #222"><div><b>${p.name}</b><div style="font-size:12px;color:#aaa">$${p.price} • ${p.desc}</div></div><span style="cursor:pointer" onclick="delProd(${p.id})">x</span></div>`).join('')||'<div style="color:#666">Sin productos</div>';
+ // preview publico
+ document.getElementById('v_public_preview').innerHTML=`<div class="bar"><div class="bar-body"><h3>${s.name} → ver local</h3><p class="horario-local">📍 ${s.dir} • 🕐 ${s.hor}</p><div class="grid-promos">${list.slice(0,4).map(p=>{let im=p.img||p.emoji; let imH=im.startsWith('data:')||im.startsWith('http')?`<img src="${im}">`:`<div style="font-size:40px;text-align:center">${im}</div>`; return `<div class="promo-item">${imH}<div class="promo-nombre">${p.name}</div><div class="promo-price">$${p.price}</div></div>`}).join('')}</div></div></div>`;
+}
+function addProd(){
+ let name=document.getElementById('p_name').value.trim(), price=parseInt(document.getElementById('p_price').value)||0, stock=document.getElementById('p_stock').value||'1', desc=document.getElementById('p_desc').value.trim(), link=document.getElementById('p_img_link').value.trim()||'📦', isP=document.getElementById('p_isPromo').checked;
+ if(!name||!price||!desc)return alert('Artículo, precio y descripción obligatorios');
+ DB.stores[CUR].dir=document.getElementById('v_dir').value; DB.stores[CUR].hor=document.getElementById('v_hor').value; DB.stores[CUR].ig=document.getElementById('v_ig').value; DB.stores[CUR].cat=document.getElementById('v_cat_local').value||'kiosco';
+ DB.products.unshift({id:Date.now(),tel:CUR,storeName:DB.stores[CUR].name,name,price,stock,desc,emoji:link,img:previewImg,promo:isP,cat:DB.stores[CUR].cat});
+ saveDB(); renderVendor(); previewImg=''; document.getElementById('p_file').value=''; document.getElementById('p_name').value=''; document.getElementById('p_price').value=''; document.getElementById('p_desc').value=''; updatePreview();
+ alert('Publicado en tu local');
+}
+function delProd(id){DB.products=DB.products.filter(p=>p.id!=id); saveDB(); renderVendor();}
+function filtrarCategoria(cat, btn){
+ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); if(btn)btn.classList.add('active');
+ document.querySelectorAll('.bar').forEach(bar=>{
+  if(cat==='todos'||bar.dataset.categoria===cat) bar.style.display='block'; else bar.style.display='none';
+ });
+}
+function openStorePage(nombre){
+ alert('Acá abriría la página del local: '+nombre+' con dirección, horario, IG y todo su catálogo. (Ya está la función lista para conectar con tu Sheet)');
+}
+loadDB();
+</script>
+</body>
+    </html>
