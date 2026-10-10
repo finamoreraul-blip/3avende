@@ -1,247 +1,351 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3A VENDE - Tres Arroyos</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0F0F0F;--card:#1A1A1A;--card2:#222;--line:#262626;--ink:#FFF;--muted:#888;--muted2:#555}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
-.top{height:60px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(15,15,15,.95);backdrop-filter:blur(10px);z-index:20}
-.logo{font-size:18px;font-weight:700;letter-spacing:-.02em}.logo span{font-weight:500;color:var(--muted);font-size:13px;margin-left:8px}
-.view{display:none}.view.active{display:block}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#F0F2F5;color:#050505;-webkit-font-smoothing:antialiased}
+header{background:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid #DDE3EA;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+header h1{font-size:21px;color:#1877F2;font-weight:800;letter-spacing:-.03em}
+header h1 span{font-size:12px;color:#65676B;font-weight:500;margin-left:6px}
+.right{display:flex;gap:8px;align-items:center}
+.conectados{background:#E8F5E9;border:1px solid #A5D6A7;border-radius:999px;padding:7px 12px;display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:#2E7D32;box-shadow:0 1px 3px rgba(37,211,102,.15)}
+.dot{width:9px;height:9px;background:#25D366;border-radius:50%;animation:pulse 1.8s infinite;flex-shrink:0}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.btn-head{padding:8px 14px;border-radius:8px;border:none;font-weight:800;font-size:12px;cursor:pointer}
+.btn-head.blue{background:#1877F2;color:#fff}.btn-head.gray{background:#E4E6EB;color:#050505}
 
-/* INICIO */
-#inicio{max-width:420px;margin:0 auto;padding:48px 20px}
-.h1{font-size:30px;font-weight:700;line-height:1.05;letter-spacing:-.03em}
-.h1 span{color:var(--muted);font-weight:500}
-.sub{color:var(--muted);font-size:14px;line-height:1.5;margin-top:12px}
-.btn-big{width:100%;padding:20px 18px;border-radius:18px;border:none;font-size:17px;font-weight:700;cursor:pointer;margin-top:14px;display:flex;justify-content:space-between;align-items:center;transition:.2s}
-.btn-big:active{transform:scale(.98)}
-.btn-cliente{background:#fff;color:#111}.btn-vendedor{background:var(--card);color:#fff;border:1px solid var(--line)}
-.stats{margin-top:28px;display:flex;gap:16px;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
-.stat b{font-size:18px;display:block}.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+/* BANNER BIENVENIDA */
+.banner{background:linear-gradient(135deg,#1877F2 0%,#3B8FFF 100%);color:#fff;padding:36px 20px;text-align:center;position:relative;overflow:hidden}
+.banner::before{content:"";position:absolute;top:-80px;right:-80px;width:260px;height:260px;background:rgba(255,255,255,.12);border-radius:50%}
+.banner h1{font-size:34px;font-weight:800;line-height:.95;letter-spacing:-.04em;position:relative}
+.banner p{font-size:15px;margin-top:10px;opacity:.92;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.4;position:relative}
+.banner-badges{margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+.badge-w{background:rgba(255,255,255,.2);backdrop-filter:blur(10px);padding:7px 14px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,.2)}
+.explica{max-width:1000px;margin:14px auto;background:#fff;border:1px solid #DDE3EA;border-radius:14px;padding:16px 18px;font-size:13px;color:#65676B;line-height:1.5;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.explica b{color:#050505}.explica span{color:#1877F2;font-weight:800}
 
-/* CATALOGO PRO SIMPLE */
-#catalogo{max-width:1200px;margin:0 auto}
-.bar{position:sticky;top:60px;z-index:15;background:var(--bg);border-bottom:1px solid var(--line);padding:14px 20px}
-.search{position:relative;max-width:520px}
-.search input{width:100%;padding:15px 20px 15px 44px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:#fff;font-size:15px;outline:none}
-.search input:focus{border-color:#3A3A3A;background:var(--card2)}
-.search i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted2)}
-.top-actions{display:flex;gap:8px;margin-top:12px}
-.btn-small{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
-.btn-small.active{background:#fff;color:#111;border-color:#fff}
+.filtros{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;background:#fff;border-bottom:1px solid #DDE3EA;position:sticky;top:52px;z-index:90;scrollbar-width:none}
+.filter-btn{padding:8px 16px;border:1px solid #DDE3EA;border-radius:20px;background:#fff;color:#050505;cursor:pointer;white-space:nowrap;font-size:13px;font-weight:700;transition:.15s}
+.filter-btn.active{background:#1877F2;color:#fff;border-color:#1877F2;box-shadow:0 2px 8px rgba(24,119,242,.25)}
+.info-bar{padding:10px 16px;font-size:12px;color:#65676B;background:#fff;border-bottom:1px solid #DDE3EA;display:flex;justify-content:space-between;position:sticky;top:93px;z-index:80}
 
-.filtros{padding:12px 20px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line);position:sticky;top:128px;background:var(--bg);z-index:14}
-.f-btn{padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;transition:.2s}
-.f-btn.active{background:#fff;color:#111;border-color:#fff}
+.container{max-width:1250px;margin:0 auto;padding:14px 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.prod{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #DDE3EA;cursor:pointer;transition:.18s;box-shadow:0 1px 2px rgba(0,0,0,.04);display:flex;flex-direction:column}
+.prod:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.12);border-color:#1877F2}
+.prod img{width:100%;height:180px;object-fit:cover;background:#E7F3FF;display:block}
+.prod-body{padding:10px 10px 12px;flex:1;display:flex;flex-direction:column}
+.prod.store{font-size:10px;font-weight:800;color:#1877F2;text-transform:uppercase;letter-spacing:.04em}
+.prod.price{font-size:16px;font-weight:800;margin-top:3px;letter-spacing:-.02em}
+.prod.name{font-size:12px;font-weight:600;line-height:1.3;min-height:32px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:3px}
+.prod.desc-mini{font-size:11px;color:#65676B;margin-top:4px;min-height:26px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
 
-.info-bar{padding:14px 20px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.grid{padding:0 20px 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.prod{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;transition:.2s;display:flex;flex-direction:column}
-.prod:hover{border-color:#333;transform:translateY(-2px)}
-.prod img{width:100%;height:240px;object-fit:cover;background:#111}
-.prod-body{padding:14px;display:flex;flex-direction:column;gap:5px;flex:1}
-.local{font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
-.local:hover{color:var(--ink);text-decoration:underline}
-.precio{font-size:18px;font-weight:700}.nombre{font-size:14px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
-.desc{font-size:12px;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px}
-
-.load-more{padding:30px 20px;text-align:center}
-.btn-load{padding:14px 24px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;font-weight:600;cursor:pointer}
-.btn-load:hover{background:var(--card2)}
-
-.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
-.empty b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
-
-@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:0 12px 12px}.prod img{height:160px}.precio{font-size:16px}.nombre{font-size:13px}.bar{padding:12px}.filtros{top:122px}}
+/* MODAL PREVIA + CARRUSEL + CATALOGO TIENDA */
+.modal{position:fixed;inset:0;background:rgba(240,242,245,.9);backdrop-filter:blur(10px);z-index:300;display:none;overflow-y:auto;padding:10px}
+.modal.active{display:block}
+.modal-box{max-width:960px;margin:24px auto;background:#fff;border-radius:18px;overflow:hidden;border:1px solid #DDE3EA;box-shadow:0 24px 64px rgba(0,0,0,.18);animation:pop.22s ease}
+@keyframes pop{from{transform:translateY(12px) scale(.98);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.modal-top{display:grid;grid-template-columns:1fr 360px;min-height:480px}
+.carousel{position:relative;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.carousel img.car{width:100%;height:100%;object-fit:contain;display:none;background:#000;position:absolute;inset:0}
+.carousel img.car.active{display:block}
+.carousel-top{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+.carousel-name{background:rgba(0,0,0,.6);color:#fff;padding:7px 12px;border-radius:20px;font-size:11px;font-weight:800;backdrop-filter:blur(8px)}
+.carousel-count{background:rgba(255,255,255,.9);color:#000;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800}
+.dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
+.dot-car{width:28px;height:4px;border-radius:999px;background:rgba(255,255,255,.35);transition:.2s}.dot-car.active{background:#fff;width:28px}
+.modal-info{padding:18px;border-left:1px solid #DDE3EA;display:flex;flex-direction:column;background:#fff}
+.modal-info h2{font-size:22px;font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.modal-info.price-big{font-size:26px;font-weight:800;color:#1877F2;margin-top:10px;letter-spacing:-.03em}
+.modal-info.desc{font-size:13px;color:#65676B;line-height:1.45;margin-top:10px}
+.store-mini{margin-top:16px;background:#F0F2F5;border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center;border:1px solid #E4E6EB}
+.store-mini img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#fff;border:1px solid #DDE3EA}
+.btn-store{width:100%;padding:14px;border-radius:12px;border:none;background:#1877F2;color:#fff;font-weight:800;font-size:14px;margin-top:14px;cursor:pointer;box-shadow:0 4px 12px rgba(24,119,242,.25)}
+.btn-store:hover{background:#0861F2}
+.btn-close{width:100%;padding:12px;border-radius:12px;border:1px solid #DDE3EA;background:#fff;font-weight:700;font-size:13px;margin-top:8px;cursor:pointer}
+.store-catalog{background:#F0F2F5;padding:18px;border-top:1px solid #DDE3EA}
+.store-catalog h3{font-size:15px;font-weight:800;margin-bottom:12px}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.mini-prod{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #DDE3EA;cursor:pointer;transition:.15s}
+.mini-prod:hover{border-color:#1877F2;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.mini-prod img{width:100%;height:120px;object-fit:cover}
+.mini-prod.txt{padding:8px;font-size:11px;line-height:1.2}
+@media(max-width:800px){.modal-top{grid-template-columns:1fr;min-height:auto}.carousel{height:380px}.grid{grid-template-columns:repeat(2,1fr);gap:10px}.prod img{height:150px}.banner h1{font-size:28px}}
 </style>
 </head>
 <body>
 
-<div class="top">
-<div class="logo">3A VENDE <span>Tres Arroyos</span></div>
-<div style="font-size:11px;color:var(--muted)" id="totalLocales">0 locales</div>
+<header>
+<h1>3avende <span>Tres Arroyos</span></h1>
+<div class="right">
+<div class="conectados"><div class="dot"></div><span id="countConect">24</span> conectados</div>
+<button class="btn-head gray" onclick="location.href='panel.html'">Panel</button>
+<button class="btn-head blue" onclick="location.href='admin.html'">Admin</button>
 </div>
+</header>
 
-<div id="inicio" class="view active">
-<div class="h1">Todo<br>Tres Arroyos<br><span>en un lugar.</span></div>
-<p class="sub">Elegí qué querés hacer. Simple, sin registro.</p>
-
-<button class="btn-big btn-cliente" onclick="go('catalogo')">
-<span>🛒 SOY CLIENTE<br><small style="font-size:12px;font-weight:500;opacity:.6">Quiero comprar</small></span>
-<span>→</span>
-</button>
-
-<button class="btn-big btn-vendedor" onclick="location.href='panel.html'">
-<span>🏪 SOY VENDEDOR<br><small style="font-size:12px;font-weight:500;opacity:.6">Tengo un local</small></span>
-<span>→</span>
-</button>
-
-<div class="stats">
-<div class="stat"><b id="statLocales">0</b><span>Locales</span></div>
-<div class="stat"><b id="statProd">0</b><span>Productos</span></div>
-<div class="stat"><b>Sin login</b><span>Para comprar</span></div>
+<div class="banner">
+<h1>Bienvenid@s a 3A VENDE 💙</h1>
+<p>El marketplace de Tres Arroyos. Todo en un lugar. Comprá directo al local por WhatsApp, sin intermediarios.</p>
+<div class="banner-badges">
+<span class="badge-w">✓ 12 locales activos</span>
+<span class="badge-w">🛍️ 48 productos</span>
+<span class="badge-w">⚡ Envíos en el día</span>
+<span class="badge-w">📍 Hecho en 3A</span>
 </div>
 </div>
 
-<div id="catalogo" class="view">
-<div class="bar">
-<div class="search"><i>⌕</i><input id="search" placeholder="Buscar producto o local..."></div>
-<div class="top-actions">
-<button class="btn-small active" onclick="go('inicio')">← Inicio</button>
-<button class="btn-small" onclick="location.href='panel.html'">Soy vendedor</button>
-<button class="btn-small" id="btnClear" style="margin-left:auto;display:none" onclick="clearSearch()">✕ Limpiar</button>
-</div>
+<div class="explica">
+<b>¿Querés vender en 3A VENDE?</b> Tocá <span>Panel</span> → creá tu tienda con WhatsApp y contraseña. Subís foto de perfil, portada y productos. <b>Cobramos 15% de cada venta</b> que sale por la web. Vos cobrás directo por WhatsApp. <span>Sin alquiler. Sin mes. Pagás solo si vendés.</span> Al subir, tu producto aparece al instante en el inicio y en tu tienda tipo Facebook.
 </div>
 
-<div class="filtros" id="filtros">
-<div class="f-btn active" data-cat="all">Todos</div>
-<div class="f-btn" data-cat="clothing">Ropa</div>
-<div class="f-btn" data-cat="food">Comida</div>
-<div class="f-btn" data-cat="home">Hogar</div>
-<div class="f-btn" data-cat="panaderia">Panadería</div>
-<div class="f-btn" data-cat="verduleria">Verdulería</div>
-<div class="f-btn" data-cat="artesanias">Artesanías</div>
+<div class="filtros">
+<button class="filter-btn active" onclick="filtrar('todos',this)">Todas</button>
+<button class="filter-btn" onclick="filtrar('bar',this)">Bares</button>
+<button class="filter-btn" onclick="filtrar('parrilla',this)">Parrillas</button>
+<button class="filter-btn" onclick="filtrar('pizzeria',this)">Pizzerías</button>
+<button class="filter-btn" onclick="filtrar('kiosco',this)">Kioscos</button>
+<button class="filter-btn" onclick="filtrar('heladeria',this)">Heladerías</button>
+<button class="filter-btn" onclick="filtrar('polleria',this)">Pollerías</button>
+<button class="filter-btn" onclick="filtrar('carniceria',this)">Carnicería</button>
+<button class="filter-btn" onclick="filtrar('panaderia',this)">Panadería</button>
+<button class="filter-btn" onclick="filtrar('verduleria',this)">Verdulería</button>
+<button class="filter-btn" onclick="filtrar('clothing',this)">Ropa</button>
 </div>
 
-<div class="info-bar">
-<span id="infoText">0 productos</span>
-<span id="infoLocales" style="color:var(--muted2)"></span>
-</div>
+<div class="info-bar"><span id="infoText">0 productos</span><span>Click en el producto → vista previa con carrusel → tienda completa</span></div>
 
+<div class="container">
 <div class="grid" id="grid"></div>
+</div>
 
-<div class="load-more" id="loadMoreWrap" style="display:none">
-<button class="btn-load" onclick="loadMore()">Cargar más productos</button>
+<div class="modal" id="modal">
+<div class="modal-box">
+<div class="modal-top">
+<div class="carousel" id="carousel">
+<div class="carousel-top">
+<div class="carousel-name" id="carouselName">Tienda</div>
+<div class="carousel-count" id="carouselCount">1 / 4</div>
+</div>
+<div class="dots" id="dots"></div>
+</div>
+<div class="modal-info">
+<h2 id="mName">Producto</h2>
+<div class="price-big" id="mPrice">$0</div>
+<div class="desc" id="mDesc"></div>
+<div class="store-mini">
+<img id="mStoreImg" src="">
+<div><b id="mStoreName" style="font-size:13px;display:block">Tienda</b><span id="mStoreDir" style="font-size:11px;color:#65676B">Dirección • Horario</span></div>
+</div>
+<button class="btn-store" onclick="verTienda()">Ver tienda completa con todo el catálogo →</button>
+<button class="btn-close" onclick="closeModal()">Cerrar vista previa</button>
+<div style="font-size:11px;color:#65676B;margin-top:14px;line-height:1.4">El carrusel cambia solo cada 2.5s con todos los productos de esta tienda. Abajo ves el catálogo completo a la vista.</div>
+</div>
+</div>
+<div class="store-catalog">
+<h3 id="catTitle">Más productos de esta tienda</h3>
+<div class="mini-grid" id="miniGrid"></div>
+</div>
 </div>
 </div>
 
 <script>
-let activeCat='all', query='', visibleCount=20, filtered=[];
+let cat='todos';
+let curStore=null;
+let interval=null;
+let curProd=null;
 
-const go=id=>{
-document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-window.scrollTo(0,0);
-if(id==='catalogo') render();
+function filtrar(c,btn){
+cat=c;
+document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+btn.classList.add('active');
+render();
 }
 
-const getImg=p=>p.img||p.imgs?.[0]||'https://via.placeholder.com/400/1A1A1A/666?text=3A';
-
-function getAllProducts(){
-return JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
-}
-function getAllStores(){
-return JSON.parse(localStorage.getItem('marketStores')||'{}');
-}
-
-function updateStats(){
-let prods=getAllProducts();
-let stores=getAllStores();
-document.getElementById('totalLocales').textContent=Object.keys(stores).length+' locales';
-document.getElementById('statLocales').textContent=Object.keys(stores).length;
-document.getElementById('statProd').textContent=prods.length;
-}
-
-function applyFilters(){
-let all=getAllProducts();
-let q=query.toLowerCase();
-filtered=all.filter(p=>{
-let matchCat=activeCat==='all'||p.category===activeCat;
-let matchQuery=!q||p.name.toLowerCase().includes(q)||p.store.toLowerCase().includes(q)||(p.desc||'').toLowerCase().includes(q);
-return matchCat&&matchQuery;
-});
-visibleCount=20;
-}
+function getAll(){return JSON.parse(localStorage.getItem('marketProductsAR')||'[]');}
+function getStores(){return JSON.parse(localStorage.getItem('marketStores')||'{}');}
 
 function render(){
-applyFilters();
-let toShow=filtered.slice(0,visibleCount);
-let localesUnicos=new Set(filtered.map(p=>p.storeId)).size;
-
-document.getElementById('infoText').textContent=filtered.length+' productos';
-document.getElementById('infoLocales').textContent=localesUnicos+' locales';
-document.getElementById('btnClear').style.display=query?'block':'none';
-
+let all=getAll();
+let f=cat==='todos'?all:all.filter(p=>p.category===cat);
+document.getElementById('infoText').textContent=f.length+' productos • Click para ver';
 let grid=document.getElementById('grid');
-if(filtered.length===0){
-grid.innerHTML=`<div class="empty"><b>Sin resultados</b>Probá buscando otra cosa o cambiá de categoría</div>`;
-document.getElementById('loadMoreWrap').style.display='none';
-return;
-}
-
-grid.innerHTML=toShow.map(p=>`
-<div class="prod" onclick="location.href='store.html?store=${p.storeId}'">
-<img src="${getImg(p)}" loading="lazy">
+grid.innerHTML=f.map(p=>`
+<div class="prod" onclick='openModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+<img src="${p.img}" loading="lazy">
 <div class="prod-body">
-<div class="local" onclick="event.stopPropagation();location.href='store.html?store=${p.storeId}'">${p.store} → VER LOCAL</div>
-<div class="precio">$${p.price.toLocaleString('es-AR')}</div>
-<div class="nombre">${p.name}</div>
-<div class="desc">${p.desc||''}</div>
+<div class="store">${p.store}</div>
+<div class="price">$${p.price.toLocaleString('es-AR')}</div>
+<div class="name">${p.name}</div>
+<div class="desc-mini">${p.desc||''}</div>
 </div>
 </div>
 `).join('');
-
-document.getElementById('loadMoreWrap').style.display=filtered.length>visibleCount?'block':'none';
-updateStats();
 }
 
-function loadMore(){
-visibleCount+=20;
-render();
-window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
-}
+function openModal(p){
+curProd=p;
+curStore=p.storeId;
+let stores=getStores();
+let s=stores[p.storeId];
+let all=getAll().filter(x=>x.storeId===p.storeId);
 
-function clearSearch(){
-document.getElementById('search').value='';
-query='';
-render();
-}
+document.getElementById('mName').textContent=p.name;
+document.getElementById('mPrice').textContent='$'+p.price.toLocaleString('es-AR');
+document.getElementById('mDesc').textContent=p.desc||'';
+document.getElementById('mStoreName').textContent=s?s.name:p.store;
+document.getElementById('mStoreDir').textContent=s? s.dir+' • '+s.hor : 'Tres Arroyos';
+document.getElementById('mStoreImg').src=s? s.profile : p.img;
+document.getElementById('carouselName').textContent=s? s.name : p.store;
 
-document.getElementById('search').addEventListener('input',e=>{
-query=e.target.value;
-render();
+let car=document.getElementById('carousel');
+[...car.querySelectorAll('img.car')].forEach(e=>e.remove());
+all.forEach((item,i)=>{
+let img=document.createElement('img');
+img.src=item.img;
+img.className='car'+(i===all.findIndex(a=>a.id===p.id)?' active':'');
+car.insertBefore(img, document.getElementById('dots'));
 });
 
-document.getElementById('filtros').addEventListener('click',e=>{
-if(e.target.classList.contains('f-btn')){
-document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
-e.target.classList.add('active');
-activeCat=e.target.dataset.cat;
-render();
+let startIdx = all.findIndex(a=>a.id===p.id);
+if(startIdx<0) startIdx=0;
+let dots=document.getElementById('dots');
+dots.innerHTML=all.map((_,i)=>`<div class="dot-car ${i===startIdx?'active':''}"></div>`).join('');
+document.getElementById('carouselCount').textContent=(startIdx+1)+' / '+all.length;
+
+let idx=startIdx;
+clearInterval(interval);
+interval=setInterval(()=>{
+idx=(idx+1)%all.length;
+car.querySelectorAll('img.car').forEach((im,j)=>im.classList.toggle('active',j===idx));
+dots.querySelectorAll('.dot-car').forEach((d,j)=>d.classList.toggle('active',j===idx));
+document.getElementById('carouselCount').textContent=(idx+1)+' / '+all.length;
+},2500);
+
+document.getElementById('catTitle').textContent='Catálogo completo de '+(s?s.name:p.store)+' • '+all.length+' productos';
+document.getElementById('miniGrid').innerHTML=all.map(x=>`
+<div class="mini-prod" onclick='openModal(${JSON.stringify(x).replace(/'/g,"&#39;")})'>
+<img src="${x.img}"><div class="txt"><b style="font-size:12px;display:block">$${x.price.toLocaleString('es-AR')}</b>${x.name}</div>
+</div>
+`).join('');
+
+document.getElementById('modal').classList.add('active');
+document.body.style.overflow='hidden';
 }
+
+function closeModal(){
+document.getElementById('modal').classList.remove('active');
+document.body.style.overflow='';
+clearInterval(interval);
+}
+
+function verTienda(){
+if(curStore) location.href='store.html?store='+curStore;
+}
+
+document.getElementById('modal').addEventListener('click',e=>{
+if(e.target.id==='modal') closeModal();
 });
 
-// Demo data si está vacío
+function initCount(){
+let base=parseInt(localStorage.getItem('visitCount3A')||'24');
+if(!sessionStorage.getItem('counted')){
+base+=1;
+localStorage.setItem('visitCount3A', base.toString());
+sessionStorage.setItem('counted','1');
+}
+document.getElementById('countConect').textContent=base;
+setInterval(()=>{
+if(Math.random()>0.45){
+let c=parseInt(document.getElementById('countConect').textContent)+1;
+document.getElementById('countConect').textContent=c;
+localStorage.setItem('visitCount3A',c.toString());
+}
+},28000);
+}
+initCount();
+
+// DEMO COMPLETO 12 LOCALES 48 PRODUCTOS
 if(!localStorage.getItem('marketProductsAR')){
-let demo=[];
-for(let i=1;i<=30;i++){
-demo.push({
-id:i,
-store: i%2===0?'Zapatería Centro':'Panadería La Espiga',
-storeId: i%2===0?'zapateria-centro':'panaderia-la-espiga',
-city:'Tres Arroyos',
-dir: i%2===0?'Av. Moreno 456':'Rivadavia 456',
-name: i%2===0?`Zapatillas Modelo ${i} - Talle 38 al 44`:`Medialunas x12 - Lote ${i}`,
-price: i%2===0?50000+i*100:3000+i*50,
-stock:10,
-category: i%2===0?'clothing':'panaderia',
-img: i%2===0?'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop':'https://images.unsplash.com/photo-1558961363-fa8fdf82db8e?w=400&h=400&fit=crop',
-desc: i%2===0?'Cuero original. Envío gratis Tres Arroyos.':'Recién horneadas hoy.'
+const stores={
+'zapateria-centro':{name:'Zapatería Centro',dir:'Av. Moreno 456',hor:'Lun a Sáb 9 a 20hs',wsp:'2983 401234',cover:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1560343090-f4df9e18b80e?w=200&h=200&fit=crop'},
+'panaderia-la-espiga':{name:'Panadería La Espiga',dir:'Rivadavia 345',hor:'Lun a Sáb 6 a 20hs',wsp:'2983 405678',cover:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop'},
+'verduleria-don-pepe':{name:'Verdulería Don Pepe',dir:'Colón 1120',hor:'Lun a Sáb 8 a 21hs',wsp:'2983 409876',cover:'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=200&h=200&fit=crop'},
+'bar-el-encuentro':{name:'Bar El Encuentro',dir:'Av. Libertad 258',hor:'19 a 2hs Mar a Dom',wsp:'2983 401122',cover:'https://images.unsplash.com/photo-1470337458703-46e7f6652aef?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1470337458703-46e7f6652aef?w=200&h=200&fit=crop'},
+'kiosco-esquina':{name:'Kiosco La Esquina 24hs',dir:'Rivadavia 369',hor:'24hs Todos los días',wsp:'2983 403344',cover:'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=200&h=200&fit=crop'},
+'parrilla-estaca':{name:'Parrilla La Estaca',dir:'San Martín 456',hor:'11 a 15 y 20 a 00hs',wsp:'2983 405566',cover:'https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1544025162-d76694265947?w=200&h=200&fit=crop'},
+'heladeria-dolce':{name:'Heladería Dolce Vita',dir:'25 de Mayo 789',hor:'15 a 23hs Todos los días',wsp:'2983 407788',cover:'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=200&h=200&fit=crop'},
+'polleria-granja':{name:'Pollería La Granja',dir:'Belgrano 321',hor:'8 a 20hs Lun a Sáb',wsp:'2983 408899',cover:'https://images.unsplash.com/photo-1587593810167-23187d95d65c?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1587593810167-23187d95d65c?w=200&h=200&fit=crop'},
+'rotiseria-lucha':{name:'Rotisería Mamá Lucha',dir:'San Martín 741',hor:'10 a 15 y 19 a 23hs',wsp:'2983 409900',cover:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop'},
+'pizzeria-pepone':{name:'Pizzería Don Pepone',dir:'25 de Mayo 852',hor:'19 a 1hs Mar a Dom',wsp:'2983 401010',cover:'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop'},
+'carniceria-jose':{name:'Carnicería Don José',dir:'Belgrano 123',hor:'8 a 21hs Lun a Sáb',wsp:'2983 402020',cover:'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=200&h=200&fit=crop'},
+'ropa-urbana-3a':{name:'Ropa Urbana 3A',dir:'Sarmiento 234',hor:'Lun a Sáb 10 a 20hs',wsp:'2983 402233',cover:'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&h=400&fit=crop',profile:'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=200&h=200&fit=crop'}
+};
+Object.keys(stores).forEach(k=>{stores[k].city='Tres Arroyos';stores[k].desc='Local de Tres Arroyos';stores[k].ig='@'+k;stores[k].ownerWsp='2983401234';});
+const base=[
+['zapateria-centro','Zapatillas Urbanas Blancas 38-44',58900,'clothing','https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop','Cuero ecológico, suela antideslizante'],
+['zapateria-centro','Botitas Cuero Marrón',74900,'clothing','https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&h=600&fit=crop','Cuero genuino, forro abrigado'],
+['zapateria-centro','Ojotas Playeras Negras',12900,'clothing','https://images.unsplash.com/photo-1603808033176-935819eb3b12?w=600&h=600&fit=crop','Goma EVA liviana'],
+['zapateria-centro','Zapatillas Running Negras',62900,'clothing','https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&h=600&fit=crop','Malla respirable'],
+['panaderia-la-espiga','Medialunas Manteca x12',8500,'panaderia','https://images.unsplash.com/photo-1558961363-fa8fdf82db8e?w=600&h=600&fit=crop','Recién horneadas con almíbar'],
+['panaderia-la-espiga','Pan de Campo 800gr',3200,'panaderia','https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=600&fit=crop','Masa madre horno a leña'],
+['panaderia-la-espiga','Torta Chocotorta Entera',18900,'panaderia','https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&h=600&fit=crop','Para 10 personas'],
+['panaderia-la-espiga','Facturas Surtidas x12',7800,'panaderia','https://images.unsplash.com/photo-1488477304112-4944851de03d?w=600&h=600&fit=crop','Vigilantes y cañoncitos'],
+['verduleria-don-pepe','Cajón Naranjas 10kg',9500,'verduleria','https://images.unsplash.com/photo-1611080626917-7cf1a4a5f67a?w=600&h=600&fit=crop','Dulces de Entre Ríos'],
+['verduleria-don-pepe','Palta Hass Kg',6900,'verduleria','https://images.unsplash.com/photo-1601039641847-7857b994d704?w=600&h=600&fit=crop','Madura cremosa'],
+['verduleria-don-pepe','Tomates Redondos Kg',2500,'verduleria','https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600&h=600&fit=crop','Quinta local'],
+['verduleria-don-pepe','Bolsón Familiar 5kg',6800,'verduleria','https://images.unsplash.com/photo-1518843875459-f738682238a6?w=600&h=600&fit=crop','Papa, cebolla, zanahoria'],
+['bar-el-encuentro','Jarra Cerveza Artesanal 2L',6500,'bar','https://images.unsplash.com/photo-1608270586620-248524c67de9?w=600&h=600&fit=crop','Bien fría tirada'],
+['bar-el-encuentro','Picada Grande 4 Pers',9200,'bar','https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=600&fit=crop','Quesos, salames, aceitunas'],
+['bar-el-encuentro','Fernet Branca + Coca 2L',4800,'bar','https://images.unsplash.com/photo-1473120596889-42a697e2c39c?w=600&h=600&fit=crop','Con hielo'],
+['bar-el-encuentro','Papas Cheddar y Bacon',3800,'bar','https://images.unsplash.com/photo-1585109649139-366815a0d713?w=600&h=600&fit=crop','Cheddar derretido'],
+['kiosco-esquina','Combo Desayuno Completo',2200,'kiosco','https://images.unsplash.com/photo-1485809052867-1993bd6afa1f?w=600&h=600&fit=crop','Café + 2 medialunas'],
+['kiosco-esquina','Golosinas Surtidas x10',1800,'kiosco','https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=600&h=600&fit=crop','Mix alfajores y chicles'],
+['kiosco-esquina','Gaseosa 2.5L Fría',2800,'kiosco','https://images.unsplash.com/photo-1553456558-aff63285bdd1?w=600&h=600&fit=crop','Bien fría'],
+['kiosco-esquina','Puchos + Fósforos Pack',1400,'kiosco','https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=600&fit=crop','Pack completo'],
+['parrilla-estaca','Tira + Vacío 2 Personas',25000,'parrilla','https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&h=600&fit=crop','Jugosa a la parrilla'],
+['parrilla-estaca','Chori Pan Casero x4',3200,'parrilla','https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=600&fit=crop','Pan casero'],
+['parrilla-estaca','Costillar Completo 6kg',38000,'parrilla','https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=600&fit=crop','Para familia'],
+['parrilla-estaca','Provoleta + Chorizo',6500,'parrilla','https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&h=600&fit=crop','Provoleta completa'],
+['heladeria-dolce','1/4 Helado + 2 Cucuruchos',3800,'heladeria','https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=600&h=600&fit=crop','A elección'],
+['heladeria-dolce','Postre Helado Familiar 1kg',8500,'heladeria','https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=600&fit=crop','6 personas'],
+['heladeria-dolce','Copa Dulce Tentación',4200,'heladeria','https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=600&h=600&fit=crop','3 bochas + toppings'],
+['heladeria-dolce','Torta Helada Chocolate 1kg',12000,'heladeria','https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=600&h=600&fit=crop','Con dulce de leche'],
+['polleria-granja','Pollo Entero Granja',7200,'polleria','https://images.unsplash.com/photo-1587593810167-23187d95d65c?w=600&h=600&fit=crop','Fresco del día'],
+['polleria-granja','Pata Muslo x4 Unidades',4800,'polleria','https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600&h=600&fit=crop','Seleccionadas'],
+['polleria-granja','Milanesas de Pollo x8',9200,'polleria','https://images.unsplash.com/photo-1693561868466-6f5a9efb2863?w=600&h=600&fit=crop','Listas para freír'],
+['polleria-granja','Alitas BBQ x2kg',11000,'polleria','https://images.unsplash.com/photo-1567620832904-9a4c2a79b356?w=600&h=600&fit=crop','Con salsa BBQ'],
+['rotiseria-lucha','Milanesa Napolitana Casera',5200,'rotiseria','https://images.unsplash.com/photo-1693561868466-6f5a9efb2863?w=600&h=600&fit=crop','Queso y tomate'],
+['rotiseria-lucha','Pollo al Horno con Papas',6800,'rotiseria','https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600&h=600&fit=crop','Papas rústicas'],
+['rotiseria-lucha','Empanadas de Carne x12',4800,'rotiseria','https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=600&h=600&fit=crop','Docena horneadas'],
+['rotiseria-lucha','Ensalada Rusa 1kg Casera',4200,'rotiseria','https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=600&fit=crop','Casera de la abuela'],
+['pizzeria-pepone','Pizza Muzza Grande 8 Porciones',4800,'pizzeria','https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&h=600&fit=crop','Grande muzzarella'],
+['pizzeria-pepone','2x1 Empanadas de Carne',3800,'pizzeria','https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=600&h=600&fit=crop','Horno de barro'],
+['pizzeria-pepone','Fugazzeta Rellena Premium',6200,'pizzeria','https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=600&fit=crop','Rellena con muzza'],
+['pizzeria-pepone','Combo Familia 2 Pizzas',12500,'pizzeria','https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=600&fit=crop','A elección'],
+['carniceria-jose','Asado 3kg Premium',16500,'carniceria','https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=600&fit=crop','Tira vacío matambre'],
+['carniceria-jose','Milanesas x8 Ternera',8900,'carniceria','https://images.unsplash.com/photo-1587593810167-23187d95d65c?w=600&h=600&fit=crop','Ternera especial'],
+['carniceria-jose','Costilla 2kg Parrilla',12800,'carniceria','https://images.unsplash.com/photo-1607623814075-e51a6150a6ed?w=600&h=600&fit=crop','Ancha para parrilla'],
+['carniceria-jose','Combo Familia 5kg',22500,'carniceria','https://images.unsplash.com/photo-1607623814075-e51a6150a6ed?w=600&h=600&fit=crop','Mixto familiar'],
+['ropa-urbana-3a','Buzo Oversize Negro 3A',28900,'clothing','https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop','Friza premium bordado'],
+['ropa-urbana-3a','Remera Blanca Logo Azul',12900,'clothing','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop','Algodón 100%'],
+['ropa-urbana-3a','Gorra Trucker Azul',8900,'clothing','https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&h=600&fit=crop','Malla atrás ajustable'],
+['ropa-urbana-3a','Jogger Cargo Verde',24900,'clothing','https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=600&fit=crop','6 bolsillos unisex']
+];
+let all=[];let id=1;
+base.forEach(b=>{
+all.push({id:id++,store:stores[b[0]].name,storeId:b[0],name:b[1],price:b[2],category:b[3],img:b[4],desc:b[5],city:'Tres Arroyos',dir:stores[b[0]].dir,stock:20});
 });
-}
-localStorage.setItem('marketProductsAR',JSON.stringify(demo));
-localStorage.setItem('marketStores',JSON.stringify({
-'zapateria-centro':{name:'Zapatería Centro',desc:'Calzado de Tres Arroyos',dir:'Av. Moreno 456',city:'Tres Arroyos',hor:'Lun a Sáb 9 a 20hs',wsp:'2983 123456',ig:'@zapat.centro',profile:'https://via.placeholder.com/200',cover:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1000&h=400&fit=crop'},
-'panaderia-la-espiga':{name:'Panadería La Espiga',desc:'Panadería artesanal',dir:'Rivadavia 456',city:'Tres Arroyos',hor:'Lun a Sáb 6 a 20hs',wsp:'2983 654321',ig:'@laespiga',profile:'https://via.placeholder.com/200',cover:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1000&h=400&fit=crop'}
-}));
+localStorage.setItem('marketProductsAR',JSON.stringify(all));
+localStorage.setItem('marketStores',JSON.stringify(stores));
+localStorage.setItem('marketUsers',JSON.stringify({'2983401234':{wsp:'2983401234',pass:'123456',storeId:'zapateria-centro'}}));
+localStorage.setItem('visitCount3A','24');
 }
 
-updateStats();
 render();
 </script>
 </body>
-  </html>
+</html>
