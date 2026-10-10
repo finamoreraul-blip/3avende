@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda - 3A VENDE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0F0F0F;--card:#1A1A1A;--line:#262626;--ink:#EDEDED;--muted:#888}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:var(--bg);color:var(--ink)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10}
+.logo{font-weight:700}
+.cover{width:100%;height:240px;background:#1A1A1A;object-fit:cover;display:block}
+.profile-wrap{max-width:1100px;margin:0 auto;padding:0 24px;position:relative}
+.profile-img{width:96px;height:96px;border-radius:50%;border:4px solid var(--bg);object-fit:cover;background:var(--card);margin-top:-48px}
+.info{margin-top:12px;display:flex;gap:24px;flex-wrap:wrap}
+.info h1{font-size:22px;font-weight:700}
+.info p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;max-width:500px}
+.data{margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.data span{border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:var(--card)}
+section{max-width:1100px;margin:0 auto;padding:24px}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.prod{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+.prod img{width:100%;height:200px;object-fit:cover}
+.prod-body{padding:12px}.price{font-size:15px;font-weight:700;margin-top:6px}.name{font-size:13px;font-weight:600;margin-top:4px;line-height:1.3}
+.comision{background:#1A1A1A;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:16px;font-size:12px;color:var(--muted)}
+@media(max-width:700px){.prod-grid{grid-template-columns:repeat(2,1fr)}.cover{height:160px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="logo">3A VENDE</div><div style="display:flex;gap:8px"><button onclick="location.href='index.html'" style="background:transparent;border:1px solid var(--line);color:var(--muted);padding:7px 12px;border-radius:999px;font-size:12px;cursor:pointer">Inicio</button><button onclick="location.href='panel.html'" style="background:#fff;border:none;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer">Mi Panel</button></div></div>
+
+<img class="cover" id="coverImg" src="">
+<div class="profile-wrap">
+<img class="profile-img" id="profileImg" src="">
+<div class="info">
+<div>
+<h1 id="storeName">Tienda</h1>
+<p id="storeDesc">Emprendimiento de Tres Arroyos</p>
+<div class="data">
+<span id="storeDir">📍 Dirección</span>
+<span id="storeCity">Tres Arroyos</span>
+<span id="storeHor">🕐 Horario</span>
+<span id="storeWsp">📲 WhatsApp</span>
+<span id="storeIg">📷 Instagram</span>
+</div>
+<div class="comision">3A VENDE cobra <b style="color:#fff">15% por venta</b> • Pago seguro retención hasta entrega • El cliente paga acá, vos recibís 85%</div>
+</div>
+</div>
+</div>
+
+<section>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h3 style="font-size:16px;font-weight:700">Productos</h3><span style="font-size:12px;color:var(--muted)" id="prodCount">0 productos</span></div>
+<div class="prod-grid" id="grid"></div>
+</section>
+
+<script>
+function getParam(name){return new URLSearchParams(location.search).get(name);}
+const storeId = getParam('store');
+function getImg(p){return p.imgs?p.imgs[0]:p.img}
+function load(){
+let stores = JSON.parse(localStorage.getItem('marketStores')||'{}');
+let store = stores[storeId] || {name: storeId, desc: 'Emprendimiento de Tres Arroyos', dir:'Av. Moreno 456', city:'Tres Arroyos', hor:'Lun a Sáb 9 a 20hs', wsp:'2983 123456', ig:'@tienda.3a', profile:'https://via.placeholder.com/200/1A1A1A/666?text=3A', cover:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop'};
+document.getElementById('storeName').textContent=store.name||storeId;
+document.getElementById('storeDesc').textContent=store.desc||'';
+document.getElementById('storeDir').textContent='📍 '+(store.dir||'Dirección');
+document.getElementById('storeCity').textContent=store.city||'Tres Arroyos';
+document.getElementById('storeHor').textContent='🕐 '+(store.hor||'Horario');
+document.getElementById('storeWsp').textContent='📲 '+(store.wsp||'WhatsApp');
+document.getElementById('storeIg').textContent='📷 '+(store.ig||'@tienda');
+document.getElementById('profileImg').src=store.profile||'https://via.placeholder.com/200/1A1A1A/666?text=3A';
+document.getElementById('coverImg').src=store.cover||'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop';
+
+let all = JSON.parse(localStorage.getItem('marketProductsAR')||'[]');
+let filt = all.filter(p=> (p.storeId===storeId || p.store===storeId));
+document.getElementById('prodCount').textContent=filt.length+' productos';
+document.getElementById('grid').innerHTML=filt.map(p=>`
+<div class="prod"><img src="${getImg(p)}"><div class="prod-body"><div class="name">${p.name}</div><div class="price">$${p.price.toLocaleString('es-AR')} <span style="font-size:10px;color:var(--muted);font-weight:400">• Vos recibís $${(p.price*0.85).toLocaleString('es-AR')}</span></div><div style="font-size:11px;color:var(--muted);margin-top:4px">${p.desc||''}</div></div></div>
+`).join('')||'<div style="grid-column:1/-1;color:var(--muted);text-align:center;padding:40px;font-size:13px">Este emprendimiento aún no cargó productos</div>';
+}
+load();
+</script>
+</body>
+</html>
